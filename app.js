@@ -8,6 +8,9 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.get('/', mainController.getIndex);
+app.get('/product', (req, res) => {
+    res.render('product');
+})
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
