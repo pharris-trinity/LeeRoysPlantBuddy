@@ -9,9 +9,7 @@ app.set('views', './views');
 
 app.get('/', mainController.getIndex);
 app.get('/product', mainController.getProduct);
-app.get('/home', (req, res) => {
-    res.render('home');
-})
+app.get('/home', mainController.getHome);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

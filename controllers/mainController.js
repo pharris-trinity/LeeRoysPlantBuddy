@@ -8,6 +8,9 @@ const mainController = {
   getProduct: (req, res) => {
     const data = dataModel.getData();
     res.render('product', { data });
+  },
+  getHome: (req, res) => {
+    res.render('home');
   }
 };
 
