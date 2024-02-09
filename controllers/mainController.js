@@ -11,7 +11,11 @@ const mainController = {
   },
   getHome: (req, res) => {
     res.render('home');
-  }
+  },
+
+  getCheckout: (req, res) => {
+    res.render('checkout');
+  },
 };
 
 module.exports = mainController;
