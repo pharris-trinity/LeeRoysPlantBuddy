@@ -14,9 +14,9 @@
         </div>
         <div class="container">
             <ul class="product-list">
-                <li>Pets</li>
-                <li>Pet Food</li>
-                <li>Pet Stuff</li>
+                <% products.forEach(product => { %>
+                    <li><%= product.description %></li>
+                <% }); %>
             </ul>
         </div>
       </body>
