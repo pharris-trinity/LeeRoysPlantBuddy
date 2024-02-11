@@ -65,3 +65,14 @@ body {
 .product-text {
     text-align: right;
 }
+
+.add-to-cart {
+    background-image: url('cart-fill.svg');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+    display: inline-block;
+}
