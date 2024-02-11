@@ -12,10 +12,19 @@
             <h1 class="centered-title">Product Page</h1>
             <h2 class="centered-title">Check out all our products</h2>    
         </div>
+        <div class="navbar">
+            <span><button>Home</button></span>
+            <span><button>Products</button></span>
+            <span><button>Checkout</button></span>
+        </div>
         <div class="container">
             <ul class="product-list">
                 <% products.forEach(product => { %>
-                    <li><%= product.description %></li>
+                    <li class="product-list-item">
+                        <span class="product-text"><%= product.description %></span>
+                        <span class="price-text">$<%= product.price %></span>
+                        <span><button>Add to cart</button></span>
+                    </li>
                 <% }); %>
             </ul>
         </div>
