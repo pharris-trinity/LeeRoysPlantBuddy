@@ -11,6 +11,10 @@ const mainController = {
   },
   getHome: (req, res) => {
     res.render('home');
+  },
+  getCheckout: (req, res) => {
+    const checkout = dataModel.getCheckout();
+    res.render('checkout', { checkout });
   }
 };
 

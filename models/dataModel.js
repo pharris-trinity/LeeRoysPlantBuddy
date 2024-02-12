@@ -12,7 +12,11 @@ const dataModel = {
         {id: 5, description: 'Lizard Food', price: 5.99},
       ]
       return products;
-    }
+    },
+    getCheckout: () => {
+        let cartProducts = dataModel.getProducts();
+	return cartProducts;
+    }	
   };
   
   module.exports = dataModel;

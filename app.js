@@ -13,7 +13,7 @@ app.set('views', './views');
 app.get('/', mainController.getIndex);
 app.get('/product', mainController.getProduct);
 app.get('/home', mainController.getHome);
-
+app.get('/checkout', mainController.getCheckout);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
