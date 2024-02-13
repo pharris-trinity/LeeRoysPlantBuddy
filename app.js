@@ -1,8 +1,11 @@
 const express = require('express');
-const mainController = require('./controllers/mainController');
 
 const app = express();
 const port = 3000;
+
+app.use(express.static('public'));
+
+const mainController = require('./controllers/mainController');
 
 app.set('view engine', 'ejs');
 app.set('views', './views');

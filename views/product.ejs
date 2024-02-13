@@ -4,15 +4,29 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/styles/styles.css">
         <title>LeeRoy's Pets N' More Products</title>
     </head>
     <body>
-        <h1>Product Page</h1>
-        <h2>Check out all our products</h2>
-        <ul>
-            <li>Pets</li>
-            <li>Pet Food</li>
-            <li>Pet Stuff</li>
-        </ul>
+        <div>
+            <h1 class="centered-title">Product Page</h1>
+            <h2 class="centered-title">Check out all our products</h2>    
+        </div>
+        <div class="navbar">
+            <span><a href="/">Home</a></span>
+            <span><a href="/product">Products</a></span>
+            <span><a href="/checkout">Checkout</a></span>
+        </div>
+        <div class="container">
+            <ul class="product-list">
+                <% products.forEach(product => { %>
+                    <li class="product-list-item">
+                        <span class="product-text"><%= product.description %></span>
+                        <span class="price-text">$<%= product.price %></span>
+                        <span>Add to cart<button class="add-to-cart"></button></span>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
       </body>
 </html>
