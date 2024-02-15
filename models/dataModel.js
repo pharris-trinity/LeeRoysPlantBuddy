@@ -23,6 +23,13 @@ const dataModel = {
       let cartProducts = dataModel.getProducts();
 	    return cartProducts;
     },
+    addToCart: (product) => {
+      cart+=(product);
+      console.log(cart);
+    },
+    getCart: () => {
+      return cart;
+    }
   };
 
 class Cart {
@@ -32,7 +39,7 @@ class Cart {
 
   addToCart(product) {
     this.items.push(product);
-    print(this.items);
+    // print(this.items);
   }	
 
   getCart() {

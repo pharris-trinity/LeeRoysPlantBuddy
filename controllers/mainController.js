@@ -1,5 +1,7 @@
 const {dataModel, Cart} = require('../models/dataModel');
 
+const cart = new Cart();
+
 const mainController = {
   getIndex: (req, res) => {
     const data = dataModel.getData();
@@ -14,7 +16,7 @@ const mainController = {
   },
   getProduct: (req, res) => {
     const products = dataModel.getProducts();
-    const cart = new Cart();
+  
     res.render('product', { products, cart });
   },
   addToCart: (req, res) => {
@@ -24,7 +26,11 @@ const mainController = {
     // const cart = req.body.cart;
     // console.log(cart);
     
-    // cart.addItem(product, cart);
+    cart.addToCart(product);
+
+    const products = dataModel.getCart();
+
+    console.log("These is in the cart, ", products);
   }
 };
 
