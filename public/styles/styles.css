@@ -1,17 +1,17 @@
 a {
     text-decoration: none;
-    color: #fff;
+    color: #fafafa;
 }
 
 body {
-    background-color: #333;
-    color: #fff;
+    background-color: #e7eaeb;
+    color: #35373b;
     margin: 0;
 }
 
 .centered-title {
     text-align: center;
-    margin: 0;
+    margin: 1.5%;
 }
 
 .container {
@@ -20,18 +20,16 @@ body {
 }
 
 .navbar {
-    background-color: #800000;
+    background-color: #7a211f;
     text-align: center;
     justify-content: space-evenly;
     display: flex;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 12px;
 }
 
 .navbar:hover {
-    background: #800050;
+    background: #541413;
 }
 
 .price-text {
@@ -44,14 +42,14 @@ body {
 
 .product-list li:nth-child(even) {
     background-color: #800000;
-    color: #fff;
+    color: #35373b;
     margin: 10px 0;
     padding: 15px;
 }
 
 .product-list li:nth-child(odd) {
     background-color: #b6533e;
-    color: #fff;
+    color: #35373b;
     margin: 10px 0;
     padding: 15px;
 }
