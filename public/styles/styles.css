@@ -12,7 +12,12 @@ body {
 .centered-title {
     text-align: center;
 }
-
+.header {
+	padding: 3px;
+  	text-align: center;
+  	background: #7a211f;
+	color: #fafafa
+}
 .container {
     width: 80%;
     margin: 0 auto;
@@ -26,9 +31,11 @@ body {
     padding-top: 15px;
     padding-bottom: 12px;
 }
-
-.navbar:hover {
-    background: #541413;
+.navbar a {
+	color: #fafafa;
+}
+.navbar a:hover {
+    color: #d27763;
 }
 
 .price-text {
