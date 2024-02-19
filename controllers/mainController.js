@@ -31,7 +31,11 @@ const mainController = {
     const products = dataModel.getCart();
 
     console.log("These is in the cart, ", products);
-  }
+  },
+
+  getCheckout: (req, res) => {
+    res.render('checkout');
+  },
 };
 
 module.exports = mainController;
