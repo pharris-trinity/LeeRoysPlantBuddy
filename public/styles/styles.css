@@ -12,12 +12,14 @@ body {
 .centered-title {
     text-align: center;
 }
+
 .header {
-	padding: 3px;
+	padding: 1px;
   	text-align: center;
   	background: #7a211f;
 	color: #fafafa
 }
+
 .container {
     width: 80%;
     margin: 0 auto;
@@ -31,9 +33,11 @@ body {
     padding-top: 15px;
     padding-bottom: 12px;
 }
+
 .navbar a {
 	color: #fafafa;
 }
+
 .navbar a:hover {
     color: #d27763;
 }
@@ -47,14 +51,14 @@ body {
 }
 
 .product-list li:nth-child(even) {
-    background-color: #800000;
+    background-color:#798d46;
     color: #35373b;
     margin: 10px 0;
     padding: 15px;
 }
 
 .product-list li:nth-child(odd) {
-    background-color: #b6533e;
+    background-color: #5a8b9f;
     color: #35373b;
     margin: 10px 0;
     padding: 15px;
