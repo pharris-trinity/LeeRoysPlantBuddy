@@ -7,15 +7,14 @@
         <link rel="stylesheet" href="/styles/styles.css">
         <title>LeeRoy's Checkout</title>
         <style>
-			div.sticky {
-            position:sticky; 
-            top: 25px;
-            right: 25px;
-            padding:10px;
-         }
-			h1.title {
+			.header {
+  				padding: 10px;
+  				text-align: center;
+  				background: #7a211f;
+			}
+			.header.title {
             text-align: center;
-            color: #331211;
+            color: #fafafa;
          }
 			.topnav {
 			 	overflow: hidden;
@@ -24,20 +23,15 @@
 				display: flex;
 				text-align: center;
 				padding: 15px;
-
-
 			}
 			.topnav a {
     			justify-content: space-evenly;
 				display: flex;
 				color: #f2f2f2;
 				text-align: center;
-
-
 			}
 			.topnav a:hover {
 				color: #d27763;
-			
 			}
 			.column.main {
 				float: left;
@@ -56,8 +50,8 @@
         </style>
     </head>
     <body>
-      <div>
-        <h1 class="title">LeeRoy's Secure Checkout</h1>
+      <div class="header">
+        <h1 class="header title">LeeRoy's Secure Checkout</h1>
       </div>
       <div class="topnav">
         <span><a href="/">Home</a></span>
@@ -75,6 +69,7 @@
 				</div>
      		<div class="column side">
       		<h2>Cart Subtotal</h2>
+				<p style="text-align: center;">price goes here</p>
      		</div>
 	  </div>
     </body>
