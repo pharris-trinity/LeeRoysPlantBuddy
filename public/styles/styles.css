@@ -19,6 +19,11 @@ body {
     margin: 0 auto;
 }
 
+.image-text {
+    max-width: 100%;
+    height: auto;
+}
+
 .navbar {
     background-color: #800000;
     text-align: center;
@@ -67,7 +72,7 @@ body {
 }
 
 .add-to-cart {
-    background-image: url('cart-fill.svg');
+    background-image: url('../images/cart-fill.svg');
     border: none;
     cursor: pointer;
     padding: 10;

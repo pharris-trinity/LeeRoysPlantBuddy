@@ -38,9 +38,10 @@
             <ul class="product-list">
                 <% products.forEach(product => { %>
                     <li class="product-list-item">
+                        <span class="image-text"><img src="<%=product.image%>" alt="<%= product.description%> Image"></span>
                         <span class="product-text"><%= product.description %></span>
                         <span class="price-text">$<%= product.price %></span>
-                        <span>Add to cart<button class="add-to-cart" onclick="addToCart('<%=product.description %>')"></button></span>
+                        <span><button class="add-to-cart" onclick="addToCart('<%=product.description %>')"></button></span>
                     </li>
                 <% }); %>
             </ul>
