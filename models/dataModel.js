@@ -38,11 +38,11 @@ class Cart {
 
   addToCart(product) {
     this.items.push(product);
-    // print(this.items);
+    cart+=product;
   }	
 
   getCart() {
-    return this.items;
+    return cart;
   }
 }
 

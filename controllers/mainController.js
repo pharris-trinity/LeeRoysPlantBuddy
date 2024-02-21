@@ -20,17 +20,16 @@ const mainController = {
     res.render('product', { products, cart });
   },
   addToCart: (req, res) => {
-    console.log("triggered addToCart method");
     const product = req.body.product;
-    console.log(product);
-    // const cart = req.body.cart;
-    // console.log(cart);
     
     cart.addToCart(product);
 
     const products = dataModel.getCart();
 
-    console.log("These is in the cart, ", products);
+    for(p in products) {
+      console.log(products + " ");
+    }
+    
   }
 };
 
