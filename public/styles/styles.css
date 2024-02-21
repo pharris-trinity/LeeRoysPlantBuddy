@@ -20,8 +20,7 @@ body {
 }
 
 .image-text {
-    max-width: 100%;
-    height: auto;
+    max-height: 40px;
 }
 
 .navbar {
@@ -54,8 +53,22 @@ body {
     padding: 15px;
 }
 
+.product-list li:nth-child(even):hover {
+    background-color: #660000;
+    color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+}
+
 .product-list li:nth-child(odd) {
     background-color: #b6533e;
+    color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+}
+
+.product-list li:nth-child(odd):hover {
+    background-color: #9e4634;
     color: #fff;
     margin: 10px 0;
     padding: 15px;

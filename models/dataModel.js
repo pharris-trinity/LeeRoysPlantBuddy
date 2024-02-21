@@ -1,9 +1,8 @@
 let products = [
-  {id: 1, description: 'Cat Food', price: 5.99, image: 'images/cat-food.jpg'},
-  {id: 2, description: 'Pet Stuff', price: 5.99},
-  {id: 3, description: 'Dog Food', price: 5.99},
-  {id: 4, description: 'Bird Food', price: 5.99},
-  {id: 5, description: 'Lizard Food', price: 5.99},
+  {id: 1, description: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp'},
+  {id: 2, description: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp'},
+  {id: 3, description: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp'},
+  {id: 4, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp'},
 ]
 
 let cart = [
