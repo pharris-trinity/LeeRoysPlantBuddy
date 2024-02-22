@@ -23,13 +23,10 @@ const mainController = {
     const product = req.body.product;
     
     cart.addToCart(product);
-
-    const products = dataModel.getCart();
-
-    for(p in products) {
-      console.log(products + " ");
-    }
+    // testing to see if the cart is getting what it needs
+    // const products = dataModel.getCart();
     
+    // console.log(products);
   }
 };
 
