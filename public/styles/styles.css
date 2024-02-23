@@ -67,12 +67,56 @@ body {
 }
 
 .add-to-cart {
-    background-image: url('cart-fill.svg');
+    background-image: url('../images/cart-fill.svg');
     border: none;
     cursor: pointer;
     padding: 10;
     width: 30px;
     height: 30px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.header{
+    background-image: url('../images/leeroy-banner.jpg');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 630px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.featured-product {
+    background-image: url('../images/featuredproduct.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.point-left-graybackground {
+    background-image: url('../images/point-left-graybackground.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.point-right-graybackground {
+    background-image: url('../images/point-right-graybackground.jpg');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 400px;
+    height: 400px;
     background-size: cover;
     display: inline-block;
 }

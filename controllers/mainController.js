@@ -15,6 +15,10 @@ const mainController = {
   getCheckout: (req, res) => {
     const checkout = dataModel.getCheckout();
     res.render('checkout', { checkout });
+  },
+  getLogin: (req, res) => {
+    const login = dataModel.getLogin();
+    res.render('login', { login });
   }
 };
 
