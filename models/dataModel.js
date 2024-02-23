@@ -18,7 +18,7 @@ const dataModel = {
 	return cartProducts;
     },
     getLogin: () => {
-      
+      return 'Hello, LeeRoy!';
     }
   };
   

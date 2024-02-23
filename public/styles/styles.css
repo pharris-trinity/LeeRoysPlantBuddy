@@ -94,7 +94,7 @@ body {
     cursor: pointer;
     padding: 10;
     width: 400px;
-    height: 400px;
+    height: 300px;
     background-size: cover;
     display: inline-block;
 }
@@ -105,7 +105,7 @@ body {
     cursor: pointer;
     padding: 10;
     width: 200px;
-    height: 200px;
+    height: 300px;
     background-size: cover;
     display: inline-block;
 }
@@ -119,4 +119,51 @@ body {
     height: 400px;
     background-size: cover;
     display: inline-block;
+}
+
+.form-format {
+    text-align: center;
+    font-size: 25px;
+    background-color: #800000;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 150px;
+    display: flex;
+    flex-direction:column;
+    background-size: contain;
+    align-items: center;
+}
+
+.submit-button {
+    text-align: center;
+    font-size: 25px;
+    background-color: gray;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    display: inline-block;
+}
+
+.text-field {
+    background-color: white;
+    font-size: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    display: inline-block;
+}
+
+.landing-title{
+    font-size: 48px;
+    float: right;
+    margin: 0 50px 0 0;
+}
+
+.landing-text{
+    font-size: 24px;
+    float: right;
+    margin: 0 50px 0 0;
+    text-align: center;
+    width: 250px;
+    word-wrap: break-word;
 }
