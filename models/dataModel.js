@@ -16,7 +16,10 @@ const dataModel = {
     getCheckout: () => {
         let cartProducts = dataModel.getProducts();
 	return cartProducts;
-    }	
+    },
+    getLogin: () => {
+      
+    }
   };
   
   module.exports = dataModel;
