@@ -17,6 +17,7 @@ app.get('/', mainController.getIndex);
 app.get('/product', mainController.getProduct);
 app.get('/home', mainController.getHome);
 app.get('/checkout', mainController.getCheckout);
+app.get('/product-admin', mainController.getProductAdmin);
 
 // Post Routes
 

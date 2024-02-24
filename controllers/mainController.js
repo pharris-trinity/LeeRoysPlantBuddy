@@ -19,6 +19,12 @@ const mainController = {
   
     res.render('product', { products, cart });
   },
+  getProductAdmin: (req, res) => { 
+    const products = dataModel.getProducts();
+
+    res.render('product-admin', {products});
+  }
+  ,
   addToCart: (req, res) => {
     const product = req.body.product;
     
