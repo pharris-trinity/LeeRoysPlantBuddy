@@ -28,9 +28,9 @@
                 var checkbox = document.getElementById(`checkbox${product_id}`);
                 
                 if(checkbox.checked) {
-                    console.log(`remove from active ${product_id}`);
-                } else {
                     console.log(`add to active ${product_id}`);
+                } else {
+                    console.log(`remove from active ${product_id}`);
                 }
             }
             
@@ -54,7 +54,14 @@
                             <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
                             <span class="product-text"><%= product.description %></span>
                             <span class="price-text">$<%= product.price %></span>
-                            <span><label class="toggle-container"><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')"><div class="toggle-slider"></div></label></span>
+                            <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')" checked></span>
+                        </li>
+                    <% } else { %>
+                        <li class="product-list-item">
+                            <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
+                            <span class="product-text"><%= product.description %></span>
+                            <span class="price-text">not checked</span>
+                            <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')"></span>
                         </li>
                     <% } %>
                 <% }); %>
