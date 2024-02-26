@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/styles/styles.css">
+        <!-- <link rel="stylesheet" href="/styles/product-admin.css"> -->
         <title>LeeRoy's Pets N' More Products</title>
         <script>
             function addToCart(product) {
@@ -22,6 +23,17 @@
                     }
                 })
             }
+
+            function product_clicked(product_id) {
+                var checkbox = document.getElementById(`checkbox${product_id}`);
+                
+                if(checkbox.checked) {
+                    console.log(`remove from active ${product_id}`);
+                } else {
+                    console.log(`add to active ${product_id}`);
+                }
+            }
+            
         </script>
     </head>
     <body>
@@ -42,7 +54,7 @@
                             <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
                             <span class="product-text"><%= product.description %></span>
                             <span class="price-text">$<%= product.price %></span>
-                            <span><button class="add-to-cart" onclick="addToCart('<%=product.description %>')"></button></span>
+                            <span><label class="toggle-container"><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')"><div class="toggle-slider"></div></label></span>
                         </li>
                     <% } %>
                 <% }); %>
