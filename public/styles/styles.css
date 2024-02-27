@@ -88,3 +88,16 @@ body {
     display: inline-block;
 }
 
+.buy-now {
+	background-color: #7a211f; 
+	color: #fafafa;
+	padding: 15px 32px;
+	display: inline-block;
+	border-radius: 25px;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
+.buy-now:hover {
+	background-color: #4d1413;
+}
