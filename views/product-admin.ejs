@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/styles/styles.css">
-        <!-- <link rel="stylesheet" href="/styles/product-admin.css"> -->
+        <link rel="stylesheet" href="/styles/product-admin.css">
         <title>LeeRoy's Pets N' More Products</title>
         <script>
             function addToCart(product) {
@@ -70,26 +70,45 @@
             <span><a href="/product">Products</a></span>
             <span><a href="/checkout">Checkout</a></span>
         </div>
-        <div class="container">
-            <ul class="product-list">
-                <% products.forEach(product => { %>
-                    <% if(product.display) { %>
-                        <li class="product-list-item">
-                            <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
-                            <span class="product-text"><%= product.description %></span>
-                            <span class="price-text">$<%= product.price %></span>
-                            <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')" checked></span>
-                        </li>
-                    <% } else { %>
-                        <li class="product-list-item">
-                            <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
-                            <span class="product-text"><%= product.description %></span>
-                            <span class="price-text">$<%= product.price %></span>
-                            <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')"></span>
-                        </li>
-                    <% } %>
-                <% }); %>
-            </ul>
+        <div class="greybox-container">
+            <div class="greybox">
+                <div class="container">
+                    <ul class="product-list">
+                        <% products.forEach(product => { %>
+                            <% if(product.display) { %>
+                                <li class="product-list-item">
+                                    <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
+                                    <span class="product-text"><%= product.description %></span>
+                                    <span class="price-text">$<%= product.price %></span>
+                                    <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')" checked></span>
+                                </li>
+                            <% } else { %>
+                                <li class="product-list-item">
+                                    <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
+                                    <span class="product-text"><%= product.description %></span>
+                                    <span class="price-text">$<%= product.price %></span>
+                                    <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')"></span>
+                                </li>
+                            <% } %>
+                        <% }); %>
+                    </ul>
+                </div>
+            </div>
+            <div class="greybox">
+                <h2>Create a new item</h2>
+                <form>
+                    <label>Name: </label>
+                    <input type="text" id="product-description" required>
+                    <br>
+                    <label>Price: </label>
+                    <input type="text" id="product-description" required>
+                    <br>
+                    <label>Image: </label>
+                    <input type="text" id="product-description" required>
+                    <br>
+                </form>
+            </div>
         </div>
+        
       </body>
 </html>
