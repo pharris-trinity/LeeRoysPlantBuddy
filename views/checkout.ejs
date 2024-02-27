@@ -11,31 +11,44 @@
         <style>
 			.column.main {
 				float: left;
-				width: 75%;
-				padding: 20px;
+				width: 25%;
+				padding: 20px; 
+				margin-top: 3%;
+				height: 150px;
 				text-align: center;
+				border-radius: 25px;
+				background-color: #fafafa;
+				margin-left: 15%;
 			}
 			.column.side {
 				float: right;
 				width: 25%;
-				padding-left: 20px;
-				padding-right: 15px;
+				padding: 20px; 
+				margin-top: 3%;
+				height: 150px;
 				background-color: #fafafa;
 				display: block;
 				text-align: center;
+				border-radius: 25px;
+				margin-right: 15%;
 			}
 			.row::after {
 				content: "";
 				display: table;
 				clear: both;
 			}
+			.rcorners1 {
+				 border-radius: 25px;
+				 background: #73AD21;
+				 padding: 20px;
+				 width: 200px;
+				 height: 150px;
+			}
         </style>
     </head>
     <body>
-      <div class="header">
-        <h1>LeeRoy's Secure Checkout Page</h1>
-		  <h3>Thanks for shopping with us!</h2>
-      </div>
+	<center><div class="header" align: center></div></center>
+
 
       <div class="navbar">
         <span><a href="/">Home</a></span>
@@ -55,7 +68,7 @@
 				
      		<div class="column side">
       		<h2>Cart Subtotal</h2>
-				<p style="text-align: center;">price goes here</p>
+				<p id="rcorners1">price goes here</p>
      		</div>
 	  </div>
     </body>

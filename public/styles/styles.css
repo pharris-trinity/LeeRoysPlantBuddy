@@ -1,11 +1,11 @@
 a {
     text-decoration: none;
-    color: #fafafa;
+    color: #828488;
 }
 
 body {
-    background-color: #e7eaeb;
-    color: #35373b;
+    background-color: #333;
+    color: #331211;
     margin: 0;
 }
 
@@ -13,13 +13,16 @@ body {
     text-align: center;
 }
 
-.header {
-	padding: 1px;
-  	text-align: center;
-  	background: #7a211f;
-	color: #fafafa
+.header{
+    background-image: url('../images/leeroy-banner.jpg');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 630px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
 }
-
 .container {
     width: 80%;
     margin: 0 auto;
