@@ -17,6 +17,10 @@ body {
 .container {
     width: 80%;
     margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    display: grid;
+    justify-content: space-evenly;
 }
 
 .navbar {
@@ -99,6 +103,17 @@ body {
     display: inline-block;
 }
 
+.featured-product-small {
+    background-image: url('../images/featuredproduct_small.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+}
+
 .point-left-graybackground {
     background-image: url('../images/point-left-graybackground.png');
     border: none;
@@ -157,11 +172,13 @@ body {
     font-size: 48px;
     float: right;
     margin: 0 50px 0 0;
+    text-align: center;
+    width: 250px;
 }
 
 .landing-text{
     font-size: 24px;
-    float: right;
+    /*float: right;*/
     margin: 0 50px 0 0;
     text-align: center;
     width: 250px;
