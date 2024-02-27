@@ -22,6 +22,8 @@ app.get('/product-admin', mainController.getProductAdmin);
 // Post Routes
 
 app.post('/addToCart', mainController.addToCart);
+app.post('/showToProducts', mainController.showToProducts)
+app.post('/hideFromProducts', mainController.hideFromProducts)
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

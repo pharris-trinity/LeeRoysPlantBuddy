@@ -33,6 +33,16 @@ const mainController = {
     // const products = dataModel.getCart();
     
     // console.log(products);
+  },
+  showToProducts: (req, res) => {
+    const product_id = req.body.product_id;
+
+    dataModel.showToProducts(product_id);
+  },
+  hideFromProducts: (req, res) => {
+    const product_id = req.body.product_id;
+
+    dataModel.hideFromProducts(product_id);
   }
 };
 

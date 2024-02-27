@@ -29,8 +29,32 @@
                 
                 if(checkbox.checked) {
                     console.log(`add to active ${product_id}`);
+                    fetch('/showToProducts', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({product_id}),
+                    })
+                    .then(response => {
+                        if(!response.ok) {
+                            throw new Error(`HTTP Error! Status: ${response.status}`)
+                        }
+                    })
                 } else {
                     console.log(`remove from active ${product_id}`);
+                    fetch('/hideFromProducts', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({product_id}),
+                    })
+                    .then(response => {
+                        if(!response.ok) {
+                            throw new Error(`HTTP Error! Status: ${response.status}`)
+                        }
+                    })
                 }
             }
             
@@ -60,7 +84,7 @@
                         <li class="product-list-item">
                             <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
                             <span class="product-text"><%= product.description %></span>
-                            <span class="price-text">not checked</span>
+                            <span class="price-text">$<%= product.price %></span>
                             <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')"></span>
                         </li>
                     <% } %>

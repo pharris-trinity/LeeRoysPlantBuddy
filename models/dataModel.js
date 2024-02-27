@@ -28,7 +28,21 @@ const dataModel = {
     },
     getCart: () => {
       return cart;
-    }
+    },
+    showToProducts: (product_id) => {
+      products.forEach(product => {
+        if(product.id == product_id) {
+          product.display = true;
+        }
+      })
+    },
+    hideFromProducts: (product_id) => {
+      products.forEach(product => {
+        if(product.id == product_id) {
+          product.display = false;
+        }
+      })
+    },
   };
 
 class Cart {
