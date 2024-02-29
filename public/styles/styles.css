@@ -185,3 +185,52 @@ body {
 .account:hover{
 	background-color: #5d5f62;
 }
+.featured-product {
+    background-image: url('../images/featuredproduct.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 400px;
+    height: 300px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.featured-product-small {
+    background-image: url('../images/featuredproduct_small.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+}
+
+.point-left-transparent {
+    background-image: url('../images/point-left-transparent.png');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 200px;
+    height: 300px;
+    background-size: cover;
+    display: inline-block;
+    background-color: transparent;
+}
+.landing-title{
+    font-size: 48px;
+    float: right;
+    margin: 0 50px 0 0;
+    text-align: center;
+    width: 250px;
+}
+
+.landing-text{
+    font-size: 24px;
+    /*float: right;*/
+    margin: 0 50px 0 0;
+    text-align: center;
+    width: 250px;
+    word-wrap: break-word;
+}
