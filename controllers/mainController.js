@@ -23,6 +23,7 @@ const mainController = {
   const login = dataModel.getLogin();
   res.render('login', { login });
   },
+
   addToCart: (req, res) => {
     // console.log("triggered addToCart method");
     const product = req.body.product;
@@ -36,7 +37,7 @@ const mainController = {
 
   getCheckout: (req, res) => {
     res.render('checkout');
-  },
+  }
 };
 
 module.exports = mainController;
