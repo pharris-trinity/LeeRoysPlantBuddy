@@ -6,47 +6,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/styles/styles.css">
 		  <link rel="icon" type="image/x-icon" href="/images/favicon.png">        
-		  <title>LeeRoy's Checkout</title>
+		  <title>Checkout</title>
 
         <style>
-			.column.main {
-				float: left;
-				width: 25%;
-				padding: 15px; 
-				margin-top: 2%;
-				height: 300px;
-				text-align: center;
-				border-radius: 25px;
-				background-color: #fafafa;
-				margin-left: 15%;
-			}
-			.column.side {
-				float: right;
-				width: 25%;
-				padding: 15px; 
-				margin-top: 2%;
-				height: 300px;
-				background-color: #fafafa;
-				display: block;
-				text-align: center;
-				border-radius: 25px;
-				margin-right: 15%;
-			}
-			.row::after {
-				content: "";
-				display: table;
-				clear: both;
-			}
 			table, td {
 				border: none;
-				border-spacing: 25px;
-				margin-left: 21.5%;
+				border-spacing: 10px;
+				display: inline;
+				padding: 15px;
+				text-align: center;
 			}
         </style>
     </head>
     <body>
-		<center><div class="header" align: center></div></center>
-
+		<!-- <center><div class="header" align: center></div></center> -->
+		<div class="header">
+			<h1>LeeRoy's Pets 'N' More</h1>
+			<h3>San Antonio's best for pets and pet needs!</h3>
+		</div>
 
       <div class="navbar">
         <span><a href="/">Home</a></span>
@@ -55,27 +32,28 @@
       </div>
 
       <div class="row">
-			<div class="column main">
-				<h3>Shopping Cart</h3>
+			<div class="column left" style="height: 350px;">
+				<h2>Shopping Cart</h2>
 					<div class="container">
-					<table class="Cart">  <tr> <td>product</td>   <td>$$$</td>  </tr> </table>
-					<ul class="Cart">
-					</ul>
+						
+						<table class="Cart">  <tr> <td>Pet Stuff</td> <td>x1</td> <td>$5.99</td>  <td> <button class="remove-from-cart"></button></td></tr> </table>
+						
 					</div>
 			</div>
 				
-     		<div class="column side">
-      		<h3>Order Summary</h3>
+     		<div class="column right" style="height: 350px;">
+      		<h2>Order Summary</h2>
 					<div class="container">
 						<table>
-							<tr> <td>Subtotal:</td> <td>$$$</td> </tr> <!-- sum of product prices in cart-->
-							<tr> <td>+ Tax:</td> <td>$</td></tr> <!-- tax is 6.25% in texas-->
-							<tr> <td>+ Shipping:</td> <td>$$</td></tr> <!-- shipping free for orders over $35?-->
+							<tr> <td>Subtotal:</td> <td>$5.99</td> </tr> <!-- sum of product prices in cart-->
+							<tr> <td>+ Tax:</td> <td>$2.24</td></tr> <!-- tax is 6.25% in texas-->
+							<tr> <td>+ Shipping:</td> <td>$4.20</td></tr> <!-- shipping free for orders over $35?-->
 						</table>
 					</div>
-				<h4> Total : $$$</h4> <!-- add altogether-->
+				<h4> Total : $12.43</h4> <!-- add altogether-->
+				<button class="buy-now"> <h2>Buy Now</h2></button>
      		</div>
 	  </div>
-	<center><button class="buy-now"> <h2>Buy Now</h2></button></center>
+	
     </body>
 </html>

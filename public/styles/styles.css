@@ -1,19 +1,20 @@
 a {
     text-decoration: none;
-    color: #828488;
+    color: black;
 }
 
 body {
-    background-color: #333;
-    color: #331211;
+    background-color: #fafafa;
+    color: black;
     margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .centered-title {
     text-align: center;
 }
 
-.header{
+/* .header{
     background-image: url('../images/leeroy-banner.jpg');
     border: none;
     cursor: pointer;
@@ -22,6 +23,13 @@ body {
     height: 200px;
     background-size: cover;
     display: inline-block;
+} */
+
+.header {
+	padding: 15px;
+  	text-align: center;
+  	background: #7a211f;
+	color: #fafafa
 }
 .container {
     width: 80%;
@@ -54,14 +62,14 @@ body {
 }
 
 .product-list li:nth-child(even) {
-    background-color:#798d46;
+    background-color:#c7c9ca; 
     color: #35373b;
     margin: 10px 0;
     padding: 15px;
 }
 
 .product-list li:nth-child(odd) {
-    background-color: #5a8b9f;
+    background-color: #9a9c9e;
     color: #35373b;
     margin: 10px 0;
     padding: 15px;
@@ -86,12 +94,20 @@ body {
     height: 30px;
     background-size: cover;
     display: inline-block;
+    background-color: transparent;
+    opacity: 0.5;
+    margin-left: 10px;
+    margin-right: 2px;
+}
+.add-to-cart:hover{
+    opacity: 1.0;
 }
 
 .buy-now {
-	background-color: #7a211f; 
+	background-color: #828488; 
 	color: #fafafa;
-	padding: 15px 32px;
+	padding: 3px 20px;
+    margin: 7%;
 	display: inline-block;
 	border-radius: 25px;
 	text-align: center;
@@ -99,5 +115,65 @@ body {
 	cursor: pointer;
 }
 .buy-now:hover {
-	background-color: #4d1413;
+	background-color: #5d5f62;
+}
+
+.remove-from-cart {
+    background-image: url('../images/trash-closed.png');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    display: inline;
+    opacity: 0.5;
+}
+.remove-from-cart:hover{
+    /* background-image: none; */
+    /* opacity: 0.5; */
+    opacity: 1.0;
+    }
+
+.column {
+    width: 25%;
+    padding: 15px; 
+    margin-top: 3%;
+    /* height: 350px; */
+    background-color: #c7c9ca;
+    display: block;
+    text-align: center;
+    border-radius: 25px;
+}
+.column.left {
+    float: left;
+    margin-left: 15%;
+}
+.column.right {
+    float: right;
+    margin-right: 15%;
+}
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.account {
+	background-color: #828488; 
+	color: #fafafa;
+	/* padding: 3px 20px; */
+    /* margin: 7%; */
+	display: inline-block;
+	border-radius: 25px;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+
+}
+
+.account:hover{
+	background-color: #5d5f62;
+
 }
