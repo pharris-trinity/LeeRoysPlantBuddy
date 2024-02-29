@@ -5,18 +5,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/styles/styles.css">
-		  <link rel="icon" type="image/x-icon" href="/images/favicon.png">        
-		  <title>Checkout</title>
-
+		<link rel="icon" type="image/x-icon" href="/images/favicon.png">        
+		<title>Checkout</title>
         <style>
 			table, td {
 				border: none;
-				border-spacing: 10px;
+				border-spacing: 7px;
 				display: inline;
-				padding: 15px;
+				padding: 10px;
 				text-align: center;
 			}
         </style>
+		<script>
+			// function subtotal() {}
+			function taxCalc(subtotal) {
+				return subtotal * 0.0625
+			}
+			function totalCalc(subtotal, tax, shipping) {
+				return subtotal + taxCalc(subtotal) + shipping
+			}
+		</script>
     </head>
     <body>
 		<!-- <center><div class="header" align: center></div></center> -->
@@ -36,7 +44,7 @@
 				<h2>Shopping Cart</h2>
 					<div class="container">
 						
-						<table class="Cart">  <tr> <td>Pet Stuff</td> <td>x1</td> <td>$5.99</td>  <td> <button class="remove-from-cart"></button></td></tr> </table>
+						<table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table>
 						
 					</div>
 			</div>
