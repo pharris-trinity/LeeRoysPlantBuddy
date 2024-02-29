@@ -24,6 +24,9 @@
 			function totalCalc(subtotal, tax, shipping) {
 				return subtotal + taxCalc(subtotal) + shipping
 			}
+			function showCart(cart) {
+				console.log(cart);
+			}
 		</script>
     </head>
     <body>
@@ -37,6 +40,8 @@
         <span><a href="/">Home</a></span>
         <span><a href="/product">Products</a></span>
         <span><a href="/checkout">Checkout</a></span>
+		<span><a href="/login">Login</a></span>
+
       </div>
 
       <div class="row">
@@ -54,7 +59,7 @@
 					<div class="container">
 						<table>
 							<tr> <td>Subtotal:</td> <td>$5.99</td> </tr> <!-- sum of product prices in cart-->
-							<tr> <td>+ Tax:</td> <td>$3.74</td></tr> <!-- tax is 6.25% in texas-->
+							<tr> <td>+ Tax:</td> <td></td><td>$3.74</td></tr> <!-- tax is 6.25% in texas-->
 							<tr> <td>+ Shipping:</td> <td>$4.20</td></tr> <!-- shipping free for orders over $35?-->
 						</table>
 					</div>
