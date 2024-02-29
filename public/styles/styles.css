@@ -150,7 +150,7 @@ body {
 }
 
 .column {
-    width: 25%;
+    /* width: 25%; */
     padding: 15px; 
     margin-top: 3%;
     /* height: 350px; */
@@ -190,8 +190,8 @@ body {
     border: none;
     cursor: pointer;
     padding: 10;
-    width: 400px;
-    height: 300px;
+    width: 300px;
+    height: 250px;
     background-size: cover;
     display: inline-block;
 }
@@ -213,7 +213,7 @@ body {
     cursor: pointer;
     padding: 10;
     width: 200px;
-    height: 300px;
+    height: 200px;
     background-size: cover;
     display: inline-block;
     background-color: transparent;
