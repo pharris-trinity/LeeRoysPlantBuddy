@@ -1,6 +1,8 @@
 a {
     text-decoration: none;
     color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 body {
@@ -173,7 +175,7 @@ body {
     clear: both;
 }
 
-.account {
+.general {
 	background-color: #828488; 
 	color: #fafafa;
 	display: inline-block;
@@ -182,15 +184,15 @@ body {
 	border: none;
 	cursor: pointer;
 }
-.account:hover{
+.general:hover{
 	background-color: #5d5f62;
 }
 .featured-product {
     background-image: url('../images/featuredproduct.png');
     border: none;
     cursor: pointer;
-    padding: 10;
-    width: 300px;
+    padding: 7;
+    width: 275px;
     height: 250px;
     background-size: cover;
     display: inline-block;
@@ -201,8 +203,8 @@ body {
     border: none;
     cursor: pointer;
     padding: 10;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     background-size: cover;
     display: inline-block;
 }
