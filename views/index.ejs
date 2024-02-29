@@ -6,10 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/styles/styles.css">
         <title>LeeRoy's Pets N' More</title>
+        <style>
+                input[type=text] {
+                        border: none;
+                        border-radius: 10px;
+                        padding: 2.5px 2.5px;
+                        margin: 10px 10px;
+                }
+        </style>
     </head>
     <body>
+	<div class="header">
+	        <h1>LeeRoy's Pets 'N' More</h1>
+		<h3>San Antonio's best for pets and pet needs!</h3>
+	</div>
 
-   <center><div class="header" align: center></div></center>
+   <!-- <center><div class="header" align: center></div></center> -->
 
 
         <div class="navbar">
@@ -18,31 +30,33 @@
 	    <span><a href="/checkout">Checkout</a></span>
 	</div>
 
-        <div>        
+        <!-- <div>        
 	    <img src="../images/featuredproduct.png" alt="Featured Product"></img>
         </div>
-	
-	<hr>
-        <div>
-	    <h3>Login</h3>
-	    <form action="/action_page.php">
-            <label for="uname">Username:</label><br>
-            <input type="text" id="uname" name="uname" value=""><br>
-            <label for="passw">Password:</label><br>
-            <input type="text" id="passw" name="passw" value=""><br><br>
-            <input type="submit" value="Submit">
-
-	    <h4>Sign Up</h4>
-	    <form action="/action_page.php">
-	    <label for="email">EMail:</label><br>
-	    <input type="text" id="email" name="email" value=""><br>
-	    <label for="uname">Username:</label><br>
-            <input type="text" id="uname" name="uname" value=""><br>
-	    <label for="passw">Password:</label><br>
-	    <input type="text" id="passw" name="passw" value=""><br><br>
-            <input type="submit" value="Submit">
-	</div>
-	<hr>
+	<hr> -->
+        <div class="row">
+                <div class="column left" style="height: 235px;">
+                        <h3>Login</h3>
+                        <form action="/action_page.php">
+                        <label for="uname">Username:</label><br>
+                        <input type="text" id="uname" name="uname" value=""><br>
+                        <label for="passw">Password:</label><br>
+                        <input type="text" id="passw" name="passw" value=""><br><br>
+                        <input type="submit" value="Sign In" class="account">
+                </div>
+                <div class="column right" style="height: 295px;">
+                        <h3>Sign Up</h3>
+                        <form action="/action_page.php">
+                        <label for="email">E-mail:</label><br>
+                        <input type="text" id="email" name="email" value=""><br>
+                        <label for="uname">Username:</label><br>
+                        <input type="text" id="uname" name="uname" value=""><br>
+                        <label for="passw">Password:</label><br>
+                        <input type="text" id="passw" name="passw" value=""><br><br>
+                        <input type="submit" value="Create Account" class="account">
+                </div>
+        </div>
+	<!-- <hr> -->
 </form> 
 
 

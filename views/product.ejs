@@ -25,13 +25,18 @@
         </script>
     </head>
     <body>
-		<center><div class="header" align: center></div></center>
+        <div class="header">
+            <h1>LeeRoy's Pets 'N' More</h1>
+            <h3>San Antonio's best for pets and pet needs!</h3>
+        </div>
+
+		<!-- <center><div class="header" align: center></div></center> -->
         <div class="navbar">
             <span><a href="/">Home</a></span>
             <span><a href="/product">Products</a></span>
             <span><a href="/checkout">Checkout</a></span>
         </div>
-        <div class="container">
+        <div class="container" style="margin-top: 3%;">
             <ul class="product-list">
                 <% products.forEach(product => { %>
                     <li class="product-list-item">
