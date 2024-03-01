@@ -16,7 +16,7 @@
 			const new_password = document.getElementById('new_passw').value;
 			console.log(`new username: ${new_username} new password: ${new_password}`);
 
-			fetch('addUser', {
+			fetch('/addUser', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -69,7 +69,6 @@
 
 	<hr>
         <div class="form-format">
-			</form>
 			<h3>Login</h3>
 			<!-- <form action="/action_page.php"> -->
 			<label for="uname">Username:</label><br>
@@ -77,17 +76,14 @@
 			<label for="passw">Password:</label><br>
 			<input type="text" id="passw" name="passw" value=""><br><br>
 			<span><button class="submit-button" onclick="verifyUser()">Submit</button></span>
-			</form>
 		</div>
 		<div class="form-format"> 
-		    <form>
 			<h3>Sign Up</h3>
 			<label for="new_uname">Username:</label><br>
 			<input type="text" id="new_uname" name="new_uname" value=""><br>
 			<label for="new_passw">Password:</label><br>
 			<input type="text" id="new_passw" name="new_passw" value=""><br><br>
 			<span><button class="submit-button" onclick="addUser()">Submit</button></span>
-			</form>
 	</div>
 	<hr>
 

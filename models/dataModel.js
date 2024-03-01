@@ -26,12 +26,10 @@ const dataModel = {
       return 'Hello, LeeRoy!';
     },
     addUser: (username, password) => {
-      console.log('addUser in dataModel triggered');
       var lastUser = users[users.length - 1];
       var newid = lastUser.userid + 1;
       var newUser = {userid: newid, username: username, password: password, account_type: 'registered'};
       users += newUser;
-      console.log(users);
       return newUser;
     },
     verifyUser: (username, password) => {

@@ -26,7 +26,7 @@ const mainController = {
   verifyUser: (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    // console.log(`username: ${username} password: ${password}`);
+    console.log(`username: ${username} password: ${password}`);
     const loggedIn = dataModel.verifyUser(username, password);
     // console.log(loggedIn);
     if(loggedIn==='admin') {
@@ -40,7 +40,6 @@ const mainController = {
     }
   },
   addUser: (req, res) => {
-    console.log('addUser in mainController triggered')
     const username = req.body.username;
     const password = req.body.password;
     const newSignUp = dataModel.addUser(username, password);

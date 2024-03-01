@@ -17,8 +17,9 @@ app.get('/home', mainController.getHome);
 app.get('/checkout', mainController.getCheckout);
 app.get('/login', mainController.getLogin);
 
-app.post('/verifyUser', mainController.verifyUser);
 app.post('/addUser', mainController.addUser);
+app.post('/verifyUser', mainController.verifyUser);
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
