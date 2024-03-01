@@ -50,6 +50,11 @@
 			<div class="column left" style="height: 350px; width: 25%;">
 				<h2>Shopping Cart</h2>
 					<div class="container">
+						<ul>
+							<% cart.forEach(item => { %>
+								<li><span><%= item.description %></span><span><button class="add-quantity"></button></span><span><button class="remove-from-cart"></button></span></li>
+							<% }) %>
+						</ul>
 						
 						<table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table>
 						
