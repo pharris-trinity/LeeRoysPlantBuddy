@@ -17,18 +17,57 @@
 			}
         </style>
 		<script>
-			// function subtotal() {}
-			function taxCalc(subtotal) {
-				return subtotal * 0.0625
-			}
-			document.getElementById("salestax").innerHTML = window.taxCalc(5.99);
+            function removeFromCart(item) {
+                console.log(item);
+                fetch('/removeFromCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ item }),
+                })
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status}`)
+                    }
+                })
+            };
+            function addToCart(item) {
+                console.log(item);
+                fetch('/addToCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ item }),
+                })
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status}`)
+                    }
+                })
+            };
+
+
+			function subtotal() {
+				let subprice = 0
+				cart.forEach(item => {
+					item.price += subprice
+				})
+				return subprice
+				}
+			document.getElementById("subtotal").innerHTML = window.subtotal();
+
+			function taxCalc(subprice) {
+				return subprice * 0.0625
+			};
+
+			const tax = 5.99 * 0.0625
+			document.getElementById("salestax").innerHTML = tax
 
 			function totalCalc(subtotal, tax, shipping) {
 				return subtotal + taxCalc(subtotal) + shipping
-			}
-			function showCart(cart) {
-				console.log(cart);
-			}
+			};
 		</script>
     </head>
     <body>
@@ -48,13 +87,18 @@
 			<div class="column left" style="height: 350px; width: 25%;">
 				<h2>Shopping Cart</h2>
 					<div class="container">
-						<ul>
+						<table class="Cart">
 							<% cart.forEach(item => { %>
-								<li><span><%= item.description %></span><span><button class="add-quantity"></button></span><span><button class="remove-from-cart"></button></span></li>
-							<% }) %>
-						</ul>
+							<tr>
+								<td><span><button class="add-quantity" onclick="addToCart('<%=item.description %>')"></button> </span></td>
+								<td><span><%= item.description %></span></td>
+								<td><span>$<%= item.price %></span></td>
+								<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=item.description %>')"></button></span></td>
+							</tr>
+							<% }); %>
+						</table>
 						
-						<table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table>
+						<!-- <table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table> -->
 						
 					</div>
 			</div>
@@ -63,9 +107,11 @@
       		<h2>Order Summary</h2>
 					<div class="container">
 						<table>
-							<tr> <td>Subtotal:</td> <td>$5.99</td> </tr> <!-- sum of product prices in cart-->
+						
+							<tr> <td>Subtotal:</td> <td id="subtotal"></td> </tr> <!-- sum of product prices in cart-->
 							<tr> <td>+ Tax:</td> <td></td> <td id="salestax"></td></tr> <!-- tax is 6.25% in texas-->
 							<tr> <td>+ Shipping:</td> <td>$4.20</td></tr> <!-- shipping free for orders over $35?-->
+						
 						</table>
 					</div>
 				<h4 > Total : $13.93</h4> <!-- add altogether-->

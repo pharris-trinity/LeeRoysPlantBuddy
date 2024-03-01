@@ -35,6 +35,13 @@ const dataModel = {
     getCart: () => {
       console.log(cart);
       return cart;
+    },
+    removeFromCart: (item) => {
+      cart-=(item);
+      console.log(cart);
+    },    
+    subtotal: () => {
+
     }
   };
 

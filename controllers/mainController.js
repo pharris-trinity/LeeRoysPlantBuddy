@@ -34,12 +34,15 @@ const mainController = {
     // const products = dataModel.getCart();
     // console.log("These is in the cart, ", cart += product);
   },
-
+  removeFromCart: (req, res) => {
+    const item = req.body.item;
+    cart.removeFromCart(item);
+  },
   getCheckout: (req, res) => {
     const cart = dataModel.getCart();
     
     res.render('checkout', { cart });
-  },
+  }
 };
 
 module.exports = mainController;
