@@ -21,9 +21,7 @@
 			function taxCalc(subtotal) {
 				return subtotal * 0.0625
 			}
-
-			const tax = new taxCalc(5.99)
-			document.getElementById("salestax").innerHTML = tax
+			document.getElementById("salestax").innerHTML = window.taxCalc(5.99);
 
 			function totalCalc(subtotal, tax, shipping) {
 				return subtotal + taxCalc(subtotal) + shipping

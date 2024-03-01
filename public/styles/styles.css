@@ -115,6 +115,8 @@ body {
 	text-align: center;
 	border: none;
 	cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 .buy-now:hover {
 	background-color: #5d5f62;
