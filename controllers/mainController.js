@@ -32,7 +32,7 @@ const mainController = {
     // const cart = req.body.cart;
     // console.log(cart);
     // const products = dataModel.getCart();
-    // console.log("These is in the cart, ", cart += product);
+    console.log("These is in the cart, ", cart += product);
   },
   removeFromCart: (req, res) => {
     const item = req.body.item;

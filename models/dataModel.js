@@ -39,9 +39,6 @@ const dataModel = {
     removeFromCart: (item) => {
       cart-=(item);
       console.log(cart);
-    },    
-    subtotal: () => {
-
     }
   };
 
