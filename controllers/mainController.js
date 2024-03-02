@@ -1,6 +1,6 @@
-const {dataModel, Cart} = require('../models/dataModel');
+const {dataModel} = require('../models/dataModel');
 
-const cart = new Cart();
+// const cart = new Cart();
 
 const mainController = {
   getIndex: (req, res) => {
@@ -17,7 +17,7 @@ const mainController = {
   getProduct: (req, res) => {
     const products = dataModel.getProducts();
   
-    res.render('product', { products, cart });
+    res.render('product', { products });
   },
   getProductAdmin: (req, res) => { 
     const products = dataModel.getProducts();
@@ -27,12 +27,10 @@ const mainController = {
   ,
   addToCart: (req, res) => {
     const product = req.body.product;
+    // console.log(product);
     
-    cart.addToCart(product);
-    // testing to see if the cart is getting what it needs
-    // const products = dataModel.getCart();
-    
-    // console.log(products);
+    const carts = dataModel.addToCart(product);
+    // console.log(carts);
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;

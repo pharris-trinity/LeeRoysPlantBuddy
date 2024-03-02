@@ -5,9 +5,7 @@ let products = [
   {id: 3, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
 ]
 
-let cart = [
-
-]
+let cart = []
 
 const dataModel = {
     getData: () => {
@@ -23,8 +21,10 @@ const dataModel = {
 	    return cartProducts;
     },
     addToCart: (product) => {
-      cart+=(product);
-      // console.log(cart);
+      // console.log(product);
+      cart.push(product);
+      console.log(cart);
+      return cart;
     },
     getCart: () => {
       return cart;
@@ -50,20 +50,20 @@ const dataModel = {
     }
   };
 
-class Cart {
-  constructor() {
-    this.items = [];
-  }
+// class Cart {
+//   constructor() {
+//     this.items = [];
+//   }
 
-  addToCart(product) {
-    // unclear what i want to do at this point
-    this.items.push(product);
-    cart+=product;
-  }	
+//   addToCart(product) {
+//     // unclear what i want to do at this point
+//     this.items.push(product);
+//     cart+=product;
+//   }	
 
-  getCart() {
-    return cart;
-  }
-}
+//   getCart() {
+//     return cart;
+//   }
+// }
 
-module.exports = {dataModel, Cart};
+module.exports = {dataModel};
