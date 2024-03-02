@@ -43,6 +43,17 @@ const mainController = {
     const product_id = req.body.product_id;
 
     dataModel.hideFromProducts(product_id);
+  },
+  addToProducts: (req, res) => {
+    const name = req.body.name;
+    const price = req.body.price;
+    const image = req.body.image;
+
+    // console.log(`${name} ${price} ${image}`);
+    const products = dataModel.addToProducts(name, price, image);
+    products.forEach(product => {
+      console.log(product);
+    })
   }
 };
 

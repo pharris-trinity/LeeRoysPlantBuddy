@@ -1,8 +1,8 @@
 let products = [
-  {id: 1, description: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
-  {id: 2, description: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
-  {id: 3, description: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp', display: false},
-  {id: 4, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
+  {id: 0, description: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
+  {id: 1, description: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
+  {id: 2, description: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp', display: false},
+  {id: 3, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
 ]
 
 let cart = [
@@ -15,7 +15,7 @@ const dataModel = {
       return 'Hello, LeeRoy!';
     },
     getProducts: () => {
-      console.log(products);
+      // console.log(products);
       return products;
     },
     getCheckout: () => {
@@ -24,7 +24,7 @@ const dataModel = {
     },
     addToCart: (product) => {
       cart+=(product);
-      console.log(cart);
+      // console.log(cart);
     },
     getCart: () => {
       return cart;
@@ -43,6 +43,11 @@ const dataModel = {
         }
       })
     },
+    addToProducts: (name, price, image) => {
+      products.push({id: products.length, description: name, price: price, image: image, display: true});
+      
+      return products;
+    }
   };
 
 class Cart {
