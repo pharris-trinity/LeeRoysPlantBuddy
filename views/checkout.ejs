@@ -31,7 +31,7 @@
                         throw new Error(`HTTP Error! Status: ${response.status}`)
                     }
                 })
-            };
+            }
             function addToCart(item) {
                 console.log(item);
                 fetch('/addToCart', {
@@ -46,8 +46,22 @@
                         throw new Error(`HTTP Error! Status: ${response.status}`)
                     }
                 })
-            };
-
+            }
+            function emptyCart() {
+                console.log(cart);
+                fetch('/emptyCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ cart }),
+                })
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status}`)
+                    }
+                })
+			}
 
 			function subtotal() {
 				let subprice = 0
@@ -60,14 +74,14 @@
 
 			function taxCalc(subprice) {
 				return subprice * 0.0625
-			};
+			}
 
 			const tax = 5.99 * 0.0625
 			document.getElementById("salestax").innerHTML = tax
 
 			function totalCalc(subtotal, tax, shipping) {
 				return subtotal + taxCalc(subtotal) + shipping
-			};
+			}
 		</script>
     </head>
     <body>
@@ -115,7 +129,7 @@
 						</table>
 					</div>
 				<h4 > Total : $13.93</h4> <!-- add altogether-->
-				<button class="buy-now"> <h3>Buy Now</h3></button>
+				<button class="buy-now" onclick="cart.emptyCart()"> <h3>Buy Now</h3></button>
      		</div>
 	  </div>
 	

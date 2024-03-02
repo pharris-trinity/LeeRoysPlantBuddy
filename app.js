@@ -23,6 +23,7 @@ app.get('/login', mainController.getLogin);
 
 app.post('/addToCart', mainController.addToCart);
 app.post('/removeFromCart', mainController.removeFromCart);
+app.post('/emptyCart', mainController.emptyCart);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

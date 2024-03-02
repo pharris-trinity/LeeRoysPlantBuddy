@@ -42,6 +42,9 @@ const mainController = {
     const cart = dataModel.getCart();
     
     res.render('checkout', { cart });
+  },
+  emptyCart: (req, res) => {
+    cart.emptyCart();
   }
 };
 
