@@ -28,11 +28,8 @@ const mainController = {
     // console.log("triggered addToCart method");
     const product = req.body.product;
     cart.addToCart(product);
-    // console.log(product);
-    // const cart = req.body.cart;
-    // console.log(cart);
+    // console.log(products);
     // const products = dataModel.getCart();
-    console.log("These is in the cart, ", cart += product);
   },
   removeFromCart: (req, res) => {
     const item = req.body.item;

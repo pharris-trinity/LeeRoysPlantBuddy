@@ -29,16 +29,17 @@ const dataModel = {
     return 'Hello, LeeRoy!';
     },
     addToCart: (product) => {
-      cart+=(product);
-      console.log(cart);
-    },
-    getCart: () => {
+      cart.push(product);
       console.log(cart);
       return cart;
     },
+    getCart: () => {
+      return cart;
+    },
     removeFromCart: (item) => {
-      cart-=(item);
+      cart.splice(cart.indexOf(item), item);
       console.log(cart);
+      return cart;
     },    
     subtotal: () => {
 
