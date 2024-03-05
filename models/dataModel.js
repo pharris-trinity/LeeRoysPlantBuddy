@@ -1,3 +1,8 @@
+let users = [
+  {userid: 0, username: 'pharris', password: 'password', account_type: 'registered'},
+  {userid: 1, username: 'chouston', password: "drowssap", account_type: 'admin'},
+];
+
 let products = [
   {id: 0, description: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
   {id: 1, description: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
@@ -19,6 +24,40 @@ const dataModel = {
     getCheckout: () => {
       let cartProducts = dataModel.getProducts();
 	    return cartProducts;
+    },
+
+    getLogin: () => {
+      return 'Hello, LeeRoy!';
+    },
+    addUser: (username, password) => {
+      var lastUser = users[users.length - 1];
+      var newid = lastUser.userid + 1;
+      console.log(newid);
+      var newUser = {userid: newid, username: username, password: password, account_type: 'registered'};
+      console.log(newUser);
+      console.log(users.length);
+      users.push(newUser);
+      console.log(users.length);
+      console.log(users[users.length - 1]);
+      
+      return newUser;
+    },
+    verifyUser: (username, password) => {
+      var verified = 'failed';
+      users.forEach(user => {
+        if(username==user.username&&password==user.password) {
+          if(user.account_type=='admin') {
+            verified = 'admin';
+          } else if(user.account_type=='registered') {
+            verified = 'registered';
+          } else {
+            user.account_type = 'registered';
+            verified = 'registered';
+          }
+        }
+      })
+
+      return verified;
     },
     addToCart: (product) => {
       // console.log(product);
@@ -50,20 +89,15 @@ const dataModel = {
     }
   };
 
-// class Cart {
-//   constructor() {
-//     this.items = [];
-//   }
-
-//   addToCart(product) {
-//     // unclear what i want to do at this point
-//     this.items.push(product);
-//     cart+=product;
-//   }	
-
-//   getCart() {
-//     return cart;
-//   }
-// }
-
-module.exports = {dataModel};
+  class Users {
+    constructor() {
+      this.names = [];
+    }
+  
+    getUsers() {
+      return users;
+    }
+  }
+  
+  module.exports = {dataModel, Users};
+  };

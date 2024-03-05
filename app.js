@@ -17,6 +17,7 @@ app.get('/', mainController.getIndex);
 app.get('/product', mainController.getProduct);
 app.get('/home', mainController.getHome);
 app.get('/checkout', mainController.getCheckout);
+app.get('/login', mainController.getLogin);
 app.get('/product-admin', mainController.getProductAdmin);
 
 // Post Routes
@@ -25,6 +26,8 @@ app.post('/addToCart', mainController.addToCart);
 app.post('/showToProducts', mainController.showToProducts)
 app.post('/hideFromProducts', mainController.hideFromProducts)
 app.post('/addToProducts', mainController.addToProducts)
+app.post('/addUser', mainController.addUser);
+app.post('/verifyUser', mainController.verifyUser);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
