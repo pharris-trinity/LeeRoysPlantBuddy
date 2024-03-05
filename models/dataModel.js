@@ -28,8 +28,14 @@ const dataModel = {
     addUser: (username, password) => {
       var lastUser = users[users.length - 1];
       var newid = lastUser.userid + 1;
+      console.log(newid);
       var newUser = {userid: newid, username: username, password: password, account_type: 'registered'};
-      users += newUser;
+      console.log(newUser);
+      console.log(users.length);
+      users.push(newUser);
+      console.log(users.length);
+      console.log(users[users.length - 1]);
+      
       return newUser;
     },
     verifyUser: (username, password) => {
