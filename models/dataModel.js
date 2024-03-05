@@ -10,7 +10,11 @@ let products = [
   {id: 3, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
 ]
 
-let cart = []
+let cart = [
+  {id: 1, description: 'Cat Food', price: 5.99},
+  {id: 2, description: 'Pet Stuff', price: 5.99},
+  {id: 3, description: 'Dog Food', price: 5.99},
+]
 
 const dataModel = {
     getData: () => {
@@ -25,7 +29,6 @@ const dataModel = {
       let cartProducts = dataModel.getProducts();
 	    return cartProducts;
     },
-
     getLogin: () => {
       return 'Hello, LeeRoy!';
     },
@@ -67,6 +70,17 @@ const dataModel = {
     },
     getCart: () => {
       return cart;
+    },
+    removeFromCart: (item) => {
+      cart.splice(cart.indexOf(item), item);
+      console.log(cart);
+      return cart;
+    },    
+    subtotal: () => {
+
+    },
+    emptyCart: () => {
+    cart = [];
     },
     showToProducts: (product_id) => {
       products.forEach(product => {

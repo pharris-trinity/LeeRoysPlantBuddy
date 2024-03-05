@@ -60,12 +60,28 @@ const mainController = {
 
     res.render('product-admin', {products});
   },
+  getLogin: (req, res) => {
+  const login = dataModel.getLogin();
+  res.render('login', { login });
+  },
   addToCart: (req, res) => {
     const product = req.body.product;
     // console.log(product);
     
     const carts = dataModel.addToCart(product);
     // console.log(carts);
+  },
+  removeFromCart: (req, res) => {
+    const item = req.body.item;
+    cart.removeFromCart(item);
+  },
+  getCheckout: (req, res) => {
+    const cart = dataModel.getCart();
+    
+    res.render('checkout', { cart });
+  },
+  emptyCart: (req, res) => {
+    cart.emptyCart();
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;

@@ -1,19 +1,38 @@
 a {
     text-decoration: none;
-    color: #fff;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 body {
-    background-color: #333;
-    color: #fff;
+    background-color: #fafafa;
+    color: black;
     margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .centered-title {
     text-align: center;
-    margin: 0;
 }
 
+/* .header{
+    background-image: url('../images/leeroy-banner.jpg');
+    border: none;
+    cursor: pointer;
+    padding: 10;
+    width: 630px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+} */
+
+.header {
+	padding: 15px;
+  	text-align: center;
+  	background: #7a211f;
+	color: #fafafa
+}
 .container {
     width: 80%;
     margin: 0 auto;
@@ -34,18 +53,20 @@ body {
 
 
 .navbar {
-    background-color: #800000;
+    background-color: #7a211f;
     text-align: center;
     justify-content: space-evenly;
     display: flex;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 12px;
 }
 
-.navbar:hover {
-    background: #800050;
+.navbar a {
+	color: #fafafa;
+}
+
+.navbar a:hover {
+    color: #d27763;
 }
 
 .price-text {
@@ -57,8 +78,8 @@ body {
 }
 
 .product-list li:nth-child(even) {
-    background-color: #800000;
-    color: #fff;
+    background-color:#c7c9ca; 
+    color: #35373b;
     margin: 10px 0;
     padding: 15px;
 }
@@ -71,8 +92,8 @@ body {
 }
 
 .product-list li:nth-child(odd) {
-    background-color: #b6533e;
-    color: #fff;
+    background-color: #9a9c9e;
+    color: #35373b;
     margin: 10px 0;
     padding: 15px;
 }
@@ -104,6 +125,103 @@ body {
     height: 30px;
     background-size: cover;
     display: inline-block;
+    background-color: transparent;
+    opacity: 0.5;
+    margin-left: 10px;
+    margin-right: 2px;
+}
+.add-to-cart:hover{
+    opacity: 1.0;
+}
+
+.buy-now {
+	background-color: #828488; 
+	color: #fafafa;
+	padding: 3px 15px;
+    margin: 7%;
+	display: inline-block;
+	border-radius: 25px;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+.buy-now:hover {
+	background-color: #5d5f62;
+}
+
+.remove-from-cart {
+    background-image: url('../images/trash-closed.png');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    display: inline;
+    opacity: 0.5;
+}
+.remove-from-cart:hover{
+    opacity: 1.0;
+    }
+.add-quantity {
+    background-image: url('../images/plus.png');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5;
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+    display: inline;
+    opacity: 0.5;
+}
+.add-quantity:hover {
+    opacity: 1.0;
+}
+
+.column {
+    /* width: 25%; */
+    padding: 15px; 
+    margin-top: 3%;
+    /* height: 350px; */
+    background-color: #c7c9ca;
+    display: block;
+    text-align: center;
+    border-radius: 25px;
+}
+.column.left {
+    float: left;
+    margin-left: 15%;
+}
+.column.right {
+    float: right;
+    margin-right: 15%;
+}
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.general {
+	background-color: #828488; 
+	color: #fafafa;
+	display: inline-block;
+	border-radius: 25px;
+	text-align: center;
+	border: none;
+    padding: 3px 15px;
+	cursor: pointer;
+    width: 10;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.general:hover{
+	background-color: #5d5f62;
 }
 
 .header{
@@ -139,12 +257,20 @@ body {
     display: inline-block;
 }
 
-.point-left-graybackground {
-    background-image: url('../images/point-left-graybackground.png');
+/* .point-left-graybackground { */
+/*     background-image: url('../images/point-left-graybackground.png'); */
+.point-left-transparent {
+    background-image: url('../images/point-left-transparent.png');
     border: none;
     cursor: pointer;
     padding: 10;
     width: 200px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+    background-color: transparent;
+}
+/* .landing-title{
     height: 300px;
     background-size: cover;
     display: inline-block;
@@ -199,6 +325,16 @@ body {
     margin: 0 50px 0 0;
     text-align: center;
     width: 250px;
+} */
+
+/* .landing-text{
+    font-size: 24px;
+    /*float: right;*/
+    /* margin: 0 50px 0 0;
+    text-align: center;
+    width: 250px;
+    word-wrap: break-word;
+} */
 }
 
 .landing-text{
