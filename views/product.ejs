@@ -6,6 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/styles/styles.css">
         <title>LeeRoy's Pets N' More Products</title>
+        <script>
+            function addToCart(product) {
+                fetch('/addToCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ product }),
+                })
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status}`)
+                    }
+                })
+            }
+        </script>
     </head>
     <body>
         <div>
@@ -20,11 +36,14 @@
         <div class="container">
             <ul class="product-list">
                 <% products.forEach(product => { %>
-                    <li class="product-list-item">
-                        <span class="product-text"><%= product.description %></span>
-                        <span class="price-text">$<%= product.price %></span>
-                        <span>Add to cart<button class="add-to-cart"></button></span>
-                    </li>
+                    <% if(product.display) { %>
+                        <li class="product-list-item">
+                            <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
+                            <span class="product-text"><%= product.description %></span>
+                            <span class="price-text">$<%= product.price %></span>
+                            <span><button class="add-to-cart" onclick="addToCart('<%=product.description %>')"></button></span>
+                        </li>
+                    <% } %>
                 <% }); %>
             </ul>
         </div>
