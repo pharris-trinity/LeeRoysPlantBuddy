@@ -5,64 +5,87 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/styles/styles.css">
-		<link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
-        <title>Login</title>
-        <style>
-			input[type=text] {
-					border: none;
-					border-radius: 10px;
-					padding: 2.5px 2.5px;
-					margin: 10px 10px;
-			    	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-			}
-        </style>
+        <title>LeeRoy's Pets N' More</title>
     </head>
+
+	<!-- JAVASCRIPT -->
+    <script>
+		function addUser() {
+			console.log('triggered addUser funcction in login.ejs');
+			const new_username = document.getElementById('new_uname').value;
+			const new_password = document.getElementById('new_passw').value;
+			console.log(`new username: ${new_username} new password: ${new_password}`);
+
+			fetch('/addUser', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ username: new_username, password: new_password}),
+			})
+			.then(response => {
+				console.log(response);
+				if(!response.ok) {
+					throw new Error(`HTTP Error! Status: ${response.status}`)
+				}
+			})
+		}
+
+		function verifyUser() {
+			const username = document.getElementById('uname').value;
+			const password = document.getElementById('passw').value;
+			console.log(`username: ${username} password: ${password}`);
+
+			fetch('verifyUser', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ username: username, password: password}),
+			})
+			.then(response => {
+				console.log(response);
+				if(!response.ok) {
+					throw new Error(`HTTP Error! Status: ${response.status}`)
+				}
+			})
+		}
+	</script>
+	<!-- END JAVASCRIPT -->
+
     <body>
-		<div class="header">
-		    <button class="general" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
-			<h1>LeeRoy's Pets 'N' More</h1>
-			<h3>San Antonio's best for pets and pet needs!</h3>
+		<center><div class="header" align: center></div></center>
+
+        <div>
+	</div>
+
+
+        <div class="navbar">
+	    <span><a href="/">Home</a></span>
+	    <span><a href="/product">Products</a></span>
+	    <span><a href="/checkout">Checkout</a></span>
+		<span><a href="/login">Login</a></span>
+	</div>
+
+	<hr>
+        <div class="form-format">
+			<h3>Login</h3>
+			<!-- <form action="/action_page.php"> -->
+			<label for="uname">Username:</label><br>
+			<input type="text" id="uname" name="uname" value=""><br>
+			<label for="passw">Password:</label><br>
+			<input type="text" id="passw" name="passw" value=""><br><br>
+			<span><button class="submit-button" onclick="verifyUser()">Submit</button></span>
 		</div>
-
-   <!-- <center><div class="header" align: center></div></center> -->
-
-
-		<div class="navbar">
-		<span><a href="/">Home</a></span>
-		<span><a href="/product">Products</a></span>
-		<span><a href="/checkout">Checkout</a></span>
-		<!-- <span><a href="/login">Login</a></span> -->
-		</div>
-
-        <!-- <div>        
-	    <img src="../images/featuredproduct.png" alt="Featured Product"></img>
-        </div>
-	<hr> -->
-        <div class="row">
-                <div class="column left" style="height: 235px; width: 25%;">
-                        <h3>Login</h3>
-                        <form action="/action_page.php">
-                        <label for="uname">Username:</label><br>
-                        <input type="text" id="uname" name="uname" value=""><br>
-                        <label for="passw">Password:</label><br>
-                        <input type="text" id="passw" name="passw" value=""><br><br>
-                        <input type="submit" value="Sign In" class="general">
-                </div>
-                <div class="column right" style="height: 295px; width: 25%;">
-                        <h3>Sign Up</h3>
-                        <form action="/action_page.php">
-                        <label for="email">E-mail:</label><br>
-                        <input type="text" id="email" name="email" value=""><br>
-                        <label for="uname">Username:</label><br>
-                        <input type="text" id="uname" name="uname" value=""><br>
-                        <label for="passw">Password:</label><br>
-                        <input type="text" id="passw" name="passw" value=""><br><br>
-                        <input type="submit" value="Create Account" class="general">
-                </div>
-        </div>
-	<!-- <hr> -->
-</form> 
-
+		<div class="form-format"> 
+			<h3>Sign Up</h3>
+			<label for="new_uname">Username:</label><br>
+			<input type="text" id="new_uname" name="new_uname" value=""><br>
+			<label for="new_passw">Password:</label><br>
+			<input type="text" id="new_passw" name="new_passw" value=""><br><br>
+			<span><button class="submit-button" onclick="addUser()">Submit</button></span>
+	</div>
+	<hr>
 
       </body>
 </html>
