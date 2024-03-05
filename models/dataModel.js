@@ -99,5 +99,4 @@ const dataModel = {
     }
   }
   
-  module.exports = {dataModel, Users};
-  };
+module.exports = {dataModel, Users};
