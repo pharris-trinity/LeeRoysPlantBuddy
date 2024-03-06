@@ -27,11 +27,18 @@ body {
     display: inline-block;
 } */
 
-.header {
-	padding: 15px;
+.header-text {
+	padding: 1px;
   	text-align: center;
   	background: #7a211f;
-	color: #fafafa
+	color: #fafafa;
+    display: block;
+}
+.header-solid {
+    padding: 7px;
+    text-align: center;
+    background: #7a211f;
+    color: #fafafa;
 }
 .container {
     width: 80%;
@@ -206,31 +213,32 @@ body {
     clear: both;
 }
 
-.general {
+.button {
 	background-color: #828488; 
 	color: #fafafa;
-	display: inline-block;
+	display: flex;
 	border-radius: 25px;
 	text-align: center;
 	border: none;
+    font-size: 20px;
     padding: 3px 15px;
 	cursor: pointer;
     width: 10;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+    margin: 1%;
 }
 
-.general:hover{
+.button:hover{
 	background-color: #5d5f62;
 }
 
 .header{
-    background-image: url('../images/leeroy-banner.jpg');
+    background-image: url('../images/leeroy-banner-extend-2.jpeg');
     border: none;
     cursor: pointer;
     padding: 10;
-    width: 630px;
-    height: 200px;
+    width: 100%;
+    height: 240px;
     background-size: cover;
     display: inline-block;
 }
@@ -245,7 +253,6 @@ body {
     background-size: cover;
     display: inline-block;
 }
-
 .featured-product-small {
     background-image: url('../images/featuredproduct_small.png');
     border: none;
@@ -256,7 +263,6 @@ body {
     background-size: cover;
     display: inline-block;
 }
-
 /* .point-left-graybackground { */
 /*     background-image: url('../images/point-left-graybackground.png'); */
 .point-left-transparent {
@@ -270,13 +276,7 @@ body {
     display: inline-block;
     background-color: transparent;
 }
-/* .landing-title{
-    height: 300px;
-    background-size: cover;
-    display: inline-block;
-}
-
-.point-right-graybackground {
+/* .point-right-graybackground {
     background-image: url('../images/point-right-graybackground.jpg');
     border: none;
     cursor: pointer;
@@ -285,22 +285,19 @@ body {
     height: 400px;
     background-size: cover;
     display: inline-block;
-}
-
+} */
 .form-format {
     text-align: center;
     font-size: 25px;
-    background-color: #800000;
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 150px;
+    background-color: #c7c9ca;
+    border-radius: 85px;
     display: flex;
     flex-direction:column;
     background-size: contain;
     align-items: center;
+    width: 50%;
 }
-
-.submit-button {
+/* .submit-button {
     text-align: center;
     font-size: 25px;
     background-color: gray;
@@ -308,8 +305,7 @@ body {
     border-width: 2px;
     border-color: black;
     display: inline-block;
-}
-
+} */
 .text-field {
     background-color: white;
     font-size: 20px;
@@ -318,25 +314,13 @@ body {
     border-color: black;
     display: inline-block;
 }
-
 .landing-title{
     font-size: 48px;
     float: right;
     margin: 0 50px 0 0;
     text-align: center;
     width: 250px;
-} */
-
-/* .landing-text{
-    font-size: 24px;
-    /*float: right;*/
-    /* margin: 0 50px 0 0;
-    text-align: center;
-    width: 250px;
-    word-wrap: break-word;
-} */
 }
-
 .landing-text{
     font-size: 24px;
     /*float: right;*/
