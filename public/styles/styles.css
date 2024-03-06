@@ -16,22 +16,18 @@ body {
     text-align: center;
 }
 
-/* .header{
-    background-image: url('../images/leeroy-banner.jpg');
-    border: none;
-    cursor: pointer;
-    padding: 10;
-    width: 630px;
-    height: 200px;
-    background-size: cover;
-    display: inline-block;
-} */
-
-.header {
-	padding: 15px;
+.header-text {
+	padding: 1px;
   	text-align: center;
   	background: #7a211f;
-	color: #fafafa
+	color: #fafafa;
+    display: block;
+}
+.header-solid {
+    padding: 7px;
+    text-align: center;
+    background: #7a211f;
+    color: #fafafa;
 }
 .container {
     width: 80%;
@@ -85,7 +81,7 @@ body {
 }
 
 .product-list li:nth-child(even):hover {
-    background-color: #660000;
+    background-color:#6c6d6d; 
     color: #fff;
     margin: 10px 0;
     padding: 15px;
@@ -99,7 +95,7 @@ body {
 }
 
 .product-list li:nth-child(odd):hover {
-    background-color: #9e4634;
+    background-color:#6c6d6d; 
     color: #fff;
     margin: 10px 0;
     padding: 15px;
@@ -132,23 +128,6 @@ body {
 }
 .add-to-cart:hover{
     opacity: 1.0;
-}
-
-.buy-now {
-	background-color: #828488; 
-	color: #fafafa;
-	padding: 3px 15px;
-    margin: 7%;
-	display: inline-block;
-	border-radius: 25px;
-	text-align: center;
-	border: none;
-	cursor: pointer;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-}
-.buy-now:hover {
-	background-color: #5d5f62;
 }
 
 .remove-from-cart {
@@ -206,31 +185,32 @@ body {
     clear: both;
 }
 
-.general {
+.button {
 	background-color: #828488; 
 	color: #fafafa;
-	display: inline-block;
+	display: flex;
 	border-radius: 25px;
 	text-align: center;
 	border: none;
+    font-size: 20px;
     padding: 3px 15px;
 	cursor: pointer;
     width: 10;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+    margin: 1%;
 }
 
-.general:hover{
+.button:hover{
 	background-color: #5d5f62;
 }
 
 .header{
-    background-image: url('../images/leeroy-banner.jpg');
+    background-image: url('../images/leeroy-banner-extend-2.jpeg');
     border: none;
     cursor: pointer;
     padding: 10;
-    width: 630px;
-    height: 200px;
+    width: 100%;
+    height: 240px;
     background-size: cover;
     display: inline-block;
 }
@@ -265,17 +245,12 @@ body {
     cursor: pointer;
     padding: 10;
     width: 200px;
-    height: 200px;
+    height: 300px;
     background-size: cover;
     display: inline-block;
     background-color: transparent;
 }
-/* .landing-title{
-    height: 300px;
-    background-size: cover;
-    display: inline-block;
-}
-
+/*
 .point-right-graybackground {
     background-image: url('../images/point-right-graybackground.jpg');
     border: none;
@@ -285,19 +260,18 @@ body {
     height: 400px;
     background-size: cover;
     display: inline-block;
-}
+} */
 
 .form-format {
     text-align: center;
     font-size: 25px;
-    background-color: #800000;
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 150px;
+    background-color: #c7c9ca;
+    border-radius: 85px;
     display: flex;
     flex-direction:column;
     background-size: contain;
     align-items: center;
+    width: 50%;
 }
 
 .submit-button {
@@ -325,17 +299,7 @@ body {
     margin: 0 50px 0 0;
     text-align: center;
     width: 250px;
-} */
-
-/* .landing-text{
-    font-size: 24px;
-    /*float: right;*/
-    /* margin: 0 50px 0 0;
-    text-align: center;
-    width: 250px;
-    word-wrap: break-word;
-} */
-}
+} 
 
 .landing-text{
     font-size: 24px;

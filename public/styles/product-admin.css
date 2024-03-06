@@ -1,3 +1,9 @@
+body {
+  background-color: #333;
+  color: black;
+  margin: 0;
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+}
 .greybox {
   background: grey;
   flex: 1;

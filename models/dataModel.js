@@ -11,9 +11,9 @@ let products = [
 ]
 
 let cart = [
-  {id: 1, description: 'Cat Food', price: 5.99},
-  {id: 2, description: 'Pet Stuff', price: 5.99},
-  {id: 3, description: 'Dog Food', price: 5.99},
+  // {id: 1, description: 'Cat Food', price: 5.99},
+  // {id: 2, description: 'Pet Stuff', price: 5.99},
+  // {id: 3, description: 'Dog Food', price: 5.99},
 ]
 
 const dataModel = {
