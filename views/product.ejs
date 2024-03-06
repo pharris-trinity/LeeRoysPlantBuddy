@@ -8,13 +8,17 @@
 		<link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
         <title>Products</title>
         <script>
-            function addToCart(product) {
+            function addToCart(id, name, price) {
                 fetch('/addToCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ product }),
+                    body: JSON.stringify({ 
+                        id, 
+                        name, 
+                        price, 
+                    }),
                 })
                 .then(response => {
                     if(!response.ok) {
@@ -46,7 +50,7 @@
                             <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
                             <span class="product-text"><%= product.description %></span>
                             <span class="price-text">$<%= product.price %></span>
-                            <span><button class="add-to-cart" onclick="addToCart('<%=product.description %>')"></button></span>
+                            <span><button class="add-to-cart" onclick="addToCart('<%=product.id%>', '<%=product.description%>', '<%=product.price%>')"></button></span>
                         </li>
                     <% } %>
                 <% }); %>

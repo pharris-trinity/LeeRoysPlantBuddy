@@ -65,10 +65,11 @@ const mainController = {
   res.render('login', { login });
   },
   addToCart: (req, res) => {
-    const product = req.body.product;
-    // console.log(product);
+    const id = parseInt(req.body.id);
+    const name = req.body.name;
+    const price = parseFloat(req.body.price);
     
-    const carts = dataModel.addToCart(product);
+    const carts = dataModel.addToCart(id, name, price);
     // console.log(carts);
   },
   removeFromCart: (req, res) => {
