@@ -73,10 +73,10 @@
 			document.getElementById("subtotal").innerHTML = window.subtotal();
 
 			function taxCalc(subprice) {
-				return subprice * 0.0625
+				return subprice * 0.625
 			}
 
-			const tax = 5.99 * 0.0625
+			const tax = 5.99 * 0.625
 			document.getElementById("salestax").innerHTML = tax
 
 			function totalCalc(subtotal, tax, shipping) {
@@ -123,15 +123,23 @@
      		<div class="column right" style="height: 350px; width: 25%;">
       		<h2>Order Summary</h2>
 					<div class="container">
-						<table>
-						
-							<tr> <td>Subtotal:</td> <td id="subtotal"></td> </tr> <!-- sum of product prices in cart-->
-							<tr> <td>+ Tax:</td> <td></td> <td id="salestax"></td></tr> <!-- tax is 6.25% in texas-->
-							<tr> <td>+ Shipping:</td> <td>$4.20</td></tr> <!-- shipping free for orders over $35?-->
-						
-						</table>
+						<div class="row">
+							<div class="column left" style="height: 75px; width: 50px; background-color: transparent; margin-top: 0; text-align: left;">
+								<p> Subtotal:</p>
+								<p> Tax:</p>
+								<p> Shipping:</p>
+
+							</div>
+							<div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
+								<p>$<span></span></p>
+								<p>$<span><%= +(Math.round((5.99 * 0.625) + "e+2") + "e-2")%></span></p>
+								<p>$<span><%= +(Math.round((5.99 * 0.425) + "e+2") + "e-2")%></span></p>
+							</div>
+						</div>
 					</div>
-				<h4 > Total : $13.93</h4> <!-- add altogether-->
+					<br> <br>
+
+				<h4 > Total:  $13.93</h4> <!-- add altogether-->
 				<br>
 				<button class="button" onclick="cart.emptyCart()" style="display: inline-block;">Buy Now</button>
      		</div>
