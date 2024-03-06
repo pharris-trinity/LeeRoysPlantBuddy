@@ -62,9 +62,9 @@ const dataModel = {
 
       return verified;
     },
-    addToCart: (id, name, price) => {
+    addToCart: (id, description, price) => {
       // console.log(product);
-      cart.push({id, name, price});
+      cart.push({id, description, price});
       console.log(cart);
       return cart;
     },
