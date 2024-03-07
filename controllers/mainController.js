@@ -77,7 +77,12 @@ const mainController = {
     cart.removeFromCart(item);
   },
   getCheckout: (req, res) => {
-    const cart = dataModel.getCart();
+    const cart_object = dataModel.getCart();
+    // console.log(cart);
+    const cart = Object.values(cart_object);
+    // cart_array.forEach((id, item) => {
+    //   console.log(id);
+    // })
     
     res.render('checkout', { cart });
   },
