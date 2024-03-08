@@ -70,30 +70,44 @@ const mainController = {
     const price = parseFloat(req.body.price);
     
     const carts = dataModel.addToCart(id, name, price);
-    console.log(carts);
+    // console.log(carts);
   },
   removeFromCart: (req, res) => {
-    const id = parseInt(req.body.id);
-    const name = req.body.name;
-    const price = parseFloat(req.body.price);
-    
-    const carts = dataModel.removeFromCart(id, name, price);
+    // const cart = dataModel.getCart();
+    const item = req.body.item;
+    const carts = dataModel.removeFromCart(item);
   },
   getCheckout: (req, res) => {
-    const cart = dataModel.getCart();
+    const cart_object = dataModel.getCart();
+    // console.log(cart);
+    const cart = Object.values(cart_object);
+    // cart_array.forEach((id, item) => {
+    //   console.log(id);
+    // })
     
     res.render('checkout', { cart });
   },
-  subtotal: (req, res) => {
-    const subtotal = cart.subtotal();
-    console.log(subtotal);
-  },
-  emptyCart: (req, res) => {
+  addQuantity: (req, res) => {
     const cart = dataModel.getCart();
-    cart.emptyCart();
-    console.log(cart);
-    res.render({cart});
+    const id = parseInt(req.body.id);
+    const carts = dataModel.addQuantity(item)
   },
+  // subtotalCalc: (req, res) => {
+  //   const subtotal = dataModel.cart.subtotalCalc();
+  // },
+  // taxCalc: (req, res) => {
+  //   const tax = dataModel.cart.taxCalc();
+  // },
+  // shippingCalc: (req, res) => {
+  //   const shipping = dataModel.cart.shippingCalc();
+  // },
+  // totalCalc: (req, res) => {
+  //   const total = dataModel.cart.totalCalc();
+  // },
+  // emptyCart: (req, res) => {
+  //   const cart = dataModel.getCart();
+  //   cart.emptyCart();
+  // },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;
 

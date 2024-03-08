@@ -4,10 +4,10 @@ let users = [
 ];
 
 let products = [
-  {id: 0, name: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
-  {id: 1, name: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
-  {id: 2, name: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp', display: false},
-  {id: 3, name: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
+  {id: 0, description: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
+  {id: 1, description: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
+  {id: 2, description: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp', display: false},
+  {id: 3, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
 ]
 
 let cart = [
@@ -27,7 +27,7 @@ const dataModel = {
     },
     getCheckout: () => {
       let cartProducts = dataModel.getProducts();
-	    return cartProducts;
+      return cartProducts;
     },
     getLogin: () => {
       return 'Hello, LeeRoy!';
@@ -62,33 +62,51 @@ const dataModel = {
 
       return verified;
     },
-    addToCart: (id, name, price) => {
+    addToCart: (id, description, price) => {
       // console.log(product);
-      cart.push({id, name, price});
+      if(!(id in cart)) {
+        cart[id] = {id, description, price, quantity: 1};
+      } else {
+        cart[id].quantity+=1;
+      }
       console.log(cart);
       return cart;
     },
     getCart: () => {
       return cart;
     },
-    removeFromCart: (id, name, price) => {
-      cart.splice(cart.indexOf(id, name, price), id, name, price);
+    addQuantity: (id, description, price) => {
+      cart[id].quantity+=1;
+      console.log(cart);
+      return cart;
+    },
+    removeFromCart: (item) => {
+      cart.splice(cart.indexOf(item), item);
       console.log(cart);
       return cart;
     },    
-    subtotal: () => {
-      let subprice = 0;
-      cart.forEach(item => {
-        item.price += subprice;
-      })
-      console.log(subprice); 
-      return subprice;
-    },
-    emptyCart: () => {
-    const cart = dataModel.getCart();
-    cart = [];
-    return cart;
-    },
+    // subtotalCalc: () => {
+    //   let subtotal = 0;
+    //   cart.forEach((id, item) => {
+    //     subtotal += id.price;
+    //   })
+    //   console.log(subtotal);
+    //   return subtotal;
+    // },
+    // taxCalc: (cart) => {
+    //   return +(Math.round((cart.subtotalCalc() * 0.0625) + "e+2") + "e-2");
+      
+    // },
+    // shippingCalc : (cart) => {
+    //   return +(Math.round((cart.subtotalCalc() * 0.0425) + "e+2") + "e-2");
+    // },
+    // totalCalc: (cart) => {
+    // return cart.subtotalCalc() + cart.taxCalc() + cart.shippingCalc();
+    // },
+    // emptyCart: () => {
+    // cart = [];
+    // return cart;
+    // },
     showToProducts: (product_id) => {
       products.forEach(product => {
         if(product.id == product_id) {

@@ -24,13 +24,19 @@ app.get('/product-admin', mainController.getProductAdmin);
 
 app.post('/addToCart', mainController.addToCart);
 app.post('/removeFromCart', mainController.removeFromCart);
-app.post('/emptyCart', mainController.emptyCart);
+// app.post('/emptyCart', mainController.emptyCart());
 app.post('/showToProducts', mainController.showToProducts)
 app.post('/hideFromProducts', mainController.hideFromProducts)
 app.post('/addToProducts', mainController.addToProducts)
 app.post('/addUser', mainController.addUser);
 app.post('/verifyUser', mainController.verifyUser);
+app.post('/addQuantity', mainController.addQuantity);
+// app.post('/subtotalCalc', mainController.subtotalCalc());
+// app.post('/taxCalc', mainController.taxCalc());
+// app.post('/shippingCalc', mainController.shippingCalc());
+// app.post('/totalCalc', mainController.totalCalc());
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+

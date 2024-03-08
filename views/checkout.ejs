@@ -5,25 +5,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/styles/styles.css">
-		<link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
-		<title>Checkout</title>
+        <link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
+        <title>Checkout</title>
         <style>
-			table, td {
-				border: none;
-				border-spacing: 7px;
-				display: inline;
-				padding: 10px;
-				text-align: center;
-			}
+            table, td {
+                border: none;
+                border-spacing: 7px;
+                display: inline;
+                padding: 10px;
+                text-align: center;
+            }
         </style>
-		<script>
-            function removeFromCart(id, name, price) {
+        <script>
+            function removeFromCart(id, description, price) {
                 fetch('/removeFromCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id, name, price }),
+                    body: JSON.stringify({ id, description, price }),
                 })
                 .then(response => {
                     if(!response.ok) {
@@ -31,17 +31,28 @@
                     }
                 })
             }
-            // function addToCart(id, name, price) {
-            //     fetch('/addToCart', {
+            function addQuantity(id, description, price) {
+                fetch('/addToCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id, description, price }),
+                })
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status}`)
+                    }
+                })
+            }
+            // function emptyCart() {
+            //     console.log(cart);
+            //     fetch('/emptyCart', {
             //         method: 'POST',
             //         headers: {
             //             'Content-Type': 'application/json',
             //         },
-            //         body: JSON.stringify({ 
-			// 			id, 
-			// 			name, 
-			// 			price 
-			// 		}),
+            //         body: JSON.stringify({ cart }),
             //     })
             //     .then(response => {
             //         if(!response.ok) {
@@ -49,92 +60,144 @@
             //         }
             //     })
             // }
-            function emptyCart() {
-                fetch('/emptyCart', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ cart }),
+            // function subtotalCalc() {
+            //     fetch('/subtotalCalc', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify({ subtotal }),
+            //     })
+            //     .then(response => {
+            //         if(!response.ok) {
+            //             throw new Error(`HTTP Error! Status: ${response.status}`)
+            //         }
+            //     })
+            // }
+            // function taxCalc() {
+            //     fetch('/taxCalc', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify({ tax }),
+            //     })
+            //     .then(response => {
+            //         if(!response.ok) {
+            //             throw new Error(`HTTP Error! Status: ${response.status}`)
+            //         }
+            //     })
+            // }
+            // function shippingCalc() {
+            //     fetch('/shippingCalc', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify({ shipping }),
+            //     })
+            //     .then(response => {
+            //         if(!response.ok) {
+            //             throw new Error(`HTTP Error! Status: ${response.status}`)
+            //         }
+            //     })
+            // }
+            // function totalCalc() {
+            //     fetch('/totalCalc', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify({ total }),
+            //     })
+            //     .then(response => {
+            //         if(!response.ok) {
+            //             throw new Error(`HTTP Error! Status: ${response.status}`)
+            //         }
+            //     })
+            // }        
+            function subtotalCalc() {
+                let subtotal = 0;
+                cart.forEach((id, item) => {
+                    subtotal += id.price;
                 })
-                .then(response => {
-                    if(!response.ok) {
-                        throw new Error(`HTTP Error! Status: ${response.status}`)
-                    }
-                })
-			}
+                return subtotal;
+                }
+                let sub = cart.subtotalCalc();
+            document.getElementById("subtotal").innerHTML = sub;
 
-			// function subtotal() {
-			// 	let subprice = 0
-			// 	cart.forEach(product => {
-			// 		product.price += subprice
-			// 	})
-			// 	return subprice
-			// 	}
+            function taxCalc(subtotal) {
+                return subtotal * 0.625
+            }
 
+            // const tax = 5.99 * 0.625
+            // document.getElementById("salestax").innerHTML = tax
 
-			// function taxCalc(subprice) {
-			// 	return subprice * 0.625
-			// }
-
-			// const tax = 5.99 * 0.625
-			// document.getElementById("salestax").innerHTML = tax
-
-			// function totalCalc(subtotal, tax, shipping) {
-			// 	return subtotal + taxCalc(subtotal) + shipping
-			// }
-		</script>
+            // function totalCalc(subtotal, tax, shipping) {
+            //  return subtotal + taxCalc(subtotal) + shipping
+            // }
+        </script>
     </head>
     <body>
-		<div class="header">
-		    <button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
-		</div>	
-		<div class="header-text">
-			<h3 style="text-align: center;">San Antonio's best for pets and pet needs!</h3>
-		</div>
-		<div class="navbar">
-			<span><a href="/">Home</a></span>
-			<span><a href="/product">Products</a></span>
-			<span><a href="/checkout">Checkout</a></span>
-			<span><a href="/login">Login</a></span>
-		</div>
-		<div class="row">
-			<div class="column left" style="height: 350px; width: 25%;">
-				<h2>Shopping Cart</h2>
-				<div class="container">
-					<table>
-						<% cart.forEach(product => { %>
-						<tr>
-							<td><span><button class="add-quantity"></button> </span></td>
-							<td><span><%= product.name %></span></td>
-							<td><span>$<%= product.price %></span></td>
-							<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.id%>', '<%=product.name%>', '<%=product.price%>')"></button></span></td>
-						</tr>
-						<% }); %>
-					</table>
-				</div>
-			</div>
-			<div class="column right" style="height: 350px; width: 25%;">
-				<h2>Order Summary</h2>
-					<div class="container">
-						<div class="row">
-							<div class="column left" style="height: 75px; width: 50px; margin-top: 0; text-align: left;">
-								Subtotal:
-								<p> Tax:</p>
-								<p> Shipping:</p>
-							</div>
-							<div class="column right" style="height: 75px; width: 50px; margin-top: 0; text-align: left;">
-								$<span><%  %></span>
-								<p>$<span><%= +(Math.round((5.99 * 0.625) + "e+2") + "e-2")%></span></p>
-								<p>$<span><%= +(Math.round((5.99 * 0.425) + "e+2") + "e-2")%></span></p>
-							</div>
-						</div>
-					</div>
-				<br> <br>
-				<h4 > Total:  $13.93</h4> <!-- add altogether-->
-				<br>
-				<button class="button" onclick="cart.emptyCart()" style="display: inline-block;">Buy Now</button>
-			</div>
-		</div>
+        <!-- <center><div class="header" align: center></div></center> -->
+        <div class="header">
+            <button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
+        </div>  
+        <div class="header-text">
+            <h3 style="text-align: center;">San Antonio's best for pets and pet needs!</h3>
+        </div>
+            
+        
+      <div class="navbar">
+        <span><a href="/">Home</a></span>
+        <span><a href="/product">Products</a></span>
+        <span><a href="/checkout">Checkout</a></span>
+        <span><a href="/login">Login</a></span>
+      </div>
+      <div class="row">
+            <div class="column left" style="height: 350px; width: 25%;">
+                <h2>Shopping Cart</h2>
+                    <div class="container">
+                        <table class="Cart">
+                            <% cart.forEach((id, item) => { %>
+                            <tr>
+                                <td><span><button class="add-quantity" onclick="addQuantity('<%=item.id%>', '<%=item.description%>', '<%=item.price%>')"></button> <%= id.quantity %></span></td>
+                                <td><span><%= id.description %></span></td>
+                                <td><span>$<%= id.price * id.quantity %></span></td>
+                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=item.id%>', '<%=item.description%>', '<%=item.price%>')"></button></span></td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                        
+                        <!-- <table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table> -->
+                        
+                    </div>
+            </div>
+                
+            <div class="column right" style="height: 350px; width: 25%;">
+            <h2>Order Summary</h2>
+                    <div class="container">
+                        <div class="row">
+                            <div class="column left" style="height: 75px; width: 50px; background-color: transparent; margin-top: 0; text-align: left;">
+                                <p> Subtotal:</p>
+                                <p> Tax:</p>
+                                <p> Shipping:</p>
+
+                            </div>
+                            <div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
+                                <p>$<span id="subtotal"></span></p>
+                                <p>$<span><%= %></span></p>
+                                <p>$<span><%= +(Math.round((5.99 * 0.0425) + "e+2") + "e-2")%></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <br> <br>
+
+                <h4 > Total: $<span><%=  %></span></h4> <!-- add altogether-->
+                <br>
+                <button class="button" style="display: inline-block;">Buy Now</button>
+            </div>
+      </div>
+    
     </body>
 </html>
