@@ -216,7 +216,7 @@ body {
 }
 
 .featured-product {
-    background-image: url('../images/featuredproduct.png');
+    background-image: url('https://t4.ftcdn.net/jpg/06/08/41/09/240_F_608410951_8OhMYUIq37acegYgSrKdFN0kAw0xRKx9.jpg');
     border: none;
     cursor: pointer;
     padding: 10;
@@ -227,7 +227,7 @@ body {
 }
 
 .featured-product-small {
-    background-image: url('../images/featuredproduct_small.png');
+    background-image: url('https://t4.ftcdn.net/jpg/06/08/41/09/240_F_608410951_8OhMYUIq37acegYgSrKdFN0kAw0xRKx9.jpg');
     border: none;
     cursor: pointer;
     padding: 10;
