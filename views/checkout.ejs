@@ -107,7 +107,7 @@
 						<table class="Cart">
 							<% cart.forEach((id, item) => { %>
 							<tr>
-								<td><span><button class="add-quantity" onclick="addToCart('<%=item.description %>')"></button><%=item.quantity%> </span></td>
+								<td><span><button class="add-quantity" onclick="addToCart('<%=item.description %>')"></button><%=id.quantity%> </span></td>
 								<td><span><%= id.description %></span></td>
 								<td><span>$<%= id.price %></span></td>
 								<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=item.description %>')"></button></span></td>
