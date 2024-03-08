@@ -65,8 +65,8 @@
 
 			function subtotal() {
 				let subprice = 0
-				cart.forEach(item => {
-					item.price += subprice
+				cart.forEach((id, item) => {
+					id.price += subprice
 				})
 				return subprice
 				}
@@ -105,12 +105,12 @@
 				<h2>Shopping Cart</h2>
 					<div class="container">
 						<table class="Cart">
-							<% cart.forEach(product => { %>
+							<% cart.forEach((id, item) => { %>
 							<tr>
-								<td><span><button class="add-quantity" onclick="addToCart('<%=product.description %>')"></button> </span></td>
-								<td><span><%= product.description %></span></td>
-								<td><span>$<%= product.price %></span></td>
-								<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.description %>')"></button></span></td>
+								<td><span><button class="add-quantity" onclick="addToCart('<%=item.description %>')"></button> </span></td>
+								<td><span><%= id.description %></span></td>
+								<td><span>$<%= id.price %></span></td>
+								<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=item.description %>')"></button></span></td>
 							</tr>
 							<% }); %>
 						</table>
