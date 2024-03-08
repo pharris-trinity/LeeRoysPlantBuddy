@@ -10,11 +10,11 @@ let products = [
   {id: 3, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
 ]
 
-let cart = {
-  0: {id: 0, description: 'Cat Food', price: 5.99, quantity: 1},
-  2: {id: 2, description: 'Bird Food', price: 5.99, quantity: 1},
-  1: {id: 1, description: 'Dog Food', price: 5.99, quantity: 1},
-}
+let cart = [
+  // {id: 1, description: 'Cat Food', price: 5.99},
+  // {id: 2, description: 'Pet Stuff', price: 5.99},
+  // {id: 3, description: 'Dog Food', price: 5.99},
+]
 
 const dataModel = {
     getData: () => {

@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/styles/styles.css">
+        <link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
         <title>LeeRoy's Pets N' More</title>
     </head>
 
@@ -54,10 +55,12 @@
 	<!-- END JAVASCRIPT -->
 
     <body>
-		<center><div class="header" align: center></div></center>
-
-        <div>
-	</div>
+        <div class="header">
+        <button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
+        </div>	
+        <div class="header-text">
+                <h3 style="text-align: center;">San Antonio's best for pets and pet needs!</h3>
+        </div>
 
 
         <div class="navbar">
@@ -67,25 +70,26 @@
 		<span><a href="/login">Login</a></span>
 	</div>
 
-	<hr>
-        <div class="form-format">
+<br><br>
+        <center><div class="form-format">
 			<h3>Login</h3>
 			<!-- <form action="/action_page.php"> -->
-			<label for="uname">Username:</label><br>
+			<label for="uname">Username:</label>
 			<input type="text" id="uname" name="uname" value=""><br>
-			<label for="passw">Password:</label><br>
+			<label for="passw">Password:</label>
 			<input type="text" id="passw" name="passw" value=""><br><br>
-			<span><button class="submit-button" onclick="verifyUser()">Submit</button></span>
-		</div>
-		<div class="form-format"> 
+			<span><button class="button" onclick="verifyUser()">Submit</button></span><br><br>
+		</div></center>
+                <br><br>
+		<center><div class="form-format"> 
 			<h3>Sign Up</h3>
-			<label for="new_uname">Username:</label><br>
+			<label for="new_uname">Username:</label>
 			<input type="text" id="new_uname" name="new_uname" value=""><br>
-			<label for="new_passw">Password:</label><br>
+			<label for="new_passw">Password:</label>
 			<input type="text" id="new_passw" name="new_passw" value=""><br><br>
-			<span><button class="submit-button" onclick="addUser()">Submit</button></span>
-	</div>
-	<hr>
+			<span><button class="button" onclick="addUser()">Submit</button></span><br><br>
+	</div></center>
+
 
       </body>
 </html>
