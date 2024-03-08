@@ -140,24 +140,6 @@ body {
 .add-to-cart:hover{
     opacity: 1.0;
 }
-
-.buy-now {
-	background-color: #828488; 
-	color: #fafafa;
-	padding: 3px 15px;
-    margin: 7%;
-	display: inline-block;
-	border-radius: 25px;
-	text-align: center;
-	border: none;
-	cursor: pointer;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-}
-.buy-now:hover {
-	background-color: #5d5f62;
-}
-
 .remove-from-cart {
     background-image: url('../images/trash-closed.png');
     background-color: transparent;
@@ -190,10 +172,8 @@ body {
 }
 
 .column {
-    /* width: 25%; */
-    padding: 15px; 
-    margin-top: 3%;
-    /* height: 350px; */
+    padding: 10px; 
+    margin-top: 2%;
     background-color: #c7c9ca;
     display: block;
     text-align: center;

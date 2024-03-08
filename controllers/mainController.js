@@ -65,23 +65,34 @@ const mainController = {
   res.render('login', { login });
   },
   addToCart: (req, res) => {
-    const product = req.body.product;
-    // console.log(product);
+    const id = parseInt(req.body.id);
+    const name = req.body.name;
+    const price = parseFloat(req.body.price);
     
-    const carts = dataModel.addToCart(product);
-    // console.log(carts);
+    const carts = dataModel.addToCart(id, name, price);
+    console.log(carts);
   },
   removeFromCart: (req, res) => {
-    const item = req.body.item;
-    cart.removeFromCart(item);
+    const id = parseInt(req.body.id);
+    const name = req.body.name;
+    const price = parseFloat(req.body.price);
+    
+    const carts = dataModel.removeFromCart(id, name, price);
   },
   getCheckout: (req, res) => {
     const cart = dataModel.getCart();
     
     res.render('checkout', { cart });
   },
+  subtotal: (req, res) => {
+    const subtotal = cart.subtotal();
+    console.log(subtotal);
+  },
   emptyCart: (req, res) => {
+    const cart = dataModel.getCart();
     cart.emptyCart();
+    console.log(cart);
+    res.render({cart});
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;

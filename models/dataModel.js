@@ -4,16 +4,16 @@ let users = [
 ];
 
 let products = [
-  {id: 0, description: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
-  {id: 1, description: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
-  {id: 2, description: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp', display: false},
-  {id: 3, description: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
+  {id: 0, name: 'Cat Food', price: 5.99, image: 'images/cat-food.bmp', display: true},
+  {id: 1, name: 'Dog Food', price: 5.99, image: 'images/dog-food.bmp', display: true},
+  {id: 2, name: 'Bird Food', price: 5.99, image: 'images/bird-food.bmp', display: false},
+  {id: 3, name: 'Lizard Food', price: 5.99, image: 'images/lizard-food.bmp', display: true},
 ]
 
 let cart = [
-  {id: 1, description: 'Cat Food', price: 5.99},
-  {id: 2, description: 'Pet Stuff', price: 5.99},
-  {id: 3, description: 'Dog Food', price: 5.99},
+  // {id: 1, description: 'Cat Food', price: 5.99},
+  // {id: 2, description: 'Pet Stuff', price: 5.99},
+  // {id: 3, description: 'Dog Food', price: 5.99},
 ]
 
 const dataModel = {
@@ -62,25 +62,32 @@ const dataModel = {
 
       return verified;
     },
-    addToCart: (product) => {
+    addToCart: (id, name, price) => {
       // console.log(product);
-      cart.push(product);
+      cart.push({id, name, price});
       console.log(cart);
       return cart;
     },
     getCart: () => {
       return cart;
     },
-    removeFromCart: (item) => {
-      cart.splice(cart.indexOf(item), item);
+    removeFromCart: (id, name, price) => {
+      cart.splice(cart.indexOf(id, name, price), id, name, price);
       console.log(cart);
       return cart;
     },    
     subtotal: () => {
-
+      let subprice = 0;
+      cart.forEach(item => {
+        item.price += subprice;
+      })
+      console.log(subprice); 
+      return subprice;
     },
     emptyCart: () => {
+    const cart = dataModel.getCart();
     cart = [];
+    return cart;
     },
     showToProducts: (product_id) => {
       products.forEach(product => {

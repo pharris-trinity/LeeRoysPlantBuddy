@@ -17,14 +17,13 @@
 			}
         </style>
 		<script>
-            function removeFromCart(item) {
-                console.log(item);
+            function removeFromCart(id, name, price) {
                 fetch('/removeFromCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ item }),
+                    body: JSON.stringify({ id, name, price }),
                 })
                 .then(response => {
                     if(!response.ok) {
@@ -32,23 +31,25 @@
                     }
                 })
             }
-            function addToCart(item) {
-                console.log(item);
-                fetch('/addToCart', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ item }),
-                })
-                .then(response => {
-                    if(!response.ok) {
-                        throw new Error(`HTTP Error! Status: ${response.status}`)
-                    }
-                })
-            }
+            // function addToCart(id, name, price) {
+            //     fetch('/addToCart', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify({ 
+			// 			id, 
+			// 			name, 
+			// 			price 
+			// 		}),
+            //     })
+            //     .then(response => {
+            //         if(!response.ok) {
+            //             throw new Error(`HTTP Error! Status: ${response.status}`)
+            //         }
+            //     })
+            // }
             function emptyCart() {
-                console.log(cart);
                 fetch('/emptyCart', {
                     method: 'POST',
                     headers: {
@@ -63,87 +64,77 @@
                 })
 			}
 
-			function subtotal() {
-				let subprice = 0
-				cart.forEach(item => {
-					item.price += subprice
-				})
-				return subprice
-				}
-			document.getElementById("subtotal").innerHTML = window.subtotal();
+			// function subtotal() {
+			// 	let subprice = 0
+			// 	cart.forEach(product => {
+			// 		product.price += subprice
+			// 	})
+			// 	return subprice
+			// 	}
 
-			function taxCalc(subprice) {
-				return subprice * 0.625
-			}
 
-			const tax = 5.99 * 0.625
-			document.getElementById("salestax").innerHTML = tax
+			// function taxCalc(subprice) {
+			// 	return subprice * 0.625
+			// }
 
-			function totalCalc(subtotal, tax, shipping) {
-				return subtotal + taxCalc(subtotal) + shipping
-			}
+			// const tax = 5.99 * 0.625
+			// document.getElementById("salestax").innerHTML = tax
+
+			// function totalCalc(subtotal, tax, shipping) {
+			// 	return subtotal + taxCalc(subtotal) + shipping
+			// }
 		</script>
     </head>
     <body>
-		<!-- <center><div class="header" align: center></div></center> -->
 		<div class="header">
 		    <button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
 		</div>	
 		<div class="header-text">
 			<h3 style="text-align: center;">San Antonio's best for pets and pet needs!</h3>
 		</div>
-			
-		
-      <div class="navbar">
-        <span><a href="/">Home</a></span>
-        <span><a href="/product">Products</a></span>
-        <span><a href="/checkout">Checkout</a></span>
-		<span><a href="/login">Login</a></span>
-      </div>
-      <div class="row">
+		<div class="navbar">
+			<span><a href="/">Home</a></span>
+			<span><a href="/product">Products</a></span>
+			<span><a href="/checkout">Checkout</a></span>
+			<span><a href="/login">Login</a></span>
+		</div>
+		<div class="row">
 			<div class="column left" style="height: 350px; width: 25%;">
 				<h2>Shopping Cart</h2>
-					<div class="container">
-						<table class="Cart">
-							<% cart.forEach(product => { %>
-							<tr>
-								<td><span><button class="add-quantity" onclick="addToCart('<%=product.description %>')"></button> </span></td>
-								<td><span><%= product.description %></span></td>
-								<td><span>$<%= product.price %></span></td>
-								<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.description %>')"></button></span></td>
-							</tr>
-							<% }); %>
-						</table>
-						
-						<!-- <table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table> -->
-						
-					</div>
+				<div class="container">
+					<table>
+						<% cart.forEach(product => { %>
+						<tr>
+							<td><span><button class="add-quantity"></button> </span></td>
+							<td><span><%= product.name %></span></td>
+							<td><span>$<%= product.price %></span></td>
+							<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.id%>', '<%=product.name%>', '<%=product.price%>')"></button></span></td>
+						</tr>
+						<% }); %>
+					</table>
+				</div>
 			</div>
-				
-     		<div class="column right" style="height: 350px; width: 25%;">
-      		<h2>Order Summary</h2>
+			<div class="column right" style="height: 350px; width: 25%;">
+				<h2>Order Summary</h2>
 					<div class="container">
 						<div class="row">
-							<div class="column left" style="height: 75px; width: 50px; background-color: transparent; margin-top: 0; text-align: left;">
-								<p> Subtotal:</p>
+							<div class="column left" style="height: 75px; width: 50px; margin-top: 0; text-align: left;">
+								Subtotal:
 								<p> Tax:</p>
 								<p> Shipping:</p>
-
 							</div>
-							<div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
-								<p>$<span></span></p>
+							<div class="column right" style="height: 75px; width: 50px; margin-top: 0; text-align: left;">
+								$<span><%  %></span>
 								<p>$<span><%= +(Math.round((5.99 * 0.625) + "e+2") + "e-2")%></span></p>
 								<p>$<span><%= +(Math.round((5.99 * 0.425) + "e+2") + "e-2")%></span></p>
 							</div>
 						</div>
 					</div>
-					<br> <br>
-
+				<br> <br>
 				<h4 > Total:  $13.93</h4> <!-- add altogether-->
 				<br>
 				<button class="button" onclick="cart.emptyCart()" style="display: inline-block;">Buy Now</button>
-     		</div>
-	  </div>
-	
+			</div>
+		</div>
     </body>
 </html>
