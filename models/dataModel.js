@@ -1,3 +1,5 @@
+const pool = require('../db');
+
 let users = [
   {userid: 0, username: 'pharris', password: 'password', account_type: 'registered'},
   {userid: 1, username: 'chouston', password: "drowssap", account_type: 'admin'},
