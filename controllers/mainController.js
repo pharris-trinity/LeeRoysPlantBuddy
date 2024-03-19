@@ -1,6 +1,5 @@
-const {dataModel, Users} = require('../models/dataModel');
-
-const users = new Users();
+const {dataModel} = require('../models/dataModel');
+const userModel = require('../models/dataModel');
 /* const users = []; */
 // const {dataModel} = require('../models/dataModel');
 
@@ -50,10 +49,18 @@ const mainController = {
       console.log('Error: Invalid sign up!');
     }
   },
-  getProduct: (req, res) => {
-    const products = dataModel.getProducts();
-  
-    res.render('product', { products });
+  async getProduct(req, res) {
+    try {
+      const products = await userModel.getProducts();
+      // console.log(products);
+      res.render('product', { products });
+    } catch {
+
+    }
+    // const products = dataModel.getProducts();
+    // console.log(products);
+    // const users = await userModel.getUsers;
+    // res.render('product', { products });
   },
   getProductAdmin: (req, res) => { 
     const products = dataModel.getProducts();

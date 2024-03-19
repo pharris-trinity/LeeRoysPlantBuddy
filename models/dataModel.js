@@ -1,5 +1,30 @@
 const pool = require('../db');
 
+async function getUsers() {
+  const client = await pool.connect();
+  try {
+    const result = await client.query('SELECT * FROM users');
+    console.log(`Here are the users: ${result}`);
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+async function getProducts() {
+  const client = await pool.connect();
+  try {
+    const result = await client.query('SELECT * FROM products');
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+// async function getProducts() {
+//   const client = await client.query('')
+// }
+
 let users = [
   {userid: 0, username: 'pharris', password: 'password', account_type: 'registered'},
   {userid: 1, username: 'chouston', password: "drowssap", account_type: 'admin'},
@@ -108,15 +133,5 @@ const dataModel = {
       return products;
     }
   };
-
-  class Users {
-    constructor() {
-      this.names = [];
-    }
   
-    getUsers() {
-      return users;
-    }
-  }
-  
-module.exports = {dataModel, Users};
+module.exports = {dataModel, getUsers, getProducts};
