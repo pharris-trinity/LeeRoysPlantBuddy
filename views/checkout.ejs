@@ -107,7 +107,7 @@
 						<table class="Cart">
 							<% cart.forEach((id, item) => { %>
 							<tr>
-								<td><span><button class="add-quantity" onclick="addToCart('<%=item.description %>')"></button> </span></td>
+								<td><span><button class="add-quantity" onclick="addToCart('<%=item.description %>')"></button><%=id.quantity%> </span></td>
 								<td><span><%= id.description %></span></td>
 								<td><span>$<%= id.price %></span></td>
 								<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=item.description %>')"></button></span></td>
@@ -132,14 +132,14 @@
 							</div>
 							<div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
 								<p>$<span></span></p>
-								<p>$<span><%= +(Math.round((5.99 * 0.625) + "e+2") + "e-2")%></span></p>
-								<p>$<span><%= +(Math.round((5.99 * 0.425) + "e+2") + "e-2")%></span></p>
+								<p>$<span><%= +(Math.round((5.99 * 0.0625) + "e+2") + "e-2")%></span></p>
+								<p>$<span><%= +(Math.round((5.99 * 0.0425) + "e+2") + "e-2")%></span></p>
 							</div>
 						</div>
 					</div>
 					<br> <br>
 
-				<h4 > Total:  $13.93</h4> <!-- add altogether-->
+				<h4 > Total:  $</h4> <!-- add altogether-->
 				<br>
 				<button class="button" onclick="cart.emptyCart()" style="display: inline-block;">Buy Now</button>
      		</div>
