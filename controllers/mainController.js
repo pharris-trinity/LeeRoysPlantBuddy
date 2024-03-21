@@ -54,8 +54,9 @@ const mainController = {
       const products = await userModel.getProducts();
       // console.log(products);
       res.render('product', { products });
-    } catch {
-
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
     // const products = dataModel.getProducts();
     // console.log(products);
