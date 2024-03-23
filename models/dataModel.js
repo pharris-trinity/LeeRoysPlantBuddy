@@ -21,6 +21,22 @@ async function getProducts() {
   }
 }
 
+async function showProduct(id) {
+  const client = await pool.connect();
+  console.log(id);
+  try {
+    const query = {
+      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
+      values: [true, id],
+    };
+
+    const result = await client.query(query);
+
+  } finally {
+    client.release();
+  }
+}
+
 // async function getProducts() {
 //   const client = await client.query('')
 // }
@@ -134,4 +150,4 @@ const dataModel = {
     }
   };
   
-module.exports = {dataModel, getUsers, getProducts};
+module.exports = {dataModel, getUsers, getProducts, showProduct};

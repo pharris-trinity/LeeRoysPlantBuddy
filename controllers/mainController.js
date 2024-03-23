@@ -52,21 +52,22 @@ const mainController = {
   async getProduct(req, res) {
     try {
       const products = await userModel.getProducts();
-      // console.log(products);
       res.render('product', { products });
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-    // const products = dataModel.getProducts();
-    // console.log(products);
-    // const users = await userModel.getUsers;
-    // res.render('product', { products });
   },
-  getProductAdmin: (req, res) => { 
-    const products = dataModel.getProducts();
-
-    res.render('product-admin', {products});
+  async getProductAdmin(req, res) { 
+    // const products = dataModel.getProducts();
+    try {
+      const products = await userModel.getProducts();
+      res.render('product-admin', {products});
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+    }
+    // res.render('product-admin', {products});
   },
   getLogin: (req, res) => {
   const login = dataModel.getLogin();
@@ -99,8 +100,8 @@ const mainController = {
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;
-
-    dataModel.showToProducts(product_id);
+    userModel.showProduct(product_id);
+    // dataModel.showToProducts(product_id);
   },
   hideFromProducts: (req, res) => {
     const product_id = req.body.product_id;
