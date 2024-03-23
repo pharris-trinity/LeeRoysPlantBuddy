@@ -23,7 +23,6 @@ async function getProducts() {
 
 async function showProduct(id) {
   const client = await pool.connect();
-  console.log(id);
   try {
     const query = {
       text: 'UPDATE products SET display = $1 WHERE product_id = $2',
@@ -31,7 +30,22 @@ async function showProduct(id) {
     };
 
     const result = await client.query(query);
+    return result;
+  } finally {
+    client.release();
+  }
+}
 
+async function hideProduct(id) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
+      values: [false, id],
+    };
+
+    const result = await client.query(query);
+    return result;
   } finally {
     client.release();
   }
@@ -150,4 +164,4 @@ const dataModel = {
     }
   };
   
-module.exports = {dataModel, getUsers, getProducts, showProduct};
+module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct};

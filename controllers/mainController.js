@@ -59,7 +59,6 @@ const mainController = {
     }
   },
   async getProductAdmin(req, res) { 
-    // const products = dataModel.getProducts();
     try {
       const products = await userModel.getProducts();
       res.render('product-admin', {products});
@@ -67,7 +66,6 @@ const mainController = {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error'});
     }
-    // res.render('product-admin', {products});
   },
   getLogin: (req, res) => {
   const login = dataModel.getLogin();
@@ -105,8 +103,8 @@ const mainController = {
   },
   hideFromProducts: (req, res) => {
     const product_id = req.body.product_id;
-
-    dataModel.hideFromProducts(product_id);
+    userModel.hideProduct(product_id);
+    // dataModel.hideFromProducts(product_id);
   },
   addToProducts: (req, res) => {
     const name = req.body.name;
