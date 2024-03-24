@@ -72,11 +72,15 @@ const mainController = {
   res.render('login', { login });
   },
   addToCart: (req, res) => {
-    const id = parseInt(req.body.id);
+    const product_id = parseInt(req.body.id);
     const name = req.body.name;
     const price = parseFloat(req.body.price);
+    const cart_id = 1; // should always be the same as user_id as they have associated cart
+    // console.log(product_id);
+
+    userModel.addToCart(cart_id, product_id);
     
-    const carts = dataModel.addToCart(id, name, price);
+    const carts = dataModel.addToCart(product_id, name, price);
     // console.log(carts);
   },
   removeFromCart: (req, res) => {

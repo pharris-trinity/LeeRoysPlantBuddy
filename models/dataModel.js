@@ -51,6 +51,53 @@ async function hideProduct(id) {
   }
 }
 
+async function addToCart(cart_id, product_id) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: `
+        SELECT ci.cart_id
+        FROM carts c
+        JOIN cartitems ci ON c.cart_id = ci.cart_id
+        WHERE c.cart_id = $1 AND ci.product_id = $2
+      `,
+      values: [cart_id, product_id],
+    };
+
+    const result = await pool.query(query);
+
+    if(result.rowCount == 0) {
+      const query = {
+        text: "INSERT INTO cartitems (cart_id, product_id, quantity) VALUES ($1, $2, $3)",
+        values: [cart_id, product_id, 1],
+      }
+
+      const result = await pool.query(query);
+    } else {
+      const query = {
+        text: "UPDATE cartitems SET quantity = quantity + 1 WHERE cart_id = $1 AND product_id = $2",
+        values: [cart_id, product_id],
+      }
+
+      const result = await pool.query(query);
+    }
+    
+  } finally {
+    client.release();
+  }
+}
+
+// addToCart: (id, description, price) => {
+//   // console.log(product);
+//   if(!(id in cart)) {
+//     cart[id] = {id, description, price, quantity: 1};
+//   } else {
+//     cart[id].quantity+=1;
+//   }
+//   console.log(cart);
+//   return cart;
+// },
+
 // async function getProducts() {
 //   const client = await client.query('')
 // }
@@ -126,7 +173,7 @@ const dataModel = {
       } else {
         cart[id].quantity+=1;
       }
-      console.log(cart);
+      // console.log(cart);
       return cart;
     },
     getCart: () => {
@@ -164,4 +211,4 @@ const dataModel = {
     }
   };
   
-module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct};
+module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart};
