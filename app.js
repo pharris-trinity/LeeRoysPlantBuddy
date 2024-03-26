@@ -31,10 +31,6 @@ app.post('/addToProducts', mainController.addToProducts)
 app.post('/addUser', mainController.addUser);
 app.post('/verifyUser', mainController.verifyUser);
 app.post('/addQuantity', mainController.addQuantity);
-// app.post('/subtotalCalc', mainController.subtotalCalc());
-// app.post('/taxCalc', mainController.taxCalc());
-// app.post('/shippingCalc', mainController.shippingCalc());
-// app.post('/totalCalc', mainController.totalCalc());
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

@@ -92,24 +92,6 @@ const dataModel = {
       return cart;
 
     },    
-    // subtotalCalc: () => {
-    //   let subtotal = 0;
-    //   cart.forEach((id, item) => {
-    //     subtotal += id.price;
-    //   })
-    //   console.log(subtotal);
-    //   return subtotal;
-    // },
-    // taxCalc: (cart) => {
-    //   return +(Math.round((cart.subtotalCalc() * 0.0625) + "e+2") + "e-2");
-      
-    // },
-    // shippingCalc : (cart) => {
-    //   return +(Math.round((cart.subtotalCalc() * 0.0425) + "e+2") + "e-2");
-    // },
-    // totalCalc: (cart) => {
-    // return cart.subtotalCalc() + cart.taxCalc() + cart.shippingCalc();
-    // },
     // emptyCart: () => {
     // cart = [];
     // return cart;

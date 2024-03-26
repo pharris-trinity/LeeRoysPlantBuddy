@@ -94,18 +94,6 @@ const mainController = {
     console.log(product);
     const carts = dataModel.addQuantity(product);
   },
-  // subtotalCalc: (req, res) => {
-  //   const subtotal = dataModel.cart.subtotalCalc();
-  // },
-  // taxCalc: (req, res) => {
-  //   const tax = dataModel.cart.taxCalc();
-  // },
-  // shippingCalc: (req, res) => {
-  //   const shipping = dataModel.cart.shippingCalc();
-  // },
-  // totalCalc: (req, res) => {
-  //   const total = dataModel.cart.totalCalc();
-  // },
   // emptyCart: (req, res) => {
   //   const cart = dataModel.getCart();
   //   cart.emptyCart();
