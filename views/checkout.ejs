@@ -17,13 +17,13 @@
             }
         </style>
         <script>
-            function removeFromCart(id, description, price) {
+            function removeFromCart(id) {
                 fetch('/removeFromCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id, description, price }),
+                    body: JSON.stringify({ id }),
                 })
                 .then(response => {
                     if(!response.ok) {
@@ -31,13 +31,13 @@
                     }
                 })
             }
-            function addQuantity(id, description, price) {
-                fetch('/addToCart', {
+            function addQuantity(id) {
+                fetch('/addtoCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id, description, price }),
+                    body: JSON.stringify({ id }),
                 })
                 .then(response => {
                     if(!response.ok) {
@@ -116,19 +116,19 @@
             //         }
             //     })
             // }        
-            function subtotalCalc() {
-                let subtotal = 0;
-                cart.forEach((id, item) => {
-                    subtotal += id.price;
-                })
-                return subtotal;
-                }
-                let sub = cart.subtotalCalc();
-            document.getElementById("subtotal").innerHTML = sub;
-
-            function taxCalc(subtotal) {
-                return subtotal * 0.625
-            }
+            // function subtotalCalc() {
+            //     let subtotal = 0;
+            //     console.log(cart);
+            //     cart.forEach((id) => {
+            //         subtotal += id.price;
+            //     })
+            //     document.getElementById("subtotal").textContent = subtotal;
+            //     return subtotal;
+            //     }        
+                // let sub = cart.subtotalCalc();
+            // function taxCalc(subtotal) {
+            //     return subtotal * 0.625
+            // }
 
             // const tax = 5.99 * 0.625
             // document.getElementById("salestax").innerHTML = tax
@@ -139,7 +139,6 @@
         </script>
     </head>
     <body>
-        <!-- <center><div class="header" align: center></div></center> -->
         <div class="header">
             <button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
         </div>  
@@ -159,18 +158,15 @@
                 <h2>Shopping Cart</h2>
                     <div class="container">
                         <table class="Cart">
-                            <% cart.forEach((id, item) => { %>
+                            <% cart.forEach((product) => { %>
                             <tr>
-                                <td><span><button class="add-quantity" onclick="addQuantity('<%=item.id%>', '<%=item.description%>', '<%=item.price%>')"></button> <%= id.quantity %></span></td>
-                                <td><span><%= id.description %></span></td>
-                                <td><span>$<%= id.price * id.quantity %></span></td>
-                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=item.id%>', '<%=item.description%>', '<%=item.price%>')"></button></span></td>
+                                <td><span><button class="add-quantity" onclick="addQuantity('<%=product.id-1%>')"></button> <%=product.quantity%></span></td>                                
+                                <td><span><%=product.description%></span></td>
+                                <td><span>$ <%=product.price * product.quantity%></span></td>
+                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.id%>')"></button></span></td>
                             </tr>
                             <% }); %>
-                        </table>
-                        
-                        <!-- <table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table> -->
-                        
+                        </table>                        
                     </div>
             </div>
                 
@@ -185,15 +181,20 @@
 
                             </div>
                             <div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
-                                <p>$<span id="subtotal"></span></p>
-                                <p>$<span><%= %></span></p>
-                                <p>$<span><%= +(Math.round((5.99 * 0.0425) + "e+2") + "e-2")%></span></p>
+                                <%let subtotal = 0%>
+                                <%console.log(cart)%>
+                                <%cart.forEach((id) => {subtotal += (id.price * id.quantity); });%>
+                                    <p><span> $<%=subtotal%> </span></p>
+                                <%let tax = +(Math.round((subtotal * 0.0625) + "e+2") + "e-2")%>
+                                    <p><span>$<%=tax%></span></p>
+                                <%let shipping = 4.99%>
+                                <p><span>$<%=shipping%></span></p>
                             </div>
                         </div>
                     </div>
                     <br> <br>
-
-                <h4 > Total: $<span><%=  %></span></h4> <!-- add altogether-->
+                    <%let total = subtotal + tax + shipping%>
+                <h4 > Total: <span>$<%=+(Math.round((total) + "e+2") + "e-2")%></span></h4> <!-- add altogether-->
                 <br>
                 <button class="button" style="display: inline-block;">Buy Now</button>
             </div>

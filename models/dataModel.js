@@ -11,9 +11,9 @@ let products = [
 ]
 
 let cart = [
-  // {id: 1, description: 'Cat Food', price: 5.99},
-  // {id: 2, description: 'Pet Stuff', price: 5.99},
-  // {id: 3, description: 'Dog Food', price: 5.99},
+  {quantity: 1, id: 1, description: 'Cat Food', price: 5.99},
+  {quantity: 1, id: 2, description: 'Pet Stuff', price: 5.99},
+  {quantity: 2, id: 3, description: 'Dog Food', price: 5.99},
 ]
 
 const dataModel = {
@@ -76,14 +76,21 @@ const dataModel = {
       return cart;
     },
     addQuantity: (id, description, price) => {
-      cart[id].quantity+=1;
+      cart.splice(cart.indexOf(id), 1, cart[id]);
       console.log(cart);
       return cart;
+    
     },
-    removeFromCart: (item) => {
-      cart.splice(cart.indexOf(item), item);
-      console.log(cart);
+    removeFromCart: (id) => {
+      // if(cart[id-1].quantity > 1) {
+      //     cart[id-1].quantity-=1;
+      // } else {
+      //     cart.splice(cart.indexOf(id-1), 1);
+      // }
+      // console.log(cart);
+      cart.splice(cart.indexOf(id-1), 1);
       return cart;
+
     },    
     // subtotalCalc: () => {
     //   let subtotal = 0;

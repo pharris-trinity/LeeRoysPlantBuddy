@@ -74,8 +74,9 @@ const mainController = {
   },
   removeFromCart: (req, res) => {
     // const cart = dataModel.getCart();
-    const item = req.body.item;
-    const carts = dataModel.removeFromCart(item);
+    const product = req.body.id;
+    console.log(product);
+    const carts = dataModel.removeFromCart(product);
   },
   getCheckout: (req, res) => {
     const cart_object = dataModel.getCart();
@@ -88,9 +89,10 @@ const mainController = {
     res.render('checkout', { cart });
   },
   addQuantity: (req, res) => {
-    const cart = dataModel.getCart();
-    const id = parseInt(req.body.id);
-    const carts = dataModel.addQuantity(item)
+    const product = req.body.id;
+    // const product = parseInt(req.body.id);
+    console.log(product);
+    const carts = dataModel.addQuantity(product);
   },
   // subtotalCalc: (req, res) => {
   //   const subtotal = dataModel.cart.subtotalCalc();
