@@ -94,10 +94,10 @@ const mainController = {
     console.log(product);
     const carts = dataModel.addQuantity(product);
   },
-  // emptyCart: (req, res) => {
-  //   const cart = dataModel.getCart();
-  //   cart.emptyCart();
-  // },
+  emptyCart: (req, res) => {
+    const cart = dataModel.getCart();
+    dataModel.emptyCart(cart);
+  },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;
 

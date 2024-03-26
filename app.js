@@ -24,7 +24,7 @@ app.get('/product-admin', mainController.getProductAdmin);
 
 app.post('/addToCart', mainController.addToCart);
 app.post('/removeFromCart', mainController.removeFromCart);
-// app.post('/emptyCart', mainController.emptyCart());
+app.post('/emptyCart', mainController.emptyCart);
 app.post('/showToProducts', mainController.showToProducts)
 app.post('/hideFromProducts', mainController.hideFromProducts)
 app.post('/addToProducts', mainController.addToProducts)

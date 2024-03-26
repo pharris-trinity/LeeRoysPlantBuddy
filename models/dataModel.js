@@ -79,7 +79,6 @@ const dataModel = {
       cart.splice(cart.indexOf(id), 1, cart[id]);
       console.log(cart);
       return cart;
-    
     },
     removeFromCart: (id) => {
       // if(cart[id-1].quantity > 1) {
@@ -90,12 +89,11 @@ const dataModel = {
       // console.log(cart);
       cart.splice(cart.indexOf(id-1), 1);
       return cart;
-
     },    
-    // emptyCart: () => {
-    // cart = [];
-    // return cart;
-    // },
+    emptyCart: (cart) => {
+    cart.splice(0, cart.length);
+    return cart;
+    },
     showToProducts: (product_id) => {
       products.forEach(product => {
         if(product.id == product_id) {

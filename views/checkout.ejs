@@ -45,21 +45,21 @@
                     }
                 })
             }
-            // function emptyCart() {
-            //     console.log(cart);
-            //     fetch('/emptyCart', {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify({ cart }),
-            //     })
-            //     .then(response => {
-            //         if(!response.ok) {
-            //             throw new Error(`HTTP Error! Status: ${response.status}`)
-            //         }
-            //     })
-            // }
+            function emptyCart(cart) {
+                console.log(cart);
+                fetch('/emptyCart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ cart }),
+                })
+                .then(response => {
+                    if(!response.ok) {
+                        throw new Error(`HTTP Error! Status: ${response.status}`)
+                    }
+                })
+            }
         </script>
     </head>
     <body>
@@ -108,19 +108,19 @@
                                 <%let subtotal = 0%>
                                 <%console.log(cart)%>
                                 <%cart.forEach((id) => {subtotal += (id.price * id.quantity); });%>
-                                    <p><span> $<%=subtotal%> </span></p>
+                                <p><span> $<%=subtotal%> </span></p>
                                 <%let tax = +(Math.round((subtotal * 0.0625) + "e+2") + "e-2")%>
-                                    <p><span>$<%=tax%></span></p>
-                                <%let shipping = 4.99%>
+                                <p><span>$<%=tax%></span></p>
+                                <%let shipping = +(Math.round((subtotal * 0.15) + "e+2") + "e-2")%>
                                 <p><span>$<%=shipping%></span></p>
                             </div>
                         </div>
                     </div>
                     <br> <br>
                     <%let total = subtotal + tax + shipping%>
-                <h4 > Total: <span>$<%=+(Math.round((total) + "e+2") + "e-2")%></span></h4> <!-- add altogether-->
+                <h4 > Total: <span>$<%=+(Math.round((total) + "e+2") + "e-2")%></span></h4> 
                 <br>
-                <button class="button" style="display: inline-block;">Buy Now</button>
+                <button class="button" style="display: inline-block;" onclick="emptyCart('<%=cart%>')">Buy Now</button>
             </div>
       </div>
     
