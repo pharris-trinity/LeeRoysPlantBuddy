@@ -87,21 +87,6 @@ async function addToCart(cart_id, product_id) {
   }
 }
 
-// addToCart: (id, description, price) => {
-//   // console.log(product);
-//   if(!(id in cart)) {
-//     cart[id] = {id, description, price, quantity: 1};
-//   } else {
-//     cart[id].quantity+=1;
-//   }
-//   console.log(cart);
-//   return cart;
-// },
-
-// async function getProducts() {
-//   const client = await client.query('')
-// }
-
 let users = [
   {userid: 0, username: 'pharris', password: 'password', account_type: 'registered'},
   {userid: 1, username: 'chouston', password: "drowssap", account_type: 'admin'},
@@ -163,6 +148,8 @@ const dataModel = {
           }
         }
       })
+
+      // console.log(verified)
 
       return verified;
     },
