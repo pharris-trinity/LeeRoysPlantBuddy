@@ -21,6 +21,16 @@ async function getProducts() {
   }
 }
 
+async function getCart(id) {
+  const client = await pool.connect();
+  try {
+    const result = client.query('SELECT * FROM cartitems WHERE cart_id = id');
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
 async function showProduct(id) {
   const client = await pool.connect();
   try {
@@ -88,8 +98,8 @@ async function addToCart(cart_id, product_id) {
 }
 
 let users = [
-  {userid: 0, username: 'pharris', password: 'password', account_type: 'registered'},
-  {userid: 1, username: 'chouston', password: "drowssap", account_type: 'admin'},
+  {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
+  {userid: 2, username: 'chouston', password: "drowssap", account_type: 'admin'},
 ];
 
 let products = [
@@ -136,12 +146,14 @@ const dataModel = {
     },
     verifyUser: (username, password) => {
       var verified = 'failed';
+      var id = -1;
       users.forEach(user => {
         if(username==user.username&&password==user.password) {
           if(user.account_type=='admin') {
             verified = 'admin';
           } else if(user.account_type=='registered') {
             verified = 'registered';
+            id = user.userid;
           } else {
             user.account_type = 'registered';
             verified = 'registered';
@@ -150,8 +162,9 @@ const dataModel = {
       })
 
       // console.log(verified)
-
-      return verified;
+      console.log(verified);
+      console.log(id);
+      return {verified, id};
     },
     addToCart: (id, description, price) => {
       // console.log(product);
@@ -198,4 +211,4 @@ const dataModel = {
     }
   };
   
-module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart};
+module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart};

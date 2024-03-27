@@ -24,21 +24,13 @@ const mainController = {
   verifyUser: (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    // console.log(`username: ${username} password: ${password}`);
-    const loggedIn = dataModel.verifyUser(username, password);
-    console.log(loggedIn);
-    res.json(loggedIn);
-    // if(loggedIn==='admin') {
-    //   console.log("admin login")
-    //   res.redirect('home-admin');
-    // } else if(loggedIn==='registered') {
-    //   console.log('registered login');
-    //   // figure out how to load a page from the controller, maybe response based?
-    //   // res.render('index');
-    //   res.redirect('/product');
-    // } else {
-    //   console.log('You trying to break in???');
-    // }
+    const {verified, id} = dataModel.verifyUser(username, password);
+    console.log(verified);
+    console.log(id);
+    // res.cookie('userId', userId, {
+
+    // })
+    res.json(verified);
   },
   addUser: (req, res) => {
     const username = req.body.username;

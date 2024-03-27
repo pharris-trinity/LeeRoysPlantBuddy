@@ -36,6 +36,7 @@
 			const hostname = window.location.href;
 			const username = document.getElementById('uname').value;
 			const password = document.getElementById('passw').value;
+			// need to also grab the id somehow either by looking up or otherwise
 			console.log(`username: ${username} password: ${password}`);
 			console.log(hostname);
 
@@ -52,7 +53,7 @@
 					console.log(hostname);
 					window.location.href = `http://localhost:3000/product`;
 				} else if(data === 'admin') {
-					window.location.href = `${hostname}/product-admin`;
+					window.location.href = `http://localhost:3000/product-admin`;
 				} else {
 					console.log('not valid');
 				}
