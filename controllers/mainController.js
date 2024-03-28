@@ -24,13 +24,20 @@ const mainController = {
   verifyUser: (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    const {verified, id} = dataModel.verifyUser(username, password);
+    const data = dataModel.verifyUser(username, password);
+    const user_id = data.id;
+    const verified = data.verified;
+    console.log(user_id);
     console.log(verified);
-    console.log(id);
-    // res.cookie('userId', userId, {
 
-    // })
-    res.json(verified);
+    if(user_id !== -1) {
+      res.cookie('user_id', user_id, {
+        maxAge: 900000, httpOnly: false, SameSite: 'None',
+      })
+    }
+    
+    // // res.json(verified, user_id);
+    res.status(200).json(verified);
   },
   addUser: (req, res) => {
     const username = req.body.username;

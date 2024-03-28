@@ -63,24 +63,18 @@
                 })
 			}
 
-			function subtotal() {
-				let subprice = 0
-				cart.forEach((id, item) => {
-					id.price += subprice
-				})
-				return subprice
-				}
-			document.getElementById("subtotal").innerHTML = window.subtotal();
-
 			function taxCalc(subprice) {
 				return subprice * 0.625
 			}
 
-			const tax = 5.99 * 0.625
-			document.getElementById("salestax").innerHTML = tax
-
 			function totalCalc(subtotal, tax, shipping) {
 				return subtotal + taxCalc(subtotal) + shipping
+			}
+
+			window.onload = function() {
+				var cookieValue = document.cookie;
+
+				console.log(cookieValue);
 			}
 		</script>
     </head>

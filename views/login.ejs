@@ -12,11 +12,8 @@
 	<!-- JAVASCRIPT -->
     <script>
 		function addUser() {
-			console.log('triggered addUser funcction in login.ejs');
 			const new_username = document.getElementById('new_uname').value;
 			const new_password = document.getElementById('new_passw').value;
-			console.log(`new username: ${new_username} new password: ${new_password}`);
-
 			fetch('/addUser', {
 				method: 'POST',
 				headers: {
@@ -25,7 +22,6 @@
 				body: JSON.stringify({ username: new_username, password: new_password}),
 			})
 			.then(response => {
-				console.log(response);
 				if(!response.ok) {
 					throw new Error(`HTTP Error! Status: ${response.status}`)
 				}
@@ -33,13 +29,10 @@
 		}
 
 		function verifyUser() {
-			const hostname = window.location.href;
 			const username = document.getElementById('uname').value;
 			const password = document.getElementById('passw').value;
 			// need to also grab the id somehow either by looking up or otherwise
-			console.log(`username: ${username} password: ${password}`);
-			console.log(hostname);
-
+			
 			fetch('verifyUser', {
 				method: 'POST',
 				headers: {
@@ -50,7 +43,6 @@
 			.then(response => response.json())
 			.then(data => {
 				if(data === 'registered') {
-					console.log(hostname);
 					window.location.href = `http://localhost:3000/product`;
 				} else if(data === 'admin') {
 					window.location.href = `http://localhost:3000/product-admin`;

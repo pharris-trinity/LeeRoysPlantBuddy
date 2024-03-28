@@ -163,9 +163,9 @@ const dataModel = {
       })
 
       // console.log(verified)
-      console.log(verified);
-      console.log(id);
-      return {verified, id};
+      // console.log(verified);
+      // console.log(id);
+      return {verified: verified, id: id};
     },
     addToCart: (id, description, price) => {
       // console.log(product);
