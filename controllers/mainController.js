@@ -45,6 +45,9 @@ const mainController = {
       res.render('products-admin');
     } else if (newSignUp.account_type === 'registered') {
       res.render('index');
+      // res.location.href = "localhost:3000";
+      // $(location).prop('href', 'localhost:3000')
+      //window.location.replace("localhost:3000");
     } else {
       console.log('Error: Invalid sign up!');
     }

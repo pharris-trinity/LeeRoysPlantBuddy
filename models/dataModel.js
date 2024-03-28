@@ -64,11 +64,21 @@ const dataModel = {
       var newid = lastUser.userid + 1;
       console.log(newid);
       var newUser = {userid: newid, username: username, password: password, account_type: 'registered'};
-      console.log(newUser);
-      console.log(users.length);
-      users.push(newUser);
-      console.log(users.length);
-      console.log(users[users.length - 1]);
+      //console.log(newUser);
+      //console.log(users.length);
+      var temp = 0;
+      users.forEach((user) => {
+        if (user.username == newUser.username) {
+            temp++;
+        }
+      });
+      if (temp == 0) {
+        users.push(newUser);
+        console.log("Successfully signed up user.")
+      }
+      else {throw console.error("User already exists!")};
+      //console.log(users.length);
+      //console.log(users[users.length - 1]);
       
       return newUser;
     },

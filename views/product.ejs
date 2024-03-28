@@ -51,6 +51,7 @@
                             <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.product_name%> Image"></span>
                             <span class="product-text"><%= product.product_name %></span>
                             <span class="price-text">$<%= product.product_price %></span>
+                            <!-- super important line!!!!!!!!! -->
                             <span><button class="add-to-cart" onclick="addToCart('<%=product.product_id%>', '<%=product.product_name%>', '<%=product.product_price%>')"></button></span>
                         </li>
                     <% } %>
