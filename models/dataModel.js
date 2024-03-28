@@ -151,6 +151,7 @@ const dataModel = {
         if(username==user.username&&password==user.password) {
           if(user.account_type=='admin') {
             verified = 'admin';
+            id = user.userid;
           } else if(user.account_type=='registered') {
             verified = 'registered';
             id = user.userid;
