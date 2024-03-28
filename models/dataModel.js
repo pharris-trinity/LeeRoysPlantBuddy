@@ -76,18 +76,21 @@ const dataModel = {
       return cart;
     },
     addQuantity: (id, description, price) => {
-      cart.splice(cart.indexOf(id), 1, cart[id]);
-      console.log(cart);
+      // cart.splice(cart.indexOf(id), 1, cart[id]);
+      // cart[id-1].quantity++;
+      // cart[id].quantity++;
+      // cart[cart.indexOf(id)].quantity++;
+      // cart[cart.indexOf(id-1)].quantity++;
+      // cart[cart.indexOf(id)].quantity++;
+      cart[id].quantity+=1;
       return cart;
     },
     removeFromCart: (id) => {
-      // if(cart[id-1].quantity > 1) {
-      //     cart[id-1].quantity-=1;
-      // } else {
-      //     cart.splice(cart.indexOf(id-1), 1);
-      // }
-      // console.log(cart);
-      cart.splice(cart.indexOf(id-1), 1);
+      if(cart[id-1].quantity > 1) {
+          cart[id-1].quantity--;
+      } else {
+          cart.splice(cart.indexOf(id)-1, 1);
+      }
       return cart;
     },    
     emptyCart: (cart) => {

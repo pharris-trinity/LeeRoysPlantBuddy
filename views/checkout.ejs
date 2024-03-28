@@ -84,7 +84,7 @@
                         <table class="Cart">
                             <% cart.forEach((product) => { %>
                             <tr>
-                                <td><span><button class="add-quantity" onclick="addQuantity('<%=product.id-1%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
+                                <td><span><button class="add-quantity" onclick="addQuantity('<%=product.id%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
                                 <td><span><%=product.description%></span></td>
                                 <td><span>$ <%=+(Math.round((product.price * product.quantity) + "e+2") + "e-2")%></span></td>
                                 <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.id%>');window.location.reload();"></button></span></td>
