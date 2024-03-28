@@ -76,14 +76,7 @@ const dataModel = {
       return cart;
     },
     addQuantity: (productindex) => {
-      // cart.splice(cart.indexOf(id), 1, cart[id]);
-      // cart[id-1].quantity++;
-      // cart[id].quantity++;
-      // cart[cart.indexOf(id)].quantity++;
-      // cart[cart.indexOf(id-1)].quantity++;
-      // cart[cart.indexOf(id)].quantity++;
       cart[productindex].quantity++;
-      // cart.splice(cart.indexOf(id), 1, cart[cart.indexOf(id)]);
       return cart;
     },
     removeFromCart: (productindex) => {
