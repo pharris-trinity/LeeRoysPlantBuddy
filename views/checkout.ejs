@@ -82,12 +82,12 @@
                 <h2>Shopping Cart</h2>
                     <div class="container">
                         <table class="Cart">
-                            <% cart.forEach((product) => { %>
+                            <% cart.forEach((product, productindx) => { %>
                             <tr>
-                                <td><span><button class="add-quantity" onclick="addQuantity('<%=product.id%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
+                                <td><span><button class="add-quantity" onclick="addQuantity('<%=productindx%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
                                 <td><span><%=product.description%></span></td>
                                 <td><span>$ <%=+(Math.round((product.price * product.quantity) + "e+2") + "e-2")%></span></td>
-                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.id%>');window.location.reload();"></button></span></td>
+                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=productindx%>');window.location.reload();"></button></span></td>
                             </tr>
                             <% }); %>
                         </table>                        

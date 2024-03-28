@@ -75,21 +75,22 @@ const dataModel = {
     getCart: () => {
       return cart;
     },
-    addQuantity: (id, description, price) => {
+    addQuantity: (productindex) => {
       // cart.splice(cart.indexOf(id), 1, cart[id]);
       // cart[id-1].quantity++;
       // cart[id].quantity++;
       // cart[cart.indexOf(id)].quantity++;
       // cart[cart.indexOf(id-1)].quantity++;
       // cart[cart.indexOf(id)].quantity++;
-      cart[id].quantity+=1;
+      cart[productindex].quantity++;
+      // cart.splice(cart.indexOf(id), 1, cart[cart.indexOf(id)]);
       return cart;
     },
-    removeFromCart: (id) => {
-      if(cart[id-1].quantity > 1) {
-          cart[id-1].quantity--;
+    removeFromCart: (productindex) => {
+      if(cart[productindex].quantity > 1) {
+          cart[productindex].quantity--;
       } else {
-          cart.splice(cart.indexOf(id)-1, 1);
+          cart.splice(productindex, 1);
       }
       return cart;
     },    
