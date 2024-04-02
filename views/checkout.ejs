@@ -17,16 +17,13 @@
 			}
         </style>
 		<script>
-			var id = -1;
-
-            function removeFromCart(item) {
-                console.log(item);
+			function removeFromCart(id) {
                 fetch('/removeFromCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ item }),
+                    body: JSON.stringify({ id }),
                 })
                 .then(response => {
                     if(!response.ok) {
@@ -34,14 +31,13 @@
                     }
                 })
             }
-            function addToCart(item) {
-                console.log(item);
-                fetch('/addToCart', {
+            function addQuantity(id) {
+                fetch('/addtoCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ item }),
+                    body: JSON.stringify({ id }),
                 })
                 .then(response => {
                     if(!response.ok) {
@@ -49,7 +45,7 @@
                     }
                 })
             }
-            function emptyCart() {
+            function emptyCart(cart) {
                 console.log(cart);
                 fetch('/emptyCart', {
                     method: 'POST',
@@ -63,7 +59,7 @@
                         throw new Error(`HTTP Error! Status: ${response.status}`)
                     }
                 })
-			}
+            }
 
 			window.onload = function() {
 				var cookieValue = document.cookie;
