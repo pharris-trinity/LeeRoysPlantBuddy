@@ -26,7 +26,8 @@ const mainController = {
     //   return res.status(500).json({ error: 'Internal Server Error' });
     // }
     const cart = dataModel.getCheckout();
-    res.render('checkout', { cart });
+    const user_id = req.cookies.user_id;
+    res.render('checkout', { cart, user_id });
   },
   getLogin: (req, res) => {
     console.log("get login");
