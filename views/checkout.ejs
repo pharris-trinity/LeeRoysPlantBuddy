@@ -17,6 +17,8 @@
 			}
         </style>
 		<script>
+			var id = -1;
+
             function removeFromCart(item) {
                 console.log(item);
                 fetch('/removeFromCart', {
@@ -70,12 +72,6 @@
 			function totalCalc(subtotal, tax, shipping) {
 				return subtotal + taxCalc(subtotal) + shipping
 			}
-
-			window.onload = function() {
-				var cookieValue = document.cookie;
-
-				console.log(cookieValue);
-			}
 		</script>
     </head>
     <body>
@@ -115,6 +111,7 @@
 			</div>
 				
      		<div class="column right" style="height: 350px; width: 25%;">
+			
       		<h2>Order Summary</h2>
 					<div class="container">
 						<div class="row">

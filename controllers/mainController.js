@@ -7,37 +7,51 @@ const userModel = require('../models/dataModel');
 
 const mainController = {
   getIndex: (req, res) => {
+    console.log("got home");
     const data = dataModel.getData();
     res.render('index', { data });
   },
   getHome: (req, res) => {
+    console.log("got home");
     res.render('home');
   },
-  getCheckout: (req, res) => {
-    const checkout = dataModel.getCheckout();
-    res.render('checkout', { checkout });
+  async getCheckout(req, res) {
+    // try {
+    //   console.log("checkout");
+    //   const cart = dataModel.getCheckout();
+    //   const user_id = req.cookies.user_id;
+    //   // res.redirect(200, '/checkout');
+    //   return res.status(200);
+    // } catch {
+    //   return res.status(500).json({ error: 'Internal Server Error' });
+    // }
+    const cart = dataModel.getCheckout();
+    res.render('checkout', { cart });
   },
   getLogin: (req, res) => {
+    console.log("get login");
     const login = dataModel.getLogin();
     res.render('login', { login });
   },
-  verifyUser: (req, res) => {
+  async verifyUser(req, res) {
     const username = req.body.username;
     const password = req.body.password;
     const data = dataModel.verifyUser(username, password);
     const user_id = data.id;
     const verified = data.verified;
-    console.log(user_id);
-    console.log(verified);
-
+    // console.log(user_id);
+    // console.log(verified);
+    
     if(user_id !== -1) {
       res.cookie('user_id', user_id, {
         maxAge: 900000, httpOnly: false, SameSite: 'None',
       })
+
+      return res.status(200).json({ verified });
     }
     
-    // // res.json(verified, user_id);
-    res.status(200).json(verified);
+    // res.json(verified, user_id);
+    return res.status(401).json({error: 'Unauthorized'});
   },
   addUser: (req, res) => {
     const username = req.body.username;
@@ -54,7 +68,9 @@ const mainController = {
   async getProduct(req, res) {
     try {
       const products = await userModel.getProducts();
-      res.render('product', { products });
+      const user_id = req.cookies.user_id;
+      // console.log(user_id);
+      res.render('product', { products, user_id });
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -63,6 +79,8 @@ const mainController = {
   async getProductAdmin(req, res) { 
     try {
       const products = await userModel.getProducts();
+      const user_id = req.cookies.user_id;
+      console.log(user_id);
       res.render('product-admin', {products});
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -88,16 +106,6 @@ const mainController = {
   removeFromCart: (req, res) => {
     const item = req.body.item;
     cart.removeFromCart(item);
-  },
-  getCheckout: (req, res) => {
-    const cart_object = dataModel.getCart();
-    // console.log(cart);
-    const cart = Object.values(cart_object);
-    // cart_array.forEach((id, item) => {
-    //   console.log(id);
-    // })
-    
-    res.render('checkout', { cart });
   },
   emptyCart: (req, res) => {
     cart.emptyCart();

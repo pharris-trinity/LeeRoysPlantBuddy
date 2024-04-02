@@ -26,6 +26,20 @@
                     }
                 })
             }
+
+            function handleCheckout() {
+                console.log("handle checkout")
+                fetch('/checkout')
+                .then(response => {
+                    if(!response.ok) {
+                        console.error("oh no");
+                    } else {
+                        console.log('rerouting');
+                        window.location.href = `http://localhost:3000/checkout`;
+                    }
+                    console.log(response.text());
+                })
+            }
         </script>
     </head>
     <body>
