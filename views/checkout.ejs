@@ -17,6 +17,8 @@
 			}
         </style>
 		<script>
+			var id = -1;
+
             function removeFromCart(item) {
                 console.log(item);
                 fetch('/removeFromCart', {
@@ -104,6 +106,7 @@
 			</div>
 				
      		<div class="column right" style="height: 350px; width: 25%;">
+			
       		<h2>Order Summary</h2>
 					<div class="container">
 						<div class="row">

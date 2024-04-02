@@ -33,6 +33,9 @@ app.post('/addToProducts', mainController.addToProducts)
 app.post('/addUser', mainController.addUser);
 app.post('/verifyUser', mainController.verifyUser);
 app.post('/addQuantity', mainController.addQuantity);
+app.post('/productRedirect', function (req, res) {
+    res.redirect(303, '/product');
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

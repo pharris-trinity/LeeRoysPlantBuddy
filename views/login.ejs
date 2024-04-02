@@ -42,9 +42,10 @@
 			})
 			.then(response => response.json())
 			.then(data => {
-				if(data === 'registered') {
+				const verified = data.verified;
+				if(verified === 'registered') {
 					window.location.href = `http://localhost:3000/product`;
-				} else if(data === 'admin') {
+				} else if(verified === 'admin') {
 					window.location.href = `http://localhost:3000/product-admin`;
 				} else {
 					console.log('not valid');
