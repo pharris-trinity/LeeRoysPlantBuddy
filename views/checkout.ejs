@@ -63,14 +63,6 @@
                 })
 			}
 
-			function taxCalc(subprice) {
-				return subprice * 0.625
-			}
-
-			function totalCalc(subtotal, tax, shipping) {
-				return subtotal + taxCalc(subtotal) + shipping
-			}
-
 			window.onload = function() {
 				var cookieValue = document.cookie;
 
@@ -99,18 +91,15 @@
 				<h2>Shopping Cart</h2>
 					<div class="container">
 						<table class="Cart">
-							<% cart.forEach((id, item) => { %>
-							<tr>
-								<td><span><button class="add-quantity" onclick="addToCart('<%=item.description %>')"></button><%=id.quantity%> </span></td>
-								<td><span><%= id.description %></span></td>
-								<td><span>$<%= id.price %></span></td>
-								<td><span><button class="remove-from-cart" onclick="removeFromCart('<%=item.description %>')"></button></span></td>
-							</tr>
-							<% }); %>
+							<% cart.forEach((product, productindx) => { %>
+                            <tr>
+                                <td><span><button class="add-quantity" onclick="addQuantity('<%=productindx%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
+                                <td><span><%=product.description%></span></td>
+                                <td><span>$ <%=+(Math.round((product.price * product.quantity) + "e+2") + "e-2")%></span></td>
+                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=productindx%>');window.location.reload();"></button></span></td>
+                            </tr>
+                            <% }); %>
 						</table>
-						
-						<!-- <table class="Cart">  <tr> <td>Pet Stuff</td> <td>$5.99</td><td>1<button class="add-quantity"></button> </td>    <td> <button class="remove-from-cart"></button></td></tr> </table> -->
-						
 					</div>
 			</div>
 				
@@ -125,17 +114,23 @@
 
 							</div>
 							<div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
-								<p>$<span></span></p>
-								<p>$<span><%= +(Math.round((5.99 * 0.0625) + "e+2") + "e-2")%></span></p>
-								<p>$<span><%= +(Math.round((5.99 * 0.0425) + "e+2") + "e-2")%></span></p>
+								<%let subtotal = 0%>
+                                <%console.log(cart)%>
+                                <%cart.forEach((id) => {subtotal += (id.price * id.quantity); });%>
+                                <p><span> $<%=+(Math.round(subtotal + "e+2") + "e-2")%> </span></p>
+                                <%let tax = +(Math.round((subtotal * 0.0625) + "e+2") + "e-2")%>
+                                <p><span>$<%=tax%></span></p>
+                                <%let shipping = +(Math.round((subtotal * 0.15) + "e+2") + "e-2")%>
+                                <p><span>$<%=shipping%></span></p>
+
 							</div>
 						</div>
 					</div>
 					<br> <br>
-
-				<h4 > Total:  $</h4> <!-- add altogether-->
-				<br>
-				<button class="button" onclick="cart.emptyCart()" style="display: inline-block;">Buy Now</button>
+                    <%let total = subtotal + tax + shipping%>
+                <h4 > Total: <span>$<%=+(Math.round((total) + "e+2") + "e-2")%></span></h4> 
+                <br>
+                <button class="button" style="display: inline-block" onclick="emptyCart('<%=cart%>'); window.location.reload();" >Buy Now</button>
      		</div>
 	  </div>
 	

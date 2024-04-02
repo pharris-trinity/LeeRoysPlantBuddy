@@ -32,6 +32,7 @@ app.post('/hideFromProducts', mainController.hideFromProducts)
 app.post('/addToProducts', mainController.addToProducts)
 app.post('/addUser', mainController.addUser);
 app.post('/verifyUser', mainController.verifyUser);
+app.post('/addQuantity', mainController.addQuantity);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

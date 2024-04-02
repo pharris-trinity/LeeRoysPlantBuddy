@@ -86,8 +86,10 @@ const mainController = {
     // console.log(carts);
   },
   removeFromCart: (req, res) => {
-    const item = req.body.item;
-    cart.removeFromCart(item);
+    // const cart = dataModel.getCart();
+    const product = req.body.id;
+    console.log(product);
+    const carts = dataModel.removeFromCart(product);
   },
   getCheckout: (req, res) => {
     const cart_object = dataModel.getCart();
@@ -99,8 +101,15 @@ const mainController = {
     
     res.render('checkout', { cart });
   },
+  addQuantity: (req, res) => {
+    const product = req.body.id;
+    // const product = parseInt(req.body.id);
+    console.log(product);
+    const carts = dataModel.addQuantity(product);
+  },
   emptyCart: (req, res) => {
-    cart.emptyCart();
+    const cart = dataModel.getCart();
+    dataModel.emptyCart(cart);
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;

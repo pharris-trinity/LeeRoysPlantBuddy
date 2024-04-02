@@ -180,16 +180,20 @@ const dataModel = {
     getCart: () => {
       return cart;
     },
-    removeFromCart: (item) => {
-      cart.splice(cart.indexOf(item), item);
-      console.log(cart);
+    removeFromCart: (productindex) => {
+      if(cart[productindex].quantity > 1) {
+          cart[productindex].quantity--;
+      } else {
+          cart.splice(productindex, 1);
+      }
+      return cart;    },
+    addQuantity: (productindex) => {
+      cart[productindex].quantity++;
       return cart;
     },    
-    subtotal: () => {
-
-    },
-    emptyCart: () => {
-    cart = [];
+    emptyCart: (cart) => {
+      cart.splice(0, cart.length);
+      return cart;
     },
     showToProducts: (product_id) => {
       products.forEach(product => {
