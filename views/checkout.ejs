@@ -106,7 +106,6 @@
                             </div>
                             <div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
                                 <%let subtotal = 0%>
-                                <%console.log(cart)%>
                                 <%cart.forEach((id) => {subtotal += (id.price * id.quantity); });%>
                                 <p><span> $<%=+(Math.round(subtotal + "e+2") + "e-2")%> </span></p>
                                 <%let tax = +(Math.round((subtotal * 0.0625) + "e+2") + "e-2")%>
