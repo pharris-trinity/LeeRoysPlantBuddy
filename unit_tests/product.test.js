@@ -41,3 +41,15 @@ test('Testing verifyUser for a registered user', () => {
 test('Testing verifyUser for an admin user', () => {
     expect(dataModel.verifyUser('chouston', 'drowssap')).toEqual({"id": 2, 'verified': 'admin'});
 })
+
+test('Testing verifyUser for an invalid user and correct password combo', () => {
+    expect(dataModel.verifyUser('profhorn', 'password')).toEqual({"id": -1, 'verified': 'failed'});
+})
+
+test('Testing verifyUser for a correct user and and invalid password combo', () => {
+    expect(dataModel.verifyUser('chouston', 'password')).toEqual({"id": -1, 'verified': 'failed'});
+})
+
+test('Testing verifyUser for a correct user and and invalid password combo', () => {
+    expect(dataModel.verifyUser('profhorn', 'silliness')).toEqual({"id": -1, 'verified': 'failed'});
+})
