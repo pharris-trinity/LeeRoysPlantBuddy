@@ -1,4 +1,4 @@
-const { getProducts } = require('../models/dataModel');
+const { getProducts, dataModel } = require('../models/dataModel');
 
 test('Checks what products are being returned from getProducts', async () => {
     const result = await getProducts();
@@ -33,3 +33,11 @@ test('Checks what products are being returned from getProducts', async () => {
         }
       ]);
 });
+
+test('Testing verifyUser for a registered user', () => {
+    expect(dataModel.verifyUser('pharris', 'password')).toEqual({"id": 1, 'verified': 'registered'});
+})
+
+test('Testing verifyUser for an admin user', () => {
+    expect(dataModel.verifyUser('chouston', 'drowssap')).toEqual({"id": 2, 'verified': 'admin'});
+})

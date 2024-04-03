@@ -15,7 +15,6 @@ async function getProducts() {
   const client = await pool.connect();
   try {
     const result = await client.query('SELECT * FROM products');
-    // console.log(result.rows);
     return result.rows;
   } finally {
     client.release();
