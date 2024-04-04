@@ -126,16 +126,9 @@ const dataModel = {
       // Logic to fetch data from a source
       return 'Hello, LeeRoy!';
     },
-    getProducts: () => {
-      // console.log(products);
-      return products;
-    },
     getCheckout: () => {
       let cartProducts = dataModel.getProducts();
 	    return cartProducts;
-    },
-    getLogin: () => {
-      return 'Hello, LeeRoy!';
     },
     addUser: (username, password) => {
       var lastUser = users[users.length - 1];
@@ -173,16 +166,6 @@ const dataModel = {
       // console.log(id);
       return {verified: verified, id: id};
     },
-    addToCart: (id, description, price) => {
-      // console.log(product);
-      if(!(id in cart)) {
-        cart[id] = {id, description, price, quantity: 1};
-      } else {
-        cart[id].quantity+=1;
-      }
-      // console.log(cart);
-      return cart;
-    },
     getCart: () => {
       return cart;
     },
@@ -200,20 +183,6 @@ const dataModel = {
     emptyCart: (cart) => {
       cart.splice(0, cart.length);
       return cart;
-    },
-    showToProducts: (product_id) => {
-      products.forEach(product => {
-        if(product.id == product_id) {
-          product.display = true;
-        }
-      })
-    },
-    hideFromProducts: (product_id) => {
-      products.forEach(product => {
-        if(product.id == product_id) {
-          product.display = false;
-        }
-      })
     },
     addToProducts: (name, price, image) => {
       products.push({id: products.length, description: name, price: price, image: image, display: true});
