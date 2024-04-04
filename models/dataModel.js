@@ -1,5 +1,7 @@
 const pool = require('../db');
 
+// Login Page Functions
+
 // Function to get all users in the database
 async function getUsers() {
   const client = await pool.connect();
@@ -12,55 +14,15 @@ async function getUsers() {
   }
 }
 
+
+// Product Page Functions
+
 // Function to display the list of available products to users
 async function getProducts() {
   const client = await pool.connect();
   try {
     const result = await client.query('SELECT * FROM products');
     return result.rows;
-  } finally {
-    client.release();
-  }
-}
-
-// Function for users that fetches the items in the users cart
-async function getCart(id) {
-  const client = await pool.connect();
-  try {
-    const result = client.query('SELECT * FROM cartitems WHERE cart_id = id');
-    return result.rows;
-  } finally {
-    client.release();
-  }
-}
-
-// Function for admins to show a product that is currently not listed
-async function showProduct(id) {
-  const client = await pool.connect();
-  try {
-    const query = {
-      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
-      values: [true, id],
-    };
-
-    const result = await client.query(query);
-    return result;
-  } finally {
-    client.release();
-  }
-}
-
-// Function for admins to hide a product that is currently listed
-async function hideProduct(id) {
-  const client = await pool.connect();
-  try {
-    const query = {
-      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
-      values: [false, id],
-    };
-
-    const result = await client.query(query);
-    return result;
   } finally {
     client.release();
   }
@@ -98,6 +60,55 @@ async function addToCart(cart_id, product_id) {
       const result = await pool.query(query);
     }
     
+  } finally {
+    client.release();
+  }
+}
+
+
+// Checkout Page Functions
+
+// Function for users that fetches the items in the users cart
+async function getCart(id) {
+  const client = await pool.connect();
+  try {
+    const result = client.query('SELECT * FROM cartitems WHERE cart_id = id');
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+
+// Admin Page Functions
+
+// Function for admins to show a product that is currently not listed
+async function showProduct(id) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
+      values: [true, id],
+    };
+
+    const result = await client.query(query);
+    return result;
+  } finally {
+    client.release();
+  }
+}
+
+// Function for admins to hide a product that is currently listed
+async function hideProduct(id) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
+      values: [false, id],
+    };
+
+    const result = await client.query(query);
+    return result;
   } finally {
     client.release();
   }
