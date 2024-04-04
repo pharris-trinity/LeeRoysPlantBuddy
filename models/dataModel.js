@@ -1,5 +1,6 @@
 const pool = require('../db');
 
+// Function to get all users in the database
 async function getUsers() {
   const client = await pool.connect();
   try {
@@ -11,6 +12,7 @@ async function getUsers() {
   }
 }
 
+// Function to display the list of available products to users
 async function getProducts() {
   const client = await pool.connect();
   try {
@@ -21,6 +23,7 @@ async function getProducts() {
   }
 }
 
+// Function for users that fetches the items in the users cart
 async function getCart(id) {
   const client = await pool.connect();
   try {
@@ -31,6 +34,7 @@ async function getCart(id) {
   }
 }
 
+// Function for admins to show a product that is currently not listed
 async function showProduct(id) {
   const client = await pool.connect();
   try {
@@ -46,6 +50,7 @@ async function showProduct(id) {
   }
 }
 
+// Function for admins to hide a product that is currently listed
 async function hideProduct(id) {
   const client = await pool.connect();
   try {
@@ -61,6 +66,7 @@ async function hideProduct(id) {
   }
 }
 
+// Function for users to add products on the product page to their cart
 async function addToCart(cart_id, product_id) {
   const client = await pool.connect();
   try {

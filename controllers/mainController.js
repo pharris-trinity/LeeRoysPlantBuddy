@@ -1,18 +1,12 @@
 const {dataModel} = require('../models/dataModel');
 const userModel = require('../models/dataModel');
-/* const users = []; */
-// const {dataModel} = require('../models/dataModel');
-
-// const cart = new Cart();
 
 const mainController = {
   getIndex: (req, res) => {
-    console.log("got home");
     const data = dataModel.getData();
     res.render('index', { data });
   },
   getHome: (req, res) => {
-    console.log("got home");
     res.render('home');
   },
   async getCheckout(req, res) {
@@ -30,7 +24,6 @@ const mainController = {
     res.render('checkout', { cart, user_id });
   },
   getLogin: (req, res) => {
-    console.log("get login");
     const login = dataModel.getLogin();
     res.render('login', { login });
   },
@@ -40,8 +33,6 @@ const mainController = {
     const data = dataModel.verifyUser(username, password);
     const user_id = data.id;
     const verified = data.verified;
-    // console.log(user_id);
-    // console.log(verified);
     
     if(user_id !== -1) {
       res.cookie('user_id', user_id, {
@@ -51,7 +42,6 @@ const mainController = {
       return res.status(200).json({ verified });
     }
     
-    // res.json(verified, user_id);
     return res.status(401).json({error: 'Unauthorized'});
   },
   addUser: (req, res) => {
@@ -70,7 +60,6 @@ const mainController = {
     try {
       const products = await userModel.getProducts();
       const user_id = req.cookies.user_id;
-      // console.log(user_id);
       res.render('product', { products, user_id });
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -97,12 +86,10 @@ const mainController = {
     const name = req.body.name;
     const price = parseFloat(req.body.price);
     const cart_id = 1; // should always be the same as user_id as they have associated cart
-    // console.log(product_id);
 
     userModel.addToCart(cart_id, product_id);
     
     const carts = dataModel.addToCart(product_id, name, price);
-    // console.log(carts);
   },
   removeFromCart: (req, res) => {
     // const cart = dataModel.getCart();
