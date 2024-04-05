@@ -1,6 +1,105 @@
+const pool = require('../db');
+
+async function getUsers() {
+  const client = await pool.connect();
+  try {
+    const result = await client.query('SELECT * FROM users');
+    console.log(`Here are the users: ${result}`);
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+async function getProducts() {
+  const client = await pool.connect();
+  try {
+    const result = await client.query('SELECT * FROM products');
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+async function getCart(id) {
+  const client = await pool.connect();
+  try {
+    const result = client.query('SELECT * FROM cartitems WHERE cart_id = id');
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+async function showProduct(id) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
+      values: [true, id],
+    };
+
+    const result = await client.query(query);
+    return result;
+  } finally {
+    client.release();
+  }
+}
+
+async function hideProduct(id) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: 'UPDATE products SET display = $1 WHERE product_id = $2',
+      values: [false, id],
+    };
+
+    const result = await client.query(query);
+    return result;
+  } finally {
+    client.release();
+  }
+}
+
+async function addToCart(cart_id, product_id) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: `
+        SELECT ci.cart_id
+        FROM carts c
+        JOIN cartitems ci ON c.cart_id = ci.cart_id
+        WHERE c.cart_id = $1 AND ci.product_id = $2
+      `,
+      values: [cart_id, product_id],
+    };
+
+    const result = await pool.query(query);
+
+    if(result.rowCount == 0) {
+      const query = {
+        text: "INSERT INTO cartitems (cart_id, product_id, quantity) VALUES ($1, $2, $3)",
+        values: [cart_id, product_id, 1],
+      }
+
+      const result = await pool.query(query);
+    } else {
+      const query = {
+        text: "UPDATE cartitems SET quantity = quantity + 1 WHERE cart_id = $1 AND product_id = $2",
+        values: [cart_id, product_id],
+      }
+
+      const result = await pool.query(query);
+    }
+    
+  } finally {
+    client.release();
+  }
+}
+
 let users = [
-  {userid: 0, username: 'pharris', password: 'password', account_type: 'registered'},
-  {userid: 1, username: 'chouston', password: "drowssap", account_type: 'admin'},
+  {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
+  {userid: 2, username: 'chouston', password: "drowssap", account_type: 'admin'},
 ];
 
 let products = [
@@ -11,9 +110,9 @@ let products = [
 ]
 
 let cart = [
-  {quantity: 1, id: 1, description: 'Cat Food', price: 5.99},
-  {quantity: 1, id: 2, description: 'Pet Stuff', price: 5.99},
-  {quantity: 2, id: 3, description: 'Dog Food', price: 5.99},
+  // {id: 1, description: 'Cat Food', price: 5.99},
+  // {id: 2, description: 'Pet Stuff', price: 5.99},
+  // {id: 3, description: 'Dog Food', price: 5.99},
 ]
 
 const dataModel = {
@@ -27,7 +126,7 @@ const dataModel = {
     },
     getCheckout: () => {
       let cartProducts = dataModel.getProducts();
-      return cartProducts;
+	    return cartProducts;
     },
     getLogin: () => {
       return 'Hello, LeeRoy!';
@@ -47,12 +146,15 @@ const dataModel = {
     },
     verifyUser: (username, password) => {
       var verified = 'failed';
+      var id = -1;
       users.forEach(user => {
         if(username==user.username&&password==user.password) {
           if(user.account_type=='admin') {
             verified = 'admin';
+            id = user.userid;
           } else if(user.account_type=='registered') {
             verified = 'registered';
+            id = user.userid;
           } else {
             user.account_type = 'registered';
             verified = 'registered';
@@ -60,7 +162,10 @@ const dataModel = {
         }
       })
 
-      return verified;
+      // console.log(verified)
+      // console.log(verified);
+      // console.log(id);
+      return {verified: verified, id: id};
     },
     addToCart: (id, description, price) => {
       // console.log(product);
@@ -69,14 +174,10 @@ const dataModel = {
       } else {
         cart[id].quantity+=1;
       }
-      console.log(cart);
+      // console.log(cart);
       return cart;
     },
     getCart: () => {
-      return cart;
-    },
-    addQuantity: (productindex) => {
-      cart[productindex].quantity++;
       return cart;
     },
     removeFromCart: (productindex) => {
@@ -85,11 +186,14 @@ const dataModel = {
       } else {
           cart.splice(productindex, 1);
       }
+      return cart;    },
+    addQuantity: (productindex) => {
+      cart[productindex].quantity++;
       return cart;
     },    
     emptyCart: (cart) => {
-    cart.splice(0, cart.length);
-    return cart;
+      cart.splice(0, cart.length);
+      return cart;
     },
     showToProducts: (product_id) => {
       products.forEach(product => {
@@ -111,15 +215,5 @@ const dataModel = {
       return products;
     }
   };
-
-  class Users {
-    constructor() {
-      this.names = [];
-    }
   
-    getUsers() {
-      return users;
-    }
-  }
-  
-module.exports = {dataModel, Users};
+module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart};
