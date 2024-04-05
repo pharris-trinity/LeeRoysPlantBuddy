@@ -82,17 +82,17 @@
                         <% products.forEach(product => { %>
                             <% if(product.display) { %>
                                 <li class="product-list-item">
-                                    <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
-                                    <span class="product-text"><%= product.description %></span>
-                                    <span class="price-text">$<%= product.price %></span>
-                                    <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')" checked></span>
+                                    <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.description%> Image"></span>
+                                    <span class="product-text"><%= product.product_name %></span>
+                                    <span class="price-text">$<%= product.product_price %></span>
+                                    <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')" checked></span>
                                 </li>
                             <% } else { %>
                                 <li class="product-list-item">
-                                    <span><img class="image-text" src="<%=product.image%>" alt="<%= product.description%> Image"></span>
-                                    <span class="product-text"><%= product.description %></span>
-                                    <span class="price-text">$<%= product.price %></span>
-                                    <span><input id="checkbox<%=product.id%>" type="checkbox" onclick="product_clicked('<%=product.id %>')"></span>
+                                    <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.description%> Image"></span>
+                                    <span class="product-text"><%= product.product_name %></span>
+                                    <span class="price-text">$<%= product.product_price %></span>
+                                    <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')"></span>
                                 </li>
                             <% } %>
                         <% }); %>
