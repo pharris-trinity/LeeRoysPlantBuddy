@@ -124,17 +124,14 @@ async function addToProducts(name, price, image) {
     };
 
     const result = await client.query(query);
+    console.log(result);
     return result;
   } finally {
     client.release();
   }
 }
 
-// addToProducts: (name, price, image) => {
-//   products.push({id: products.length, description: name, price: price, image: image, display: true});
-  
-//   return products;
-// }
+// Old in memory code that is being deprecated
 
 let users = [
   {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},

@@ -132,7 +132,6 @@ const mainController = {
     const price = req.body.price;
     const image = req.body.image;
 
-    // console.log(`${name} ${price} ${image}`);
     const products = userModel.addToProducts(name, price, image);
   }
 };
