@@ -133,10 +133,7 @@ const mainController = {
     const image = req.body.image;
 
     // console.log(`${name} ${price} ${image}`);
-    const products = dataModel.addToProducts(name, price, image);
-    products.forEach(product => {
-      console.log(product);
-    })
+    const products = userModel.addToProducts(name, price, image);
   }
 };
 

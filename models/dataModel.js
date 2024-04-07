@@ -114,6 +114,28 @@ async function hideProduct(id) {
   }
 }
 
+// Function to allow admins to add products to the product database
+async function addToProducts(name, price, image) {
+  const client = await pool.connect();
+  try {
+    const query = {
+      text: 'INSERT INTO products (product_name, product_price, product_image, display) VALUES ($1, $2, $3, TRUE)',
+      values: [name, price, image],
+    };
+
+    const result = await client.query(query);
+    return result;
+  } finally {
+    client.release();
+  }
+}
+
+// addToProducts: (name, price, image) => {
+//   products.push({id: products.length, description: name, price: price, image: image, display: true});
+  
+//   return products;
+// }
+
 let users = [
   {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
   {userid: 2, username: 'chouston', password: "drowssap", account_type: 'admin'},
@@ -195,11 +217,6 @@ const dataModel = {
       cart.splice(0, cart.length);
       return cart;
     },
-    addToProducts: (name, price, image) => {
-      products.push({id: products.length, description: name, price: price, image: image, display: true});
-      
-      return products;
-    }
   };
   
-module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart};
+module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart, addToProducts};
