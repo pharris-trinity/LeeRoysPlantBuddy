@@ -69,9 +69,10 @@ const mainController = {
   async getProductAdmin(req, res) { 
     try {
       const products = await userModel.getProducts();
+      const actions = await userModel.getAdminActions();
       const user_id = req.cookies.user_id;
       console.log(user_id);
-      res.render('product-admin', {products});
+      res.render('product-admin', {products, actions});
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error'});
@@ -117,13 +118,14 @@ const mainController = {
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;
-    userModel.showProduct(product_id);
+    const user_id = req.cookies.user_id;
+    userModel.showProduct(user_id, product_id);
     // dataModel.showToProducts(product_id);
   },
   hideFromProducts: (req, res) => {
     const product_id = req.body.product_id;
     const user_id = req.cookies.user_id;
-    userModel.hideProduct(product_id, user_id);
+    userModel.hideProduct(user_id, product_id);
     // dataModel.hideFromProducts(product_id);
   },
   addToProducts: (req, res) => {

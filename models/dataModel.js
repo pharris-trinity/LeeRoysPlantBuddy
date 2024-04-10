@@ -83,15 +83,16 @@ async function getCart(id) {
 // Admin Page Functions
 
 // Function for admins to show a product that is currently not listed
-async function showProduct(id) {
+async function showProduct(user_id, product_id) {
   const client = await pool.connect();
   try {
     const query = {
       text: 'UPDATE products SET display = $1 WHERE product_id = $2',
-      values: [true, id],
+      values: [true, product_id],
     };
 
     const result = await client.query(query);
+    logAction(user_id, product_id, `showProduct`);
     return result;
   } finally {
     client.release();
@@ -99,7 +100,7 @@ async function showProduct(id) {
 }
 
 // Function for admins to hide a product that is currently listed
-async function hideProduct(product_id, user_id) {
+async function hideProduct(user_id, product_id) {
   console.log("hide product triggered", product_id, user_id);
   const client = await pool.connect();
   try {
@@ -127,7 +128,7 @@ async function addToProducts(name, price, image) {
 
     const result = await client.query(query);
     // console.log(result);
-    logAction('addProduct');
+    // logAction('addProduct');
     return result;
   } finally {
     client.release();
@@ -135,18 +136,32 @@ async function addToProducts(name, price, image) {
 }
 
 async function logAction(executor, receiver, action) {
-  // const client = await pool.connect();
+  const client = await pool.connect();
   const date = Date();
   console.log(executor, receiver, action, date);
   
-  // try {
-  //   const query = {
-  //     text: 'INSERT INTO adminactions (action_type, action_time) VALUES ($1, $2)',
-  //     values: [action, date],
-  //   }
-  // } finally {
-  //   client.release();
-  // }
+  try {
+    const query = {
+      text: 'INSERT INTO adminactions (action_executor, action_receiver, action_type, action_time) VALUES ($1, $2, $3, $4)',
+      values: [executor, receiver, action, date],
+    }
+
+    const result = await client.query(query);
+    return result.rows;
+  } finally {
+    client.release();
+  }
+}
+
+async function getAdminActions() {
+  const client = await pool.connect();
+  try {
+    const query = 'SELECT * FROM adminactions';
+    const result = await client.query(query);
+    return result.rows;
+  } finally {
+    client.release();
+  }
 }
 
 // Old in memory code that is being deprecated
@@ -234,4 +249,4 @@ const dataModel = {
     },
   };
   
-module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart, addToProducts};
+module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart, addToProducts, getAdminActions};
