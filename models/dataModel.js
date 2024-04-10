@@ -99,15 +99,17 @@ async function showProduct(id) {
 }
 
 // Function for admins to hide a product that is currently listed
-async function hideProduct(id) {
+async function hideProduct(product_id, user_id) {
+  console.log("hide product triggered", product_id, user_id);
   const client = await pool.connect();
   try {
     const query = {
       text: 'UPDATE products SET display = $1 WHERE product_id = $2',
-      values: [false, id],
+      values: [false, product_id],
     };
 
     const result = await client.query(query);
+    logAction(user_id, product_id, `hideProduct`);
     return result;
   } finally {
     client.release();
@@ -124,11 +126,27 @@ async function addToProducts(name, price, image) {
     };
 
     const result = await client.query(query);
-    console.log(result);
+    // console.log(result);
+    logAction('addProduct');
     return result;
   } finally {
     client.release();
   }
+}
+
+async function logAction(executor, receiver, action) {
+  // const client = await pool.connect();
+  const date = Date();
+  console.log(executor, receiver, action, date);
+  
+  // try {
+  //   const query = {
+  //     text: 'INSERT INTO adminactions (action_type, action_time) VALUES ($1, $2)',
+  //     values: [action, date],
+  //   }
+  // } finally {
+  //   client.release();
+  // }
 }
 
 // Old in memory code that is being deprecated

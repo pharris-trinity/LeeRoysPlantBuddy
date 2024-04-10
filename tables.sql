@@ -39,5 +39,14 @@ CREATE TABLE cartitems (
     product_id INT NOT NULL,
     quantity INT NOT NULL,
     FOREIGN KEY (cart_id) REFERENCES carts(cart_id),
-    FOREIGN KEY (product_id) REFERENCES products(product_id)
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
 );
+
+CREATE TABLE adminactions (
+    action_id SERIAL PRIMARY KEY,
+    action_executor VARCHAR(255) NOT NULL,
+    action_receiver INT NOT NULL,
+    action_type VARCHAR(25) NOT NULL,
+    action_time VARCHAR(25), NOT NULL,
+    FOREIGN KEY (action_receiver) REFERENCES products(product_id),
+)

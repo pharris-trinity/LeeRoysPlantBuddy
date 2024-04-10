@@ -122,7 +122,8 @@ const mainController = {
   },
   hideFromProducts: (req, res) => {
     const product_id = req.body.product_id;
-    userModel.hideProduct(product_id);
+    const user_id = req.cookies.user_id;
+    userModel.hideProduct(product_id, user_id);
     // dataModel.hideFromProducts(product_id);
   },
   addToProducts: (req, res) => {
