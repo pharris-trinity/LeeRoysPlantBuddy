@@ -111,7 +111,12 @@ async function removeFromCart(cart_id, cartitem_id) {
 async function addQuantity(cart_id, cartitem_id) { 
 	const client = await pool.connect();
 	try {
-	// 	quantity + 1
+    const query = {
+      text: "UPDATE cartitems SET quantity = quantity + 1 WHERE ci.cart_id = $1 AND ci.cart_item_id = $2",
+      values:[cart_id, cartitem_id],
+    }
+    const result = await client.query(query);
+    return result.rows;
 	} finally {
 		client.release();
 	}
@@ -119,7 +124,11 @@ async function addQuantity(cart_id, cartitem_id) {
 async function emptyCart(cart_id) {
 	const client = await pool.connect();
 	try {
-		const result = await client.query('DELETE * FROM cartitems WHERE cart_id = id');
+    const query = {
+      text: "DELETE * FROM cartitems WHERE cart_id = $1",
+      values: [cart_id],
+    };
+		const result = await client.query(query);
 		return result.rows;
 	} finally {
 		client.release();
@@ -245,4 +254,4 @@ const dataModel = {
     }
   };
   
-module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart};
+module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart, removeFromCart, addQuantity, emptyCart};

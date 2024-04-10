@@ -120,15 +120,25 @@ const mainController = {
     
     res.render('checkout', { cart });
   },
-  addQuantity: (req, res) => {
-    const product = req.body.id;
-    // const product = parseInt(req.body.id);
-    console.log(product);
-    const carts = dataModel.addQuantity(product);
+  async addQuantity(req, res) {
+    try {
+      const cart = await userModel.getCart();
+      const cartitem = req.body.cartitem_id;
+      console.log(cartitem);
+      const carts = await userModel.addQuantity(cart, cartitem);
+      } catch (error) {
+      console.error('Error adding to cart:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+    }
   },
-  emptyCart: (req, res) => {
-    const cart = dataModel.getCart();
-    dataModel.emptyCart(cart);
+  async emptyCart (req, res)  {
+    try{
+      const cart = await userModel.getCart();
+      const carts = await userModel.emptyCart(cart);
+    } catch (error) {
+      console.error('Error checking out:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+    }
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;
