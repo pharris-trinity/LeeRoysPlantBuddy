@@ -21,7 +21,7 @@ async function getUsers() {
 async function getProducts() {
   const client = await pool.connect();
   try {
-    const result = await client.query('SELECT * FROM products');
+    const result = await client.query('SELECT * FROM products ORDER BY product_id DESC');
     return result.rows;
   } finally {
     client.release();
@@ -156,7 +156,7 @@ async function logAction(executor, receiver, action) {
 async function getAdminActions() {
   const client = await pool.connect();
   try {
-    const query = 'SELECT * FROM adminactions';
+    const query = 'SELECT * FROM adminactions ORDER BY action_id DESC';
     const result = await client.query(query);
     return result.rows;
   } finally {
