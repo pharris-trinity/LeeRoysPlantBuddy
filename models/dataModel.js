@@ -96,6 +96,35 @@ async function addToCart(cart_id, product_id) {
     client.release();
   }
 }
+async function removeFromCart(cart_id, cartitem_id) {
+	const client = await pool.connect();
+	try {
+	// 	if ( quantity > 1) {
+	// 		quantity + 1
+		// } else {
+	// 		remove from cart
+	// 	}
+	} finally {
+		client.release();
+	}
+}
+async function addQuantity(cart_id, cartitem_id) { 
+	const client = await pool.connect();
+	try {
+	// 	quantity + 1
+	} finally {
+		client.release();
+	}
+}
+async function emptyCart(cart_id) {
+	const client = await pool.connect();
+	try {
+		const result = await client.query('DELETE * FROM cartitems WHERE cart_id = id');
+		return result.rows;
+	} finally {
+		client.release();
+	}
+}
 
 let users = [
   {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
