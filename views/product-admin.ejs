@@ -87,7 +87,7 @@
                                     <span class="price-text">$<%= product.product_price %></span>
                                     <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')" checked></span>
                                 </li>
-                                <p>
+                                <p class="admin-actions-trail">
                                     <% actions.forEach(action => { %>
                                         <% if(action.action_receiver === product.product_id) { %>
                                             <span><%= action.action_type %></span>
@@ -103,7 +103,7 @@
                                     <span class="price-text">$<%= product.product_price %></span>
                                     <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')"></span>
                                 </li>
-                                <p>
+                                <p class="admin-actions-trail">
                                     <% actions.forEach(action => { %>
                                         <% if(action.action_receiver === product.product_id) { %>
                                             <span><%= action.action_type %></span>
