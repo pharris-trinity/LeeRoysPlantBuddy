@@ -1,3 +1,11 @@
+CREATE TABLE carts (
+    cart_id SERIAL PRIMARY KEY
+);
+
+INSERT INTO carts (cart_id) VALUES
+    (1), 
+    (2);
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY, 
     username VARCHAR(255) NOT NULL, 
@@ -10,14 +18,6 @@ CREATE TABLE users (
 INSERT INTO users (username, password, account_type, cart_id) VALUES 
     ('pharris', 'password', 'registered', 1),
     ('chouston', 'drowssap', 'admin', 2);
-
-CREATE TABLE carts (
-    cart_id SERIAL PRIMARY KEY
-);
-
-INSERT INTO carts (cart_id) VALUES
-    (1), 
-    (2);
 
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
