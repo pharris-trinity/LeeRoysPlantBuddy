@@ -72,10 +72,30 @@ async function addToCart(cart_id, product_id) {
 async function getCart(id) {
   const client = await pool.connect();
   try {
-    const result = client.query('SELECT * FROM cartitems WHERE cart_id = id');
+    const query = {
+      text: 'SELECT * FROM cartitems WHERE cart_id = $1',
+      values: [id],
+    }
+    const result = await client.query(query);
     return result.rows;
   } finally {
     client.release();
+  }
+}
+
+async function emptyCart(cart_id) {
+	const client = await pool.connect();
+	try {
+    const query = {
+      text: "DELETE FROM cartitems WHERE cart_id = $1",
+      values: [cart_id],
+    };
+		const result = await client.query(query);
+		return result.rowCount;
+	} catch {
+    console.log("Error clearing the cart");
+  } finally {
+		client.release();
   }
 }
 
@@ -101,7 +121,6 @@ async function showProduct(user_id, product_id) {
 
 // Function for admins to hide a product that is currently listed
 async function hideProduct(user_id, product_id) {
-  console.log("hide product triggered", product_id, user_id);
   const client = await pool.connect();
   try {
     const query = {
@@ -242,11 +261,18 @@ const dataModel = {
     addQuantity: (productindex) => {
       cart[productindex].quantity++;
       return cart;
-    },    
-    emptyCart: (cart) => {
-      cart.splice(0, cart.length);
-      return cart;
     },
   };
   
-module.exports = {dataModel, getUsers, getProducts, showProduct, hideProduct, addToCart, getCart, addToProducts, getAdminActions};
+module.exports = 
+{ dataModel, 
+  getUsers, 
+  getProducts, 
+  showProduct, 
+  hideProduct, 
+  addToCart, 
+  getCart, 
+  addToProducts, 
+  getAdminActions, 
+  emptyCart
+};

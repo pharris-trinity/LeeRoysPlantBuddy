@@ -10,17 +10,8 @@ const mainController = {
     res.render('home');
   },
   async getCheckout(req, res) {
-    // try {
-    //   console.log("checkout");
-    //   const cart = dataModel.getCheckout();
-    //   const user_id = req.cookies.user_id;
-    //   // res.redirect(200, '/checkout');
-    //   return res.status(200);
-    // } catch {
-    //   return res.status(500).json({ error: 'Internal Server Error' });
-    // }
-    const cart = dataModel.getCheckout();
     const user_id = req.cookies.user_id;
+    const cart = await userModel.getCart(user_id);
     res.render('checkout', { cart, user_id });
   },
   getLogin: (req, res) => {
@@ -93,28 +84,23 @@ const mainController = {
   removeFromCart: (req, res) => {
     // const cart = dataModel.getCart();
     const product = req.body.id;
-    console.log(product);
+    // console.log(product);
     const carts = dataModel.removeFromCart(product);
-  },
-  getCheckout: (req, res) => {
-    const cart_object = dataModel.getCart();
-    // console.log(cart);
-    const cart = Object.values(cart_object);
-    // cart_array.forEach((id, item) => {
-    //   console.log(id);
-    // })
-    
-    res.render('checkout', { cart });
   },
   addQuantity: (req, res) => {
     const product = req.body.id;
     // const product = parseInt(req.body.id);
-    console.log(product);
+    // console.log(product);
     const carts = dataModel.addQuantity(product);
   },
-  emptyCart: (req, res) => {
-    const cart = dataModel.getCart();
-    dataModel.emptyCart(cart);
+  async emptyCart (req, res)  {
+    try {
+      const user_id = req.cookies.user_id;
+      const carts = await userModel.emptyCart(user_id);
+    } catch (error) {
+      console.error('Error checking out:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+    }
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;
