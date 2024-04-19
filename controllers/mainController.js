@@ -25,8 +25,9 @@ const mainController = {
     // } catch {
     //   return res.status(500).json({ error: 'Internal Server Error' });
     // }
-    const cart = dataModel.getCheckout();
     const user_id = req.cookies.user_id;
+    const cart = await userModel.getCart(user_id);
+    // console.log(cart);
     res.render('checkout', { cart, user_id });
   },
   getLogin: (req, res) => {
@@ -92,49 +93,47 @@ const mainController = {
   const login = dataModel.getLogin();
   res.render('login', { login });
   },
-  addToCart: (req, res) => {
+  async addToCart (req, res) {
     const product_id = parseInt(req.body.id);
     const name = req.body.name;
     const price = parseFloat(req.body.price);
-    const cart_id = 1; // should always be the same as user_id as they have associated cart
+    const cart_id = req.cookies.user_id; // should always be the same as user_id as they have associated cart
     // console.log(product_id);
 
     userModel.addToCart(cart_id, product_id);
     
-    const carts = dataModel.addToCart(product_id, name, price);
+    // const carts = dataModel.addToCart(product_id, name, price);
     // console.log(carts);
   },
-  removeFromCart: (req, res) => {
-    // const cart = dataModel.getCart();
-    const product = req.body.id;
-    console.log(product);
-    const carts = dataModel.removeFromCart(product);
-  },
-  getCheckout: (req, res) => {
-    const cart_object = dataModel.getCart();
-    // console.log(cart);
-    const cart = Object.values(cart_object);
-    // cart_array.forEach((id, item) => {
-    //   console.log(id);
-    // })
-    
-    res.render('checkout', { cart });
+  async removeFromCart(req, res) {
+    try {
+      const product = req.body.id;
+      const user = req.cookies.user_id;
+      const cart = await userModel.removeFromCart(user, product);
+      } catch (error) {
+      console.error('Error removing from cart:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+
+    }
   },
   async addQuantity(req, res) {
     try {
-      const cart = await userModel.getCart();
-      const cartitem = req.body.cartitem_id;
-      console.log(cartitem);
-      const carts = await userModel.addQuantity(cart, cartitem);
+      const product = req.body.id;
+      const user = req.cookies.user_id;
+      const cart = await userModel.addQuantity(user, product);
+      // res.render('checkout', { cart, user });
       } catch (error) {
       console.error('Error adding to cart:', error);
       res.status(500).json({ error: 'Internal Server Error'});
     }
   },
-  async emptyCart (req, res)  {
-    try{
-      const cart = await userModel.getCart();
-      const carts = await userModel.emptyCart(cart);
+  async emptyCart(req, res) {
+    try {
+      const id = req.cookies.user_id;
+      const newcart = await userModel.emptyCart(id);
+      // console.log(newcart);
+      const cart = [];
+      // res.render('checkout', { cart, id });
     } catch (error) {
       console.error('Error checking out:', error);
       res.status(500).json({ error: 'Internal Server Error'});
