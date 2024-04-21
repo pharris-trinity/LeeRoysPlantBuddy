@@ -91,10 +91,10 @@
 						<table class="Cart">
 							<% cart.forEach((product, productindx) => { %>
                             <tr>
-                                <td><span><button class="add-quantity" onclick="addQuantity('<%=productindx%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
+                                <td><span><button class="add-quantity" onclick="addQuantity('<%=product.product_id%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
                                 <td><span><%=product.description%></span></td>
                                 <td><span>$ <%=+(Math.round((product.price * product.quantity) + "e+2") + "e-2")%></span></td>
-                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=productindx%>');window.location.reload();"></button></span></td>
+                                <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.product_id%>');window.location.reload();"></button></span></td>
                             </tr>
                             <% }); %>
 						</table>
@@ -129,7 +129,7 @@
                     <%let total = subtotal + tax + shipping%>
                 <h4 > Total: <span>$<%=+(Math.round((total) + "e+2") + "e-2")%></span></h4> 
                 <br>
-                <button class="button" style="display: inline-block" onclick="emptyCart('<%=cart%>'); window.location.reload();" >Buy Now</button>
+                <button class="button" style="display: inline-block" onclick="emptyCart('<%=cart%>');window.location.reload(); " >Buy Now</button>
      		</div>
 	  </div>
 	

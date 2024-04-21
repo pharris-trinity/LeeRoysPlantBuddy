@@ -73,10 +73,11 @@ async function getCart(id) {
   const client = await pool.connect();
   try {
     const query = {
-      text: 'SELECT * FROM cartitems WHERE cart_id = $1',
+      text: 'SELECT * FROM cartitems WHERE cart_id = $1 ORDER BY product_id',
       values: [id],
-    }
+    };
     const result = await client.query(query);
+    // console.log(result);
     return result.rows;
   } finally {
     client.release();
@@ -164,7 +165,6 @@ async function logAction(executor, receiver, action) {
       text: 'INSERT INTO adminactions (action_executor, action_receiver, action_type, action_time) VALUES ($1, $2, $3, $4)',
       values: [executor, receiver, action, date],
     }
-
     const result = await client.query(query);
     return result.rows;
   } finally {
@@ -183,7 +183,60 @@ async function getAdminActions() {
   }
 }
 
-// Old in memory code that is being deprecated
+async function removeFromCart(cart_id, product_id) {
+	const client = await pool.connect();
+	try {
+    const query = {
+      text: "SELECT * FROM cartitems WHERE cart_id = $1 AND product_id = $2",
+      values: [cart_id, product_id],
+    };
+    const result = await pool.query(query);
+    const value = result.rows[0].quantity;
+    if(value > 1) {
+      const query = {
+        text: "UPDATE cartitems SET quantity = quantity - 1 WHERE cart_id = $1 AND product_id = $2",
+        values: [cart_id, product_id],
+      };
+      const result = await client.query(query);
+      return result.rows;
+    } else {
+      const query = {
+        text: "DELETE FROM cartitems WHERE cart_id = $1 AND product_id = $2",
+        values: [cart_id, product_id],
+      };
+      const result = await client.query(query);
+      return result.rows;
+      }
+	} finally {
+		client.release();
+	}
+}
+
+async function addQuantity(cart_id, product_id) { 
+	const client = await pool.connect();
+	try {
+    const query = {
+      text: "UPDATE cartitems SET quantity = quantity + 1 WHERE cart_id = $1 AND product_id = $2 ORDER BY product_id",
+      values:[cart_id, product_id],
+    };
+    const result = await client.query(query);
+	} finally {
+		client.release();
+	}
+}
+async function emptyCart(id) {
+	const client = await pool.connect();
+	try {
+    const query = {
+      text: "DELETE FROM cartitems WHERE cart_id = $1",
+      values: [id],
+    };
+		const result = await client.query(query);
+		return result.rows;
+	} finally {
+		client.release();
+	}
+}
 
 let users = [
   {userid: 1, username: 'pharris', password: 'password', account_type: 'registered'},
@@ -247,20 +300,6 @@ const dataModel = {
       // console.log(verified);
       // console.log(id);
       return {verified: verified, id: id};
-    },
-    getCart: () => {
-      return cart;
-    },
-    removeFromCart: (productindex) => {
-      if(cart[productindex].quantity > 1) {
-          cart[productindex].quantity--;
-      } else {
-          cart.splice(productindex, 1);
-      }
-      return cart;    },
-    addQuantity: (productindex) => {
-      cart[productindex].quantity++;
-      return cart;
     },
   };
   

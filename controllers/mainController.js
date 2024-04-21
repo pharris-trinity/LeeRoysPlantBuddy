@@ -12,6 +12,7 @@ const mainController = {
   async getCheckout(req, res) {
     const user_id = req.cookies.user_id;
     const cart = await userModel.getCart(user_id);
+
     res.render('checkout', { cart, user_id });
   },
   getLogin: (req, res) => {
@@ -73,30 +74,47 @@ const mainController = {
   // const login = dataModel.getLogin();
   res.render('login');
   },
-  addToCart: (req, res) => {
+  async addToCart (req, res) {
     const product_id = parseInt(req.body.id);
     const name = req.body.name;
     const price = parseFloat(req.body.price);
     const cart_id = req.cookies.user_id; // should always be the same as user_id as they have associated cart
+    // console.log(product_id);
 
     userModel.addToCart(cart_id, product_id);
+    
+    // const carts = dataModel.addToCart(product_id, name, price);
+    // console.log(carts);
   },
-  removeFromCart: (req, res) => {
-    // const cart = dataModel.getCart();
-    const product = req.body.id;
-    // console.log(product);
-    const carts = dataModel.removeFromCart(product);
-  },
-  addQuantity: (req, res) => {
-    const product = req.body.id;
-    // const product = parseInt(req.body.id);
-    // console.log(product);
-    const carts = dataModel.addQuantity(product);
-  },
-  async emptyCart (req, res)  {
+  async removeFromCart(req, res) {
     try {
-      const user_id = req.cookies.user_id;
-      const carts = await userModel.emptyCart(user_id);
+      const product = req.body.id;
+      const user = req.cookies.user_id;
+      const cart = await userModel.removeFromCart(user, product);
+      } catch (error) {
+      console.error('Error removing from cart:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+
+    }
+  },
+  async addQuantity(req, res) {
+    try {
+      const product = req.body.id;
+      const user = req.cookies.user_id;
+      const cart = await userModel.addQuantity(user, product);
+      // res.render('checkout', { cart, user });
+      } catch (error) {
+      console.error('Error adding to cart:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
+    }
+  },
+  async emptyCart(req, res) {
+    try {
+      const id = req.cookies.user_id;
+      const newcart = await userModel.emptyCart(id);
+      // console.log(newcart);
+      const cart = [];
+      // res.render('checkout', { cart, id });
     } catch (error) {
       console.error('Error checking out:', error);
       res.status(500).json({ error: 'Internal Server Error'});
