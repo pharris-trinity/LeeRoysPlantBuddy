@@ -27,6 +27,8 @@ CREATE TABLE cartitems (
     cart_item_id SERIAL PRIMARY KEY,
     cart_id INT NOT NULL,
     product_id INT NOT NULL,
+    product_name VARCHAR(50) NOT NULL,
+    product_price FLOAT NOT NULL,
     quantity INT NOT NULL,
     FOREIGN KEY (cart_id) REFERENCES users(user_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)

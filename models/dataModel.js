@@ -85,7 +85,7 @@ async function getProducts() {
 }
 
 // Function for users to add products on the product page to their cart
-async function addToCart(cart_id, product_id) {
+async function addToCart(cart_id, product_id, product_name, product_price) {
   const client = await pool.connect();
   try {
     const query = {
@@ -97,8 +97,8 @@ async function addToCart(cart_id, product_id) {
 
     if(in_cart_result.rowCount == 0) {
       const query = {
-        text: "INSERT INTO cartitems (cart_id, product_id, quantity) VALUES ($1, $2, $3)",
-        values: [cart_id, product_id, 1],
+        text: "INSERT INTO cartitems (cart_id, product_id, product_name, product_price, quantity) VALUES ($1, $2, $3, $4, $5)",
+        values: [cart_id, product_id, product_name, product_price, 1],
       }
 
       const result = await pool.query(query);
@@ -128,6 +128,20 @@ async function getCart(id) {
       values: [id],
     };
     const result = await client.query(query);
+    // const rows = result.rows;
+    // var product_list = [];
+    // rows.forEach(row => {
+    //   product_list.push(row.product_id);
+    // })
+    
+    // const product_query = {
+    //   text: "SELECT * FROM products WHERE product_id = ANY($1::integer[])",
+    //   values: [product_list]
+    // }
+
+    // const products = await client.query(product_query);
+    // // console.log(products.rows);
+    
     return result.rows;
   } finally {
     client.release();

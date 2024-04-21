@@ -15,6 +15,7 @@ const mainController = {
   async getCheckout(req, res) {
     const user_id = req.cookies.user_id;
     const cart = await userModel.getCart(user_id);
+    console.log(cart);
 
     res.render('checkout', { cart, user_id });
   },
@@ -73,9 +74,11 @@ const mainController = {
   // Function to add an item to a cart if the add to cart button is clicked on the user product page
   async addToCart (req, res) {
     const product_id = parseInt(req.body.product_id);
+    const product_name = req.body.product_name;
+    const product_price = parseFloat(req.body.product_price);
     const cart_id = req.cookies.user_id; // should always be the same as user_id as they have associated cart
 
-    userModel.addToCart(cart_id, product_id);
+    userModel.addToCart(cart_id, product_id, product_name, product_price);
   },
   // Function to decrement the number of items in a cart at the checkout page
   async removeFromCart(req, res) {

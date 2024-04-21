@@ -92,8 +92,8 @@
 							<% cart.forEach((product, productindx) => { %>
                             <tr>
                                 <td><span><button class="add-quantity" onclick="addQuantity('<%=product.product_id%>'); window.location.reload();"></button> <%=product.quantity%></span></td>                                
-                                <td><span><%=product.description%></span></td>
-                                <td><span>$ <%=+(Math.round((product.price * product.quantity) + "e+2") + "e-2")%></span></td>
+                                <td><span><%=product.product_name%></span></td>
+                                <td><span>$ <%=+(Math.round((product.product_price * product.quantity) + "e+2") + "e-2")%></span></td>
                                 <td><span><button class="remove-from-cart" onclick="removeFromCart('<%=product.product_id%>');window.location.reload();"></button></span></td>
                             </tr>
                             <% }); %>
@@ -114,8 +114,7 @@
 							</div>
 							<div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
 								<%let subtotal = 0%>
-                                <%console.log(cart)%>
-                                <%cart.forEach((id) => {subtotal += (id.price * id.quantity); });%>
+                                <%cart.forEach((id) => {subtotal += (id.product_price * id.quantity); });%>
                                 <p><span> $<%=+(Math.round(subtotal + "e+2") + "e-2")%> </span></p>
                                 <%let tax = +(Math.round((subtotal * 0.0625) + "e+2") + "e-2")%>
                                 <p><span>$<%=tax%></span></p>
