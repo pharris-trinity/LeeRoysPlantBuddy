@@ -38,33 +38,13 @@ async function verifyUser(username, password) {
 async function addUser(username, password) {
   const client = await pool.connect();
   try {
-      console.log('made it to addUser function in dataModel');
-      const result = await client.query('SELECT COUNT(*) FROM carts');
-      const new_id = parseInt(result.rows[0].count) + 1;
-      console.log(new_id);
-      const acctype = 'registered';
-     // console.log(newid);
-     const cart_creation = {
-      text: "INSERT INTO carts (cart_id) VALUES ($1)",
-      values: [new_id]
-     }
-
-     client.query(cart_creation);
-
       const query = {
-        text: "INSERT INTO users (username, password, account_type, cart_id) VALUES ($1, $2, $3, $4)",
-        values: [username, password, 'registered', new_id],
+        text: "INSERT INTO users (username, password, account_type) VALUES ($1, $2, $3)",
+        values: [username, password, 'registered'],
       };
 
-      client.query(query);
-      var newUser = {userid: new_id, username: username, password: password, account_type: 'registered'};
-      return newUser;
-      
-      //  console.log(newUser);
-    //  console.log(users.length);
-     //users.push(newUser);
-     // console.log(users.length);
-     // console.log(users[users.length - 1]);
+      const result = await client.query(query);
+      return result.rows;
   } finally {
     client.release();
   }
