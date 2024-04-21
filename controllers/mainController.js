@@ -21,28 +21,35 @@ const mainController = {
     const login = dataModel.getLogin();
     res.render('login', { login });
   },
-  verifyUser: (req, res) => {
+  async verifyUser(req, res) {
     const username = req.body.username;
     const password = req.body.password;
-    const {verified, id} = dataModel.verifyUser(username, password);
-    console.log(verified);
-    console.log(id);
+    console.log("username: ", username, "password: ", password);
+    const result = await userModel.verifyUser(username, password);
+    console.log(result);
+    const verified = result.acctype;
+    const id = result.id;
+    console.log("this is verified stuff", verified);
+    console.log("this should be id", id);
     // res.cookie('userId', userId, {
 
     // })
     res.json(verified);
   },
-  addUser: (req, res) => {
+  async addUser(req, res) {
     const username = req.body.username;
     const password = req.body.password;
-    const newSignUp = dataModel.addUser(username, password);
-    if (newSignUp.account_type === 'admin') {
-      res.render('products-admin');
-    } else if (newSignUp.account_type === 'registered') {
-      res.render('index');
-    } else {
-      console.log('Error: Invalid sign up!');
-    }
+    const result = await userModel.addUser(username, password);
+    return res.status(200);
+    //const newSignUp = userModel.addUser(username, password);
+    // if (result.account_type === 'admin') {
+    //   res.render('products-admin');
+    // } else if (result.account_type === 'registered') {
+    //   res.render('index');
+    // } else {
+    //   console.log('Error: Invalid sign up!');
+    // }
+
   },
   async getProduct(req, res) {
     try {
@@ -62,10 +69,6 @@ const mainController = {
       res.status(500).json({ error: 'Internal Server Error'});
     }
   },
-  getLogin: (req, res) => {
-  const login = dataModel.getLogin();
-  res.render('login', { login });
-  },
   addToCart: (req, res) => {
     const product_id = parseInt(req.body.id);
     const name = req.body.name;
@@ -78,6 +81,10 @@ const mainController = {
     const carts = dataModel.addToCart(product_id, name, price);
     // console.log(carts);
   },
+  getLogin: (req, res) => {
+    const login = dataModel.getLogin();
+    res.render('login', { login });
+    },
   removeFromCart: (req, res) => {
     const item = req.body.item;
     cart.removeFromCart(item);

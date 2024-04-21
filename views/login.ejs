@@ -17,7 +17,7 @@
 			const new_password = document.getElementById('new_passw').value;
 			console.log(`new username: ${new_username} new password: ${new_password}`);
 
-			fetch('/addUser', {
+			fetch('addUser', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
