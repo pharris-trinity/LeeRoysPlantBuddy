@@ -22,31 +22,37 @@ const mainController = {
   async verifyUser(req, res) {
     const username = req.body.username;
     const password = req.body.password;
-    const data = dataModel.verifyUser(username, password);
-    const user_id = data.id;
-    const verified = data.verified;
-    
+    console.log("username: ", username, "password: ", password);
+    const result = await userModel.verifyUser(username, password);
+    console.log(result);
+    const verified = result.acctype;
+    const id = result.id;
+    console.log("this is verified stuff", verified);
+    console.log("this should be id", id);
     if(user_id !== -1) {
       res.cookie('user_id', user_id, {
         maxAge: 900000, httpOnly: false, SameSite: 'None',
-      })
+    })
 
-      return res.status(200).json({ verified });
+    return res.status(200).json({ verified });
     }
     
     return res.status(401).json({error: 'Unauthorized'});
   },
-  addUser: (req, res) => {
+  async addUser(req, res) {
     const username = req.body.username;
     const password = req.body.password;
-    const newSignUp = dataModel.addUser(username, password);
-    if (newSignUp.account_type === 'admin') {
-      res.render('products-admin');
-    } else if (newSignUp.account_type === 'registered') {
-      res.render('index');
-    } else {
-      console.log('Error: Invalid sign up!');
-    }
+    const result = await userModel.addUser(username, password);
+    return res.status(200);
+    //const newSignUp = userModel.addUser(username, password);
+    // if (result.account_type === 'admin') {
+    //   res.render('products-admin');
+    // } else if (result.account_type === 'registered') {
+    //   res.render('index');
+    // } else {
+    //   console.log('Error: Invalid sign up!');
+    // }
+
   },
   async getProduct(req, res) {
     try {
