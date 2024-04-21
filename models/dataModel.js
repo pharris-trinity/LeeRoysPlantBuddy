@@ -336,11 +336,12 @@ async function verifyUser(username, password) {
         values: [username, password],
       }
       const result = await client.query(query);
+      // console.log(result);
       var acctype = 'failed';
       var id = -1;
       if (result.rows.length == 1){
         acctype = result.rows[0].account_type;
-        id = result.rows[0].userid;
+        id = result.rows[0].user_id;
       }
       return {acctype, id};
   } finally {
@@ -448,5 +449,6 @@ module.exports =
   getCart, 
   addToProducts, 
   getAdminActions, 
-  emptyCart
+  emptyCart,
+  verifyUser,
 };

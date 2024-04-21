@@ -29,8 +29,8 @@ const mainController = {
     const id = result.id;
     console.log("this is verified stuff", verified);
     console.log("this should be id", id);
-    if(user_id !== -1) {
-      res.cookie('user_id', user_id, {
+    if(id !== -1) {
+      res.cookie('user_id', id, {
         maxAge: 900000, httpOnly: false, SameSite: 'None',
     })
 
