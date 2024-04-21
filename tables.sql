@@ -1,23 +1,13 @@
-CREATE TABLE carts (
-    cart_id SERIAL PRIMARY KEY
-);
-
-INSERT INTO carts (cart_id) VALUES
-    (1), 
-    (2);
-
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY, 
     username VARCHAR(255) NOT NULL, 
     password VARCHAR(255) NOT NULL, 
-    account_type VARCHAR(20) NOT NULL,
-    cart_id INT NOT NULL,
-    FOREIGN KEY (cart_id) REFERENCES carts (cart_id)
+    account_type VARCHAR(20) NOT NULL
 );
 
-INSERT INTO users (username, password, account_type, cart_id) VALUES 
-    ('pharris', 'password', 'registered', 1),
-    ('chouston', 'drowssap', 'admin', 2);
+INSERT INTO users (username, password, account_type) VALUES 
+    ('pharris', 'password', 'registered'),
+    ('chouston', 'drowssap', 'admin');
 
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
@@ -38,7 +28,7 @@ CREATE TABLE cartitems (
     cart_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
-    FOREIGN KEY (cart_id) REFERENCES carts(cart_id),
+    FOREIGN KEY (cart_id) REFERENCES users(user_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 

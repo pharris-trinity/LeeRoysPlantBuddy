@@ -8,14 +8,14 @@
 		<link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
         <title>Products</title>
         <script>
-            function addToCart(id, name, price) {
+            function addToCart(product_id, name, price) {
                 fetch('/addToCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ 
-                        id, 
+                        product_id, 
                         name, 
                         price, 
                     }),

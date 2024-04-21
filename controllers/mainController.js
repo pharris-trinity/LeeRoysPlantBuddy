@@ -72,9 +72,7 @@ const mainController = {
   },
   // Function to add an item to a cart if the add to cart button is clicked on the user product page
   async addToCart (req, res) {
-    const product_id = parseInt(req.body.id);
-    const name = req.body.name;
-    const price = parseFloat(req.body.price);
+    const product_id = parseInt(req.body.product_id);
     const cart_id = req.cookies.user_id; // should always be the same as user_id as they have associated cart
 
     userModel.addToCart(cart_id, product_id);

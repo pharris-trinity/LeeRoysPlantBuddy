@@ -89,18 +89,13 @@ async function addToCart(cart_id, product_id) {
   const client = await pool.connect();
   try {
     const query = {
-      text: `
-        SELECT ci.cart_id
-        FROM carts c
-        JOIN cartitems ci ON c.cart_id = ci.cart_id
-        WHERE c.cart_id = $1 AND ci.product_id = $2
-      `,
+      text: "SELECT * FROM cartitems WHERE cart_id = $1 AND product_id = $2",
       values: [cart_id, product_id],
     };
 
-    const result = await pool.query(query);
+    const in_cart_result = await pool.query(query);
 
-    if(result.rowCount == 0) {
+    if(in_cart_result.rowCount == 0) {
       const query = {
         text: "INSERT INTO cartitems (cart_id, product_id, quantity) VALUES ($1, $2, $3)",
         values: [cart_id, product_id, 1],
@@ -133,7 +128,6 @@ async function getCart(id) {
       values: [id],
     };
     const result = await client.query(query);
-    // console.log(result);
     return result.rows;
   } finally {
     client.release();
