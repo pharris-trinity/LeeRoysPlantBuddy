@@ -38,3 +38,10 @@ body {
 .new-item-form button:hover {
   background: darkred;
 }
+
+.admin-actions-trail {
+  background-color: #7a211f;
+  border-radius: 5px;
+  padding-top: 0;
+  color: white;
+}

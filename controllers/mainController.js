@@ -1,39 +1,23 @@
 const {dataModel} = require('../models/dataModel');
 const userModel = require('../models/dataModel');
-/* const users = []; */
-// const {dataModel} = require('../models/dataModel');
-
-// const cart = new Cart();
 
 const mainController = {
   getIndex: (req, res) => {
-    console.log("got home");
     const data = dataModel.getData();
     res.render('index', { data });
   },
   getHome: (req, res) => {
-    console.log("got home");
     res.render('home');
   },
   async getCheckout(req, res) {
-    // try {
-    //   console.log("checkout");
-    //   const cart = dataModel.getCheckout();
-    //   const user_id = req.cookies.user_id;
-    //   // res.redirect(200, '/checkout');
-    //   return res.status(200);
-    // } catch {
-    //   return res.status(500).json({ error: 'Internal Server Error' });
-    // }
     const user_id = req.cookies.user_id;
     const cart = await userModel.getCart(user_id);
-    // console.log(cart);
+
     res.render('checkout', { cart, user_id });
   },
   getLogin: (req, res) => {
-    console.log("get login");
-    const login = dataModel.getLogin();
-    res.render('login', { login });
+    // const login = dataModel.getLogin();
+    res.render('login');
   },
   async verifyUser(req, res) {
     const username = req.body.username;
@@ -41,8 +25,6 @@ const mainController = {
     const data = dataModel.verifyUser(username, password);
     const user_id = data.id;
     const verified = data.verified;
-    // console.log(user_id);
-    // console.log(verified);
     
     if(user_id !== -1) {
       res.cookie('user_id', user_id, {
@@ -52,7 +34,6 @@ const mainController = {
       return res.status(200).json({ verified });
     }
     
-    // res.json(verified, user_id);
     return res.status(401).json({error: 'Unauthorized'});
   },
   addUser: (req, res) => {
@@ -71,7 +52,6 @@ const mainController = {
     try {
       const products = await userModel.getProducts();
       const user_id = req.cookies.user_id;
-      // console.log(user_id);
       res.render('product', { products, user_id });
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -81,17 +61,18 @@ const mainController = {
   async getProductAdmin(req, res) { 
     try {
       const products = await userModel.getProducts();
+      const actions = await userModel.getAdminActions();
       const user_id = req.cookies.user_id;
       console.log(user_id);
-      res.render('product-admin', {products});
+      res.render('product-admin', {products, actions});
     } catch (error) {
       console.error('Error fetching products:', error);
       res.status(500).json({ error: 'Internal Server Error'});
     }
   },
   getLogin: (req, res) => {
-  const login = dataModel.getLogin();
-  res.render('login', { login });
+  // const login = dataModel.getLogin();
+  res.render('login');
   },
   async addToCart (req, res) {
     const product_id = parseInt(req.body.id);
@@ -141,12 +122,14 @@ const mainController = {
   },
   showToProducts: (req, res) => {
     const product_id = req.body.product_id;
-    userModel.showProduct(product_id);
+    const user_id = req.cookies.user_id;
+    userModel.showProduct(user_id, product_id);
     // dataModel.showToProducts(product_id);
   },
   hideFromProducts: (req, res) => {
     const product_id = req.body.product_id;
-    userModel.hideProduct(product_id);
+    const user_id = req.cookies.user_id;
+    userModel.hideProduct(user_id, product_id);
     // dataModel.hideFromProducts(product_id);
   },
   addToProducts: (req, res) => {
@@ -154,11 +137,7 @@ const mainController = {
     const price = req.body.price;
     const image = req.body.image;
 
-    // console.log(`${name} ${price} ${image}`);
-    const products = dataModel.addToProducts(name, price, image);
-    products.forEach(product => {
-      console.log(product);
-    })
+    const products = userModel.addToProducts(name, price, image);
   }
 };
 

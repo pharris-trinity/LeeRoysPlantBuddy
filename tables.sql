@@ -1,3 +1,11 @@
+CREATE TABLE carts (
+    cart_id SERIAL PRIMARY KEY
+);
+
+INSERT INTO carts (cart_id) VALUES
+    (1), 
+    (2);
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY, 
     username VARCHAR(255) NOT NULL, 
@@ -10,14 +18,6 @@ CREATE TABLE users (
 INSERT INTO users (username, password, account_type, cart_id) VALUES 
     ('pharris', 'password', 'registered', 1),
     ('chouston', 'drowssap', 'admin', 2);
-
-CREATE TABLE carts (
-    cart_id SERIAL PRIMARY KEY
-);
-
-INSERT INTO carts (cart_id) VALUES
-    (1), 
-    (2);
 
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
@@ -40,4 +40,13 @@ CREATE TABLE cartitems (
     quantity INT NOT NULL,
     FOREIGN KEY (cart_id) REFERENCES carts(cart_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+CREATE TABLE adminactions (
+    action_id SERIAL PRIMARY KEY,
+    action_executor INT NOT NULL,
+    action_receiver INT NOT NULL,
+    action_type VARCHAR(25) NOT NULL,
+    action_time VARCHAR(200) NOT NULL,
+    FOREIGN KEY (action_receiver) REFERENCES products(product_id)
 );

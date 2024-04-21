@@ -87,6 +87,15 @@
                                     <span class="price-text">$<%= product.product_price %></span>
                                     <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')" checked></span>
                                 </li>
+                                <p class="admin-actions-trail">
+                                    <% actions.forEach(action => { %>
+                                        <% if(action.action_receiver === product.product_id) { %>
+                                            <span><%= action.action_type %></span>
+                                            <span><%= action.action_time %></span>
+                                            <br>
+                                        <% } %>
+                                    <% }); %>
+                                </p>
                             <% } else { %>
                                 <li class="product-list-item">
                                     <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.description%> Image"></span>
@@ -94,6 +103,15 @@
                                     <span class="price-text">$<%= product.product_price %></span>
                                     <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')"></span>
                                 </li>
+                                <p class="admin-actions-trail">
+                                    <% actions.forEach(action => { %>
+                                        <% if(action.action_receiver === product.product_id) { %>
+                                            <span><%= action.action_type %></span>
+                                            <span><%= action.action_time %></span>
+                                            <br>
+                                        <% } %>
+                                    <% }); %>
+                                </p>
                             <% } %>
                         <% }); %>
                     </ul>
