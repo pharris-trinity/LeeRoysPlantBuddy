@@ -39,19 +39,26 @@
         const new_product_name = document.getElementById('new-product-description').value;
         const new_product_price = document.getElementById('new-product-price').value;
         const new_product_image = document.getElementById('new-product-image').value;
-
-        fetch('/addToProducts', {
+        if (new_product_price > 0 && new_product_name != '' && new_product_image != ''){ // verify non negative price, and non empty fields.
+            fetch('/addToProducts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({name: new_product_name, price: new_product_price, image: new_product_image}),
-        })
-        .then(response => {
-            if(!response.ok) {
-                throw new Error(`HTTP Error! Status: ${response.status}`)
-            }
-        })
+            })
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(`HTTP Error! Status: ${response.status}`)
+                }
+            })
+            alert('Producted Added!')
+        }
+        else {
+            alert('Ensure all fields are filled and non-negative.')
+        }
+
+       
     }
 </script>
 
