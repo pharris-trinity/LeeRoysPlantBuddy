@@ -1,138 +1,120 @@
-<!-- products/index.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/styles/styles.css">
-        <link rel="stylesheet" href="/styles/product-admin.css">
-        <link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
-        <title>LeeRoy's Pets N' More Products</title>
-        <script>
-            function product_clicked(product_id) {
-                var checkbox = document.getElementById(`checkbox${product_id}`);
-                
-                if(checkbox.checked) {
-                    console.log(`add to active ${product_id}`);
-                    fetch('/showToProducts', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({product_id}),
-                    })
-                    .then(response => {
-                        if(!response.ok) {
-                            throw new Error(`HTTP Error! Status: ${response.status}`)
-                        }
-                    })
-                } else {
-                    console.log(`remove from active ${product_id}`);
-                    fetch('/hideFromProducts', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({product_id}),
-                    })
-                    .then(response => {
-                        if(!response.ok) {
-                            throw new Error(`HTTP Error! Status: ${response.status}`)
-                        }
-                    })
-                }
-            }
+<%- include('partials/head', { title: 'LeeRoy\'s Pets N\' More Products', styles: ['/styles/styles.css', '/styles/product-admin.css'] }) %>
 
-            function addToProducts() {
-                const new_product_name = document.getElementById('new-product-description').value;
-                const new_product_price = document.getElementById('new-product-price').value;
-                const new_product_image = document.getElementById('new-product-image').value;
-
-                fetch('/addToProducts', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({name: new_product_name, price: new_product_price, image: new_product_image}),
-                })
-                .then(response => {
-                    if(!response.ok) {
-                        throw new Error(`HTTP Error! Status: ${response.status}`)
-                    }
-                })
-            }
-            
-        </script>
-    </head>
-    <body>
-        <div class="header-solid">
-            <h1>Admin Product Page</h1>
-            <h4>Add/delete, show/hide products</h2>    
-        </div>
-        <div class="navbar">
-            <span><a href="/">Home</a></span>
-            <span><a href="/product">Products</a></span>
-            <span><a href="/checkout">Checkout</a></span>
-            <span><a href="/login">Login</a></span>            
-        </div>
-        <div class="greybox-container">
-            <div class="greybox">
-                <div class="container">
-                    <ul class="product-list">
-                        <% products.forEach(product => { %>
-                            <% if(product.display) { %>
-                                <li class="product-list-item">
-                                    <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.description%> Image"></span>
-                                    <span class="product-text"><%= product.product_name %></span>
-                                    <span class="price-text">$<%= product.product_price %></span>
-                                    <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')" checked></span>
-                                </li>
-                                <p class="admin-actions-trail">
-                                    <% actions.forEach(action => { %>
-                                        <% if(action.action_receiver === product.product_id) { %>
-                                            <span><%= action.action_type %></span>
-                                            <span><%= action.action_time %></span>
-                                            <br>
-                                        <% } %>
-                                    <% }); %>
-                                </p>
-                            <% } else { %>
-                                <li class="product-list-item">
-                                    <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.description%> Image"></span>
-                                    <span class="product-text"><%= product.product_name %></span>
-                                    <span class="price-text">$<%= product.product_price %></span>
-                                    <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')"></span>
-                                </li>
-                                <p class="admin-actions-trail">
-                                    <% actions.forEach(action => { %>
-                                        <% if(action.action_receiver === product.product_id) { %>
-                                            <span><%= action.action_type %></span>
-                                            <span><%= action.action_time %></span>
-                                            <br>
-                                        <% } %>
-                                    <% }); %>
-                                </p>
-                            <% } %>
-                        <% }); %>
-                    </ul>
-                </div>
-            </div>
-            <div class="greybox">   
-                <div class="new-item-form">
-                    <h2>Create a new item</h2>
-                    <label>Name: </label>
-                    <input type="text" id="new-product-description" required>
-                    <br>
-                    <label>Price: </label>
-                    <input type="text" id="new-product-price" required>
-                    <br>
-                    <label>Image: </label>
-                    <input type="text" id="new-product-image" required>
-                    <br>
-                    <button type="submit" onclick="addToProducts()">Submit</button>
-                </div>
-            </div>
-        </div>
+<script>
+    function product_clicked(product_id) {
+        var checkbox = document.getElementById(`checkbox${product_id}`);
         
-      </body>
-</html>
+        if(checkbox.checked) {
+            console.log(`add to active ${product_id}`);
+            fetch('/showToProducts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({product_id}),
+            })
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(`HTTP Error! Status: ${response.status}`)
+                }
+            })
+        } else {
+            console.log(`remove from active ${product_id}`);
+            fetch('/hideFromProducts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({product_id}),
+            })
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error(`HTTP Error! Status: ${response.status}`)
+                }
+            })
+        }
+    }
+
+    function addToProducts() {
+        const new_product_name = document.getElementById('new-product-description').value;
+        const new_product_price = document.getElementById('new-product-price').value;
+        const new_product_image = document.getElementById('new-product-image').value;
+
+        fetch('/addToProducts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({name: new_product_name, price: new_product_price, image: new_product_image}),
+        })
+        .then(response => {
+            if(!response.ok) {
+                throw new Error(`HTTP Error! Status: ${response.status}`)
+            }
+        })
+    }
+</script>
+
+<div class="header-solid">
+    <h1>Admin Product Page</h1>
+    <h4>Add/delete, show/hide products</h2>    
+</div>
+
+<div class="greybox-container">
+    <div class="greybox">
+        <div class="container">
+            <ul class="product-list">
+                <% products.forEach(product => { %>
+                    <% if(product.display) { %>
+                        <li class="product-list-item">
+                            <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.description%> Image"></span>
+                            <span class="product-text"><%= product.product_name %></span>
+                            <span class="price-text">$<%= product.product_price %></span>
+                            <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')" checked></span>
+                        </li>
+                        <p class="admin-actions-trail">
+                            <% actions.forEach(action => { %>
+                                <% if(action.action_receiver === product.product_id) { %>
+                                    <span><%= action.action_type %></span>
+                                    <span><%= action.action_time %></span>
+                                    <br>
+                                <% } %>
+                            <% }); %>
+                        </p>
+                    <% } else { %>
+                        <li class="product-list-item">
+                            <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.description%> Image"></span>
+                            <span class="product-text"><%= product.product_name %></span>
+                            <span class="price-text">$<%= product.product_price %></span>
+                            <span><input id="checkbox<%=product.product_id%>" type="checkbox" onclick="product_clicked('<%=product.product_id %>')"></span>
+                        </li>
+                        <p class="admin-actions-trail">
+                            <% actions.forEach(action => { %>
+                                <% if(action.action_receiver === product.product_id) { %>
+                                    <span><%= action.action_type %></span>
+                                    <span><%= action.action_time %></span>
+                                    <br>
+                                <% } %>
+                            <% }); %>
+                        </p>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+    <div class="greybox">   
+        <div class="new-item-form">
+            <h2>Create a new item</h2>
+            <label>Name: </label>
+            <input type="text" id="new-product-description" required>
+            <br>
+            <label>Price: </label>
+            <input type="text" id="new-product-price" required>
+            <br>
+            <label>Image: </label>
+            <input type="text" id="new-product-image" required>
+            <br>
+            <button type="submit" onclick="addToProducts()">Submit</button>
+        </div>
+    </div>
+</div>

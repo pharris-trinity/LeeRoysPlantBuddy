@@ -1,29 +1,6 @@
 <!-- views/index.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/styles/styles.css">
-		<link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
-        <title>LeeRoy's Pets N' More</title>
-    </head>
-    <body>
-	<div class="header">
-		<button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
-	</div>	
-	<div class="header-text">
-		<h3 style="text-align: center;">San Antonio's best for pets and pet needs!</h3>
-	</div>
+<%- include('partials/head', { title: 'LeeRoy\'s Pets N\' More' }) %>
 
-   <!-- <center><div class="header" align: center></div></center> -->
-
-        <div class="navbar">
-	    <span><a href="/">Home</a></span>
-	    <span><a href="/product">Products</a></span>
-	    <span><a href="/checkout">Checkout</a></span>
-		<span><a href="/login">Login</a></span>
-	</div>
 
 
 	  <div class="index-container">
@@ -46,6 +23,4 @@
 		  <div class="landing-flavor-text2">Featured Product</div>
 	  </div>
 	  </center>
-      </body>
 
-</html>

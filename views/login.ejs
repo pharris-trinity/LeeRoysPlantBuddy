@@ -1,97 +1,72 @@
-<!-- views/login.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/styles/styles.css">
-        <link rel="icon" type="image/x-icon" href="/images/leeroyhead.png">
-        <title>LeeRoy's Pets N' More</title>
-    </head>
+<%- include('partials/head', { title: 'LeeRoy\'s Pets N\' More' }) %>
 
-	<!-- JAVASCRIPT -->
-    <script>
-		function addUser() {
-			const new_username = document.getElementById('new_uname').value;
-			const new_password = document.getElementById('new_passw').value;
-      
-			fetch('/addUser', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ username: new_username, password: new_password}),
-			})
-			.then(response => {
-				if(!response.ok) {
-					throw new Error(`HTTP Error! Status: ${response.status}`)
-				}
-			})
-		}
+<!-- JAVASCRIPT -->
+<script>
+function addUser() {
+    const new_username = document.getElementById('new_uname').value;
+    const new_password = document.getElementById('new_passw').value;
+    fetch('/addUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: new_username, password: new_password}),
+    })
+    .then(response => {
+        if(!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`)
+        }
+    })
+}
 
-		function verifyUser() {
-			const username = document.getElementById('uname').value;
-			const password = document.getElementById('passw').value;
-			// need to also grab the id somehow either by looking up or otherwise
-			
-			fetch('verifyUser', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ username: username, password: password}),
-			})
-			.then(response => response.json())
-			.then(data => {
-				const verified = data.verified;
-				if(verified === 'registered') {
-					window.location.href = `http://localhost:3000/product`;
-				} else if(verified === 'admin') {
-					window.location.href = `http://localhost:3000/product-admin`;
-				} else {
-					console.log('not valid');
-				}
-			})
-		}
-	</script>
-	<!-- END JAVASCRIPT -->
-
-    <body>
-        <div class="header">
-        <button class="button" style="display: block;"><a href="/login" style="color: #fafafa;">Login</a> </button>
-        </div>	
-        <div class="header-text">
-                <h3 style="text-align: center;">San Antonio's best for pets and pet needs!</h3>
-        </div>
-
-
-        <div class="navbar">
-	    <span><a href="/">Home</a></span>
-	    <span><a href="/product">Products</a></span>
-	    <span><a href="/checkout">Checkout</a></span>
-		<span><a href="/login">Login</a></span>
-	</div>
+function verifyUser() {
+    const username = document.getElementById('uname').value;
+    const password = document.getElementById('passw').value;
+    // need to also grab the id somehow either by looking up or otherwise
+    fetch('verifyUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: username, password: password}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        const verified = data.verified;
+        if(verified === 'registered') {
+            window.location.href = `http://localhost:3000/product`;
+        } else if(verified === 'admin') {
+            window.location.href = `http://localhost:3000/product-admin`;
+        } else {
+            console.log('not valid');
+        }
+    })
+}
+</script>
+<!-- END JAVASCRIPT -->
 
 <br><br>
-        <center><div class="form-format">
-			<h3>Login</h3>
-			<!-- <form action="/action_page.php"> -->
-			<label for="uname">Username:</label>
-			<input type="text" id="uname" name="uname" value=""><br>
-			<label for="passw">Password:</label>
-			<input type="password" id="passw" name="passw" value=""><br><br>
-			<span><button class="button" onclick="verifyUser()">Submit</button></span><br><br>
-		</div></center>
-                <br><br>
-		<center><div class="form-format"> 
-			<h3>Sign Up</h3>
-			<label for="new_uname">Username:</label>
-			<input type="text" id="new_uname" name="new_uname" value=""><br>
-			<label for="new_passw">Password:</label>
-			<input type="password" id="new_passw" name="new_passw" value=""><br><br>
-			<span><button class="button" onclick="addUser()">Submit</button></span><br><br>
-	</div></center>
+<center>
+    <div class="form-format">
+        <h3>Login</h3>
+        <!-- <form action="/action_page.php"> -->
+        <label for="uname">Username:</label>
+        <input type="text" id="uname" name="uname" value=""><br>
+        <label for="passw">Password:</label>
+        <input type="password" id="passw" name="passw" value=""><br><br>
+        <span><button class="button" onclick="verifyUser()">Submit</button></span><br><br>
+    </div>
+</center>
 
+<br><br>
 
-      </body>
-</html>
+<center>
+    <div class="form-format">
+        <h3>Sign Up</h3>
+        <label for="new_uname">Username:</label>
+        <input type="text" id="new_uname" name="new_uname" value=""><br>
+        <label for="new_passw">Password:</label>
+        <input type="password" id="new_passw" name="new_passw" value=""><br><br>
+        <span><button class="button" onclick="addUser()">Submit</button></span><br><br>
+    </div>
+</center>
