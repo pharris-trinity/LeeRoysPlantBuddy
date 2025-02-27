@@ -205,7 +205,7 @@ body {
 }
 
 .header{
-    background-image: url('../images/leeroy-banner-extend-2.jpeg');
+    background-image: url('../images/plant buddy temp.jpg');
     border: none;
     cursor: pointer;
     padding: 10;
@@ -216,7 +216,7 @@ body {
 }
 
 .featured-product {
-    background-image: url('https://t4.ftcdn.net/jpg/06/08/41/09/240_F_608410951_8OhMYUIq37acegYgSrKdFN0kAw0xRKx9.jpg');
+    background-image: url('../images/plant test.png');
     border: none;
     cursor: pointer;
     padding: 10;
@@ -227,7 +227,7 @@ body {
 }
 
 .featured-product-small {
-    background-image: url('https://t4.ftcdn.net/jpg/06/08/41/09/240_F_608410951_8OhMYUIq37acegYgSrKdFN0kAw0xRKx9.jpg');
+    background-image: url('../images/plant test.png');
     border: none;
     cursor: pointer;
     padding: 10;
