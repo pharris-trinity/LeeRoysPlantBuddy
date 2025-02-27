@@ -6,7 +6,7 @@ a {
 }
 
 body {
-    background-color: #fafafa;
+    background-color: #c1e8c9;
     color: black;
     margin: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -19,14 +19,14 @@ body {
 .header-text {
 	padding: 1px;
   	text-align: center;
-  	background: #7a211f;
+  	background: #1f7a33;
 	color: #fafafa;
     display: block;
 }
 .header-solid {
     padding: 7px;
     text-align: center;
-    background: #7a211f;
+    background: #1f7a33;
     color: #fafafa;
 }
 .container {
@@ -49,7 +49,7 @@ body {
 
 
 .navbar {
-    background-color: #7a211f;
+    background-color: #1f7a33;
     text-align: center;
     justify-content: space-evenly;
     display: flex;
