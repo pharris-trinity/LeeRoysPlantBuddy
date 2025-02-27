@@ -298,7 +298,7 @@ body {
     /*float: right;*/
     margin: 50px 50px 50px 0;
     text-align: center;
-    width: 250px;
+    width: 500px;
 } 
 
 .landing-text{
@@ -306,7 +306,7 @@ body {
     /*float: right;*/
     margin: 0 50px 0 0;
     text-align: center;
-    width: 250px;
+    width: 500px;
     word-wrap: break-word;
 }
 
