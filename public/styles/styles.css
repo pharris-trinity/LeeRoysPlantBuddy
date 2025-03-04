@@ -6,7 +6,7 @@ a {
 }
 
 body {
-    background-color: #fafafa;
+    background-color: #c1e8c9;
     color: black;
     margin: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -19,14 +19,14 @@ body {
 .header-text {
 	padding: 1px;
   	text-align: center;
-  	background: #7a211f;
+  	background: #1f7a33;
 	color: #fafafa;
     display: block;
 }
 .header-solid {
     padding: 7px;
     text-align: center;
-    background: #7a211f;
+    background: #1f7a33;
     color: #fafafa;
 }
 .container {
@@ -43,13 +43,23 @@ body {
     justify-content: space-evenly;
 }
 
+.index-container2 {
+    width: 80%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .image-text {
     max-height: 40px;
 }
 
 
 .navbar {
-    background-color: #7a211f;
+    background-color: #1f7a33;
     text-align: center;
     justify-content: space-evenly;
     display: flex;
@@ -205,7 +215,7 @@ body {
 }
 
 .header{
-    background-image: url('../images/leeroy-banner-extend-2.jpeg');
+    background-image: url('../images/plant buddy temp.jpg');
     border: none;
     cursor: pointer;
     padding: 10;
@@ -216,7 +226,7 @@ body {
 }
 
 .featured-product {
-    background-image: url('https://t4.ftcdn.net/jpg/06/08/41/09/240_F_608410951_8OhMYUIq37acegYgSrKdFN0kAw0xRKx9.jpg');
+    background-image: url('../images/plant test.png');
     border: none;
     cursor: pointer;
     padding: 10;
@@ -227,7 +237,7 @@ body {
 }
 
 .featured-product-small {
-    background-image: url('https://t4.ftcdn.net/jpg/06/08/41/09/240_F_608410951_8OhMYUIq37acegYgSrKdFN0kAw0xRKx9.jpg');
+    background-image: url('../images/plant test.png');
     border: none;
     cursor: pointer;
     padding: 10;
@@ -265,7 +275,8 @@ body {
 .form-format {
     text-align: center;
     font-size: 25px;
-    background-color: #c7c9ca;
+    background-color: #1f7a33;
+    color: #fafafa;
     border-radius: 85px;
     display: flex;
     flex-direction:column;
@@ -298,7 +309,7 @@ body {
     /*float: right;*/
     margin: 50px 50px 50px 0;
     text-align: center;
-    width: 250px;
+    width: 500px;
 } 
 
 .landing-text{
@@ -306,7 +317,7 @@ body {
     /*float: right;*/
     margin: 0 50px 0 0;
     text-align: center;
-    width: 250px;
+    width: 500px;
     word-wrap: break-word;
 }
 
