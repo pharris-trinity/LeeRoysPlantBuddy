@@ -26,7 +26,7 @@ body {
 .header-solid {
     padding: 7px;
     text-align: center;
-    background: #1f7a33;
+    background: #87C57C;
     color: #fafafa;
 }
 .container {
@@ -59,16 +59,17 @@ body {
 
 
 .navbar {
-    background-color: #1f7a33;
+    background-color: #73C773;
     text-align: center;
     justify-content: space-evenly;
     display: flex;
-    padding-top: 15px;
+    /* padding-top: 15px; */
     padding-bottom: 12px;
 }
 
 .navbar a {
 	color: #fafafa;
+    font-size: 20px;
 }
 
 .navbar a:hover {
@@ -122,54 +123,6 @@ body {
     text-align: right;
 }
 
-.add-to-cart {
-    background-image: url('../images/cart-fill.svg');
-    border: none;
-    cursor: pointer;
-    padding: 10;
-    width: 30px;
-    height: 30px;
-    background-size: cover;
-    display: inline-block;
-    background-color: transparent;
-    opacity: 0.5;
-    margin-left: 10px;
-    margin-right: 2px;
-}
-.add-to-cart:hover{
-    opacity: 1.0;
-}
-
-.remove-from-cart {
-    background-image: url('../images/trash-closed.png');
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5;
-    width: 20px;
-    height: 20px;
-    background-size: cover;
-    display: inline;
-    opacity: 0.5;
-}
-.remove-from-cart:hover{
-    opacity: 1.0;
-    }
-.add-quantity {
-    background-image: url('../images/plus.png');
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5;
-    width: 15px;
-    height: 15px;
-    background-size: cover;
-    display: inline;
-    opacity: 0.5;
-}
-.add-quantity:hover {
-    opacity: 1.0;
-}
 
 .column {
     /* width: 25%; */
@@ -202,7 +155,7 @@ body {
 	border-radius: 25px;
 	text-align: center;
 	border: none;
-    font-size: 20px;
+    font-size: 15px;
     padding: 3px 15px;
 	cursor: pointer;
     width: 10;
@@ -215,12 +168,12 @@ body {
 }
 
 .header{
-    background-image: url('../images/plant buddy temp.jpg');
+    background-image: url('/images/Leeroy’s Plant Buddy (5).png');
     border: none;
     cursor: pointer;
     padding: 10;
     width: 100%;
-    height: 240px;
+    height: 217px;
     background-size: cover;
     display: inline-block;
 }
@@ -237,7 +190,7 @@ body {
 }
 
 .featured-product-small {
-    background-image: url('../images/plant test.png');
+    background-image: url('/images/leeroy-watering-landscape.jpg');
     border: none;
     cursor: pointer;
     padding: 10;
@@ -247,8 +200,6 @@ body {
     display: inline-block;
 }
 
-/* .point-left-graybackground { */
-/*     background-image: url('../images/point-left-graybackground.png'); */
 .point-left-transparent {
     background-image: url('../images/point-left-transparent.png');
     border: none;
@@ -260,18 +211,6 @@ body {
     display: inline-block;
     background-color: transparent;
 }
-/*
-.point-right-graybackground {
-    background-image: url('../images/point-right-graybackground.jpg');
-    border: none;
-    cursor: pointer;
-    padding: 10;
-    width: 400px;
-    height: 400px;
-    background-size: cover;
-    display: inline-block;
-} */
-
 .form-format {
     text-align: center;
     font-size: 25px;
