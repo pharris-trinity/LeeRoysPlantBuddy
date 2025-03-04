@@ -43,6 +43,16 @@ body {
     justify-content: space-evenly;
 }
 
+.index-container2 {
+    width: 80%;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .image-text {
     max-height: 40px;
 }
