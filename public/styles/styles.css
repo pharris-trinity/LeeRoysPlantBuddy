@@ -275,7 +275,8 @@ body {
 .form-format {
     text-align: center;
     font-size: 25px;
-    background-color: #c7c9ca;
+    background-color: #1f7a33;
+    color: #fafafa;
     border-radius: 85px;
     display: flex;
     flex-direction:column;
