@@ -4,7 +4,11 @@
 <div class="index-container2">
     <span>
         <div class="landing-title">Data</div>
-        <div class="landing-text">Data</div>
+        <div class="landing-text">
+            <span>we love plants, yes we do!</span>
+            <div></div>
+            <span>we love plants, how 'bout you?</span>
+        </div>
     </span>
 </div>
 
@@ -48,7 +52,9 @@
 
         <div class="container" style="margin-top: 3%;">
             <ul class="product-list">
-                <% products.forEach(product => { %>
+                <li style="text-align: center;">we love plants, yes we do!</li>
+                <li style="text-align: center;">we love plants, how 'bout you?</li>
+                 <% products.forEach(product => { %>
                     <% if(product.display) { %>
                         <li class="product-list-item">
                             <span><img class="image-text" src="<%=product.product_image%>" alt="<%= product.product_name%> Image"></span>
@@ -57,7 +63,6 @@
                             <span><button class="add-to-cart" onclick="addToCart('<%=product.product_id%>', '<%=product.product_name%>', '<%=product.product_price%>')"></button></span>
                         </li>
                     <% } %>
-                <% }); %>
+                <% }); %> -->
             </ul>
         </div>
--->

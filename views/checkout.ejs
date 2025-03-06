@@ -3,8 +3,8 @@
 
 <div class="index-container2">
     <span>
-        <div class="landing-title">Developers</div>
-        <div class="landing-text">Developers</div>
+        <div class="landing-title">Meet the Devs!</div>
+        <div class="landing-text">it us</div>
     </span>
 </div>
 
@@ -64,8 +64,9 @@
 
 <div class="row">
     <div class="column left" style="height: 350px; width: 25%;">
-        <h2>Shopping Cart</h2>
+        <h2>Meet the Devs!</h2>
         <div class="container">
+        <span>this is us</span>
             <table class="Cart">
                 <% cart.forEach((product, productindx) => { %>
                 <tr>
@@ -80,30 +81,31 @@
     </div>
 
     <div class="column right" style="height: 350px; width: 25%;">
-        <h2>Order Summary</h2>
+        <!-- <h2>Order Summary</h2> -->
         <div class="container">
             <div class="row">
                 <div class="column left" style="height: 75px; width: 50px; background-color: transparent; margin-top: 0; text-align: left;">
-                    <p> Subtotal:</p>
+                    <!-- <p> Subtotal:</p>
                     <p> Tax:</p>
-                    <p> Shipping:</p>
+                    <p> Shipping:</p> -->
+                    <div class="featured-product-small"></div>
                 </div>
                 <div class="column right" style="height: 75px; width: 50px; background-color: transparent;margin-top: 0;text-align: left;">
-                    <%let subtotal = 0%>
+                <div style="background-image: url('/images/leeroy-watering-portrait.jpg');"></div>
+                    <!-- <%let subtotal = 0%>
                     <%cart.forEach((id) => {subtotal += (id.product_price * id.quantity); });%>
                     <p><span> $<%=+(Math.round(subtotal + "e+2") + "e-2")%> </span></p>
                     <%let tax = +(Math.round((subtotal * 0.0625) + "e+2") + "e-2")%>
                     <p><span>$<%=tax%></span></p>
                     <%let shipping = +(Math.round((subtotal * 0.15) + "e+2") + "e-2")%>
-                    <p><span>$<%=shipping%></span></p>
+                    <p><span>$<%=shipping%></span></p> -->
                 </div>
             </div>
         </div>
         <br> <br>
-        <%let total = subtotal + tax + shipping%>
+        <!-- <%let total = subtotal + tax + shipping%>
         <h4> Total: <span>$<%=+(Math.round((total) + "e+2") + "e-2")%></span></h4>
         <br>
-        <button class="button" style="display: inline-block" onclick="emptyCart('<%=cart%>');window.location.reload(); ">Buy Now</button>
+        <button class="button" style="display: inline-block" onclick="emptyCart('<%=cart%>');window.location.reload(); ">Buy Now</button> -->
     </div>
 </div>
--->
