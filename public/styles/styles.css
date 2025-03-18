@@ -19,7 +19,7 @@ body {
 .header-text {
 	padding: 1px;
   	text-align: center;
-  	background: #1f7a33;
+  	background: #73C773;
 	color: #fafafa;
     display: block;
 }
@@ -149,8 +149,8 @@ body {
 }
 
 .button {
-	background-color: #828488; 
-	color: #fafafa;
+	background-color: #c1e8c9; 
+	color: #000000;
 	display: flex;
 	border-radius: 25px;
 	text-align: center;
@@ -214,7 +214,7 @@ body {
 .form-format {
     text-align: center;
     font-size: 25px;
-    background-color: #1f7a33;
+    background-color: #73C773;
     color: #fafafa;
     border-radius: 85px;
     display: flex;

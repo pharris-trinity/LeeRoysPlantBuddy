@@ -1,10 +1,101 @@
 <!-- products/index.ejs -->
 <%- include('partials/head', { title: 'Data' }) %>
 
+<head>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
 <div class="index-container2">
     <span>
-        <div class="landing-title">Data</div>
-        <div class="landing-text">Data</div>
+        <div class="landing-title">Soil Moisture vs. Time</div>
+        <div class="landing-text">This chart tracks the soil moisture of our plant. If it falls under [THRESHOLD 1], the plant will automatically water itself. If it's too high above [THRESHOLD 2], the plant will be unable to be watered. If it's in between, feel free to click the "Water" button to water the plant from afar!</div>
+        <div id="chart"></div>
+        <script>
+            (async function() {
+              // Sample data (replace with dynamic data if needed)
+              const data = [
+                { name: "A", value: 30 },
+                { name: "B", value: 80 },
+                { name: "C", value: 45 },
+                { name: "D", value: 60 },
+                { name: "E", value: 20 },
+                { name: "F", value: 90 },
+                { name: "G", value: 55 }
+              ];
+          
+              // Set dimensions
+              const width = 600, height = 400;
+              const margin = { top: 30, right: 30, bottom: 70, left: 60 }; // Increased bottom margin for labels
+          
+              // Create SVG container
+              const svg = d3.select("#chart")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+          
+              // Set up scales
+              const x = d3.scalePoint()
+                .domain(data.map(d => d.name))
+                .range([margin.left, width - margin.right])
+                .padding(0.5);
+          
+              const y = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.value)])
+                .nice()
+                .range([height - margin.bottom, margin.top]);
+          
+              // Define the line generator
+              const line = d3.line()
+                .x(d => x(d.name))
+                .y(d => y(d.value))
+                .curve(d3.curveMonotoneX);
+          
+              // Append the line
+              svg.append("path")
+                .datum(data)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 2)
+                .attr("d", line);
+          
+              // Add circles for data points
+              svg.selectAll(".dot")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx", d => x(d.name))
+                .attr("cy", d => y(d.value))
+                .attr("r", 5)
+                .attr("fill", "steelblue");
+          
+              // Add X axis
+              svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(x));
+          
+              // Add Y axis
+              svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(d3.axisLeft(y));
+          
+              // X-Axis Label
+              svg.append("text")
+                .attr("x", width / 2)
+                .attr("y", height - 30) // Position below X-axis
+                .attr("text-anchor", "middle")
+                .style("font-size", "14px")
+                .text("Time"); // Change label as needed
+          
+              // Y-Axis Label
+              svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("x", -height / 2)
+                .attr("y", 20) // Adjust position
+                .attr("text-anchor", "middle")
+                .style("font-size", "14px")
+                .text("Soil Moisture"); // Change label as needed
+            })();
+          </script>                   
     </span>
 </div>
 
