@@ -1,41 +1,58 @@
 <!-- views/index.ejs -->
 <%- include('partials/head', { title: 'LeeRoy\'s Plant Buddy' }) %>
-
 	<div class="row">
 		<div class="column left"  style="height: 350px; width: 25%;">
-			<img src="/images/plant test.png" alt="fake plant image" style="border-width: 15px; border-color: #5ab457; border-style: solid;height: 400px;">
+			<img src="/images/plant test.png" alt="fake plant image" style="border-width: 15px; border-color: #5ab457; border-style: solid;height: 500px;">
 		</div>
-		<div class="column right" style="height: 350px; width: 40%;">
+		<div class="column right" style="height: 500px; width: 35%; margin-right: 17%;">
 			<h1>Our Plant</h1>
-		
-		
-				<div class="column left" style="height: 75px; width: 175px; background-color: transparent; margin-top: 0; text-align: left; font-weight: bold;">
-					<p>Location: </p>
-					<p>Genus, Species: </p>
+				<p style="font-size:x-large;">This plant, residing in CSI 270T, is of [genus, species]. It's part of our Spring 2025 Senior Software project, but when it grows, perhaps it aspires to be the future mascot for the computer science department. Interested in helping it grow, or just want to monitor its progress? Check out the <a style="font-weight: bold;" href="/product">Data</a> tab on this website!</p>
+		</div>
+	</div>
+
+	<div class="container">
+			<!-- ### this is the table version of info -->
+			<table>
+				<tr><th>Fun(?) Name:</th>	<td>Buddy</td></tr>
+				<tr><th>Common Name:</th>	<td>soil in a cup</td></tr>
+				<tr><th>Genus, Species:</th>	<td>TBA</td></tr>
+				<tr><th>Location:</th>	<td>CSI 270T</td></tr>
+				<tr><th>Size:</th>	<td>TBA</td></tr>
+				<tr><th>Ideal Conditions:</th>	<td>TBA</td></tr>
+				<tr><th>Characteristics:</th>	<td>literally just a red solo cup filled with soil</td></tr>
+			</table>
+	</div>
+
+
+			<!-- ### this is the dumber column version of info -->
+				<!-- <div class="column left" style="width:25% ; background-color: transparent; margin-top: 0; text-align: left; font-weight: bold; margin-left: 1%;">
+					<p>Fun (?) Name:</p>
 					<p>Common Name:</p>
+					<p>Genus, Species: </p>
+					<p>Location: </p>
 					<p>Size: </p>
 					<p>Ideal Conditions: </p>
+					<p>Characteristics:</p>
 				</div>
-				<div class="column right"  style="height: 75px; width: 175px; background-color: transparent;margin-top: 0;text-align: left;">
-					<p>CSI 270T</p>
-					<p>TBA, TBA</p>
+				<div class="column right"  style="width: 65%; background-color: transparent;margin-top: 0;text-align: left; margin-right: 1%;">
 					<p>Buddy</p>
+					<p>soil in a cup</p>
+					<p>TBA, TBA</p>
+					<p>CSI 270T</p>
 					<p>TBA</p>
-				</div>
+					<p>TBA</p>
+					<p>Currently a red solo cup filled with soil.</p>
+				</div> -->
 				<!-- <span style="font-weight: bold;">Location: </span> <span>CSI 270T</span>
 				<br><br>
 				<span style="font-weight: bold;"> Genus, Species: </span> <span>TBA</span>
 				<br><br> -->
-				
-				<!-- <span> Want to monitor progress? check out <a style="font-weight: bold;" href="/product">Data</a></span> -->
-		</div>
-						<div>
-							
-							<!-- <p>This plant, residing in CSI 270T, is of [genus, species]. It's part of our Spring 2025 Senior Software project, but when it grows, perhaps it aspires to be the future mascot for the computer science department. Interested in helping it grow, or just want to monitor its progress? Check out the <a style="font-weight: bold;" href="/product">Data</a> tab on this website!</p> -->
-						</div>
 
-		</div>
-	</div>
+
+				<br><br><br>
+				<span> Want to monitor progress? check out <a style="font-weight: bold;" href="/product">Data</a></span>
+
+
 	  <!-- <div class="index-container">
 		<span class="plant-img"></span> -->
 		<!-- <span><button class="point-left-transparent"></button></span> -->
